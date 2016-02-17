@@ -21,5 +21,7 @@ namespace DAL
         public DbSet<ComputerSpecification> ComputerSpecifications { get; set; }
         public DbSet<GameSpecification> GameSpecifications { get; set; }
         public DbSet<MapPool> MapPools { get; set; }
+        public DbSet<Team>  Teams { get; set; }
+         
     }
 }

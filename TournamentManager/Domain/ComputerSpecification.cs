@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,7 +38,8 @@ namespace Domain
         public string KeyboardName { get; set; }
 
         //One computerspec one player
-        [Required]
+        [ForeignKey("Player")]
+        public int PlayerId { get; set; }
         public virtual Player Player { get; set; }
 
         //Win / Lose rate

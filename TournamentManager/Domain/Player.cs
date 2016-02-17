@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,10 +26,16 @@ namespace Domain
         public int? CurrentLost { get; set; }
 
         //Information about computer and game specifications
+        [ForeignKey("ComputerSpec")]
+        public int ComputerSpecificationID { get; set; }
         public virtual List<ComputerSpecification> ComputerSpecifications { get; set; } = new List<ComputerSpecification>();
+        [ForeignKey("GameSpec")]
+        public int GameSpecificationID { get; set; }
         public virtual List<GameSpecification> GameSpecifications { get; set; } = new List<GameSpecification>();
 
         //Info about team
+        [ForeignKey("Team")]
+        public int TeamId { get; set; }
         public virtual Team Team { get; set; }
 
 
