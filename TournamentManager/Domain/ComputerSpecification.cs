@@ -38,7 +38,6 @@ namespace Domain
         public string KeyboardName { get; set; }
 
         //One computerspec one player
-        [ForeignKey("Player")]
         public int PlayerId { get; set; }
         public virtual Player Player { get; set; }
 

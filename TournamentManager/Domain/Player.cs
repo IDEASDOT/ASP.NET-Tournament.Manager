@@ -18,6 +18,10 @@ namespace Domain
         public string NickName { get; set; }
         [Required, MaxLength(128)]
         public string LastName { get; set; }
+
+        //Favourite Map of Player
+        public int MapId { get; set; }
+        public virtual MapPool FavouriteMap { get; set; }
         
         //Information about win/lose rate
         public int? AllTimeWins { get; set; }
@@ -26,15 +30,11 @@ namespace Domain
         public int? CurrentLost { get; set; }
 
         //Information about computer and game specifications
-        [ForeignKey("ComputerSpec")]
-        public int ComputerSpecificationID { get; set; }
+
         public virtual List<ComputerSpecification> ComputerSpecifications { get; set; } = new List<ComputerSpecification>();
-        [ForeignKey("GameSpec")]
-        public int GameSpecificationID { get; set; }
         public virtual List<GameSpecification> GameSpecifications { get; set; } = new List<GameSpecification>();
 
         //Info about team
-        [ForeignKey("Team")]
         public int TeamId { get; set; }
         public virtual Team Team { get; set; }
 

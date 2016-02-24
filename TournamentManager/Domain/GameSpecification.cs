@@ -13,12 +13,9 @@ namespace Domain
         [Key]
         public int GameSpecId { get; set; }
 
-        [MaxLength(4)]
         public int? DpiValue { get; set; }
-        [MaxLength(5)]
         public double? SensitivityValue { get; set; }
 
-        [ForeignKey("Player")]
         public int PlayerId { get; set; }
         public virtual Player Player { get; set; }
 

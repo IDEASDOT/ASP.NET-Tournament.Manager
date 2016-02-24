@@ -50,6 +50,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBaseContext.cs" />
+    <Compile Include="Migrations\201602240808559_InitialCreateOfDatabase.cs" />
+    <Compile Include="Migrations\201602240808559_InitialCreateOfDatabase.Designer.cs">
+      <DependentUpon>201602240808559_InitialCreateOfDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602240821016_Added new Seed.cs" />
+    <Compile Include="Migrations\201602240821016_Added new Seed.Designer.cs">
+      <DependentUpon>201602240821016_Added new Seed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\MigrationConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +70,14 @@
       <Project>{9F27711A-D8FF-47EE-9DF0-2401C90DDB6E}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201602240808559_InitialCreateOfDatabase.resx">
+      <DependentUpon>201602240808559_InitialCreateOfDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602240821016_Added new Seed.resx">
+      <DependentUpon>201602240821016_Added new Seed.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,6 +5,7 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.Migrations;
 using Domain;
 
 namespace DAL
@@ -14,14 +15,14 @@ namespace DAL
 
         public DataBaseContext() : base ("name = TournamentDBConnection")
         {
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<DataBaseContext>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DataBaseContext,MigrationConfiguration>());
         }
 
         public DbSet<Player> Players { get; set; }
         public DbSet<ComputerSpecification> ComputerSpecifications { get; set; }
         public DbSet<GameSpecification> GameSpecifications { get; set; }
         public DbSet<MapPool> MapPools { get; set; }
-        public DbSet<Team>  Teams { get; set; }
+        public DbSet<Team> Teams { get; set; }
          
     }
 }
