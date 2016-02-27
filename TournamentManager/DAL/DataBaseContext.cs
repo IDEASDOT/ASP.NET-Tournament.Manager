@@ -23,6 +23,7 @@ namespace DAL
         public DbSet<GameSpecification> GameSpecifications { get; set; }
         public DbSet<MapPool> MapPools { get; set; }
         public DbSet<Team> Teams { get; set; }
+        public DbSet<Match> Matches { get; set; }
          
     }
 }

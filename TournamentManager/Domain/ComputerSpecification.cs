@@ -11,9 +11,11 @@ namespace Domain
     public class ComputerSpecification
     {
 
-        //Primary key
+        //Primary key ffor computer specification key
         [Key]
         public int CompSpecId { get; set; }
+
+        //TODO: Add different database context for computer spec ( manufactorer -> modelSerie -> ModelName ) + SEED the values
 
         //Computer Specifications
         [MaxLength(128)]
@@ -26,6 +28,8 @@ namespace Domain
         public string RamName { get; set; }
         [MaxLength(128)]
         public string OsName { get; set; }
+
+        //TODO: Add database contex for mouse and keyoard set ( manufactorer -> Name)  + SEED the values
 
         //Mouse&Keyboard&Headset Specifications
         [MaxLength(128)]

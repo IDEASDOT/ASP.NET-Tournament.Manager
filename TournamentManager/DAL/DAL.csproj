@@ -58,6 +58,10 @@
     <Compile Include="Migrations\201602240821016_Added new Seed.Designer.cs">
       <DependentUpon>201602240821016_Added new Seed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602271219588_CreatedNewDatabaseModelForMatches.cs" />
+    <Compile Include="Migrations\201602271219588_CreatedNewDatabaseModelForMatches.Designer.cs">
+      <DependentUpon>201602271219588_CreatedNewDatabaseModelForMatches.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\MigrationConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -77,6 +81,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602240821016_Added new Seed.resx">
       <DependentUpon>201602240821016_Added new Seed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602271219588_CreatedNewDatabaseModelForMatches.resx">
+      <DependentUpon>201602271219588_CreatedNewDatabaseModelForMatches.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
