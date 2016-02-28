@@ -1,0 +1,58 @@
+﻿@model Domain.GameSpecification
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>GameSpecification</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Player.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Player.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DpiValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DpiValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SensitivityValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SensitivityValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GameWins)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameWins)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GameLost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameLost)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.GameSpecId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

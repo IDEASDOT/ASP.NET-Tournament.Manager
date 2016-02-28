@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Domain.ComputerSpecification>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Player.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProcessorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GraphicName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StorageName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RamName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OsName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MouseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MousePadName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HeadsetName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KeyboardName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompWins)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompLost)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Player.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProcessorName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GraphicName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StorageName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RamName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OsName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MouseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MousePadName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HeadsetName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KeyboardName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompWins)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompLost)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CompSpecId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CompSpecId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CompSpecId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,105 @@
+﻿@model IEnumerable<Domain.Match>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstTeam.TeamName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecondTeam.TeamName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfMapsPlayed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstTeamFirstMapRoundsWon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecondTeamFirstMapRoundsWon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstTeamSecondMapRoundsWon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecondTeamSecondMapRoundsWon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstTeamThirdMapRoundsWon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecondTeamThirdMapRoundsWon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstTeamFourthMapRoundsWon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecondTeamFourthMapRoundsWon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstTeamFifthMapRoundsWon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecondTeamFifthMapRoundsWon)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstTeam.TeamName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecondTeam.TeamName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfMapsPlayed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstTeamFirstMapRoundsWon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecondTeamFirstMapRoundsWon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstTeamSecondMapRoundsWon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecondTeamSecondMapRoundsWon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstTeamThirdMapRoundsWon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecondTeamThirdMapRoundsWon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstTeamFourthMapRoundsWon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecondTeamFourthMapRoundsWon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstTeamFifthMapRoundsWon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecondTeamFifthMapRoundsWon)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MatchId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MatchId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MatchId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -128,7 +128,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ComputerSpecificationsController.cs" />
+    <Compile Include="Controllers\GameSpecificationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MapPoolsController.cs" />
+    <Compile Include="Controllers\MatchesController.cs" />
+    <Compile Include="Controllers\PlayersController.cs" />
+    <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -181,6 +187,36 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Players\Create.cshtml" />
+    <Content Include="Views\Players\Delete.cshtml" />
+    <Content Include="Views\Players\Details.cshtml" />
+    <Content Include="Views\Players\Edit.cshtml" />
+    <Content Include="Views\Players\Index.cshtml" />
+    <Content Include="Views\ComputerSpecifications\Create.cshtml" />
+    <Content Include="Views\ComputerSpecifications\Delete.cshtml" />
+    <Content Include="Views\ComputerSpecifications\Details.cshtml" />
+    <Content Include="Views\ComputerSpecifications\Edit.cshtml" />
+    <Content Include="Views\ComputerSpecifications\Index.cshtml" />
+    <Content Include="Views\GameSpecifications\Create.cshtml" />
+    <Content Include="Views\GameSpecifications\Delete.cshtml" />
+    <Content Include="Views\GameSpecifications\Details.cshtml" />
+    <Content Include="Views\GameSpecifications\Edit.cshtml" />
+    <Content Include="Views\GameSpecifications\Index.cshtml" />
+    <Content Include="Views\MapPools\Create.cshtml" />
+    <Content Include="Views\MapPools\Delete.cshtml" />
+    <Content Include="Views\MapPools\Details.cshtml" />
+    <Content Include="Views\MapPools\Edit.cshtml" />
+    <Content Include="Views\MapPools\Index.cshtml" />
+    <Content Include="Views\Matches\Create.cshtml" />
+    <Content Include="Views\Matches\Delete.cshtml" />
+    <Content Include="Views\Matches\Details.cshtml" />
+    <Content Include="Views\Matches\Edit.cshtml" />
+    <Content Include="Views\Matches\Index.cshtml" />
+    <Content Include="Views\Teams\Create.cshtml" />
+    <Content Include="Views\Teams\Delete.cshtml" />
+    <Content Include="Views\Teams\Details.cshtml" />
+    <Content Include="Views\Teams\Edit.cshtml" />
+    <Content Include="Views\Teams\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -190,6 +226,16 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-2.2.0.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{6779d87e-3b0c-4436-bbbe-9d8eed7d3893}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{9f27711a-d8ff-47ee-9df0-2401c90ddb6e}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

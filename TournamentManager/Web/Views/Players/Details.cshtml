@@ -1,0 +1,90 @@
+﻿@model Domain.Player
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Player</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FavouriteMap.MapName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FavouriteMap.MapName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Team.TeamName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Team.TeamName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NickName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NickName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AllTimeWins)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AllTimeWins)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentWins)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentWins)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AllTimeLost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AllTimeLost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentLost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentLost)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PlayerId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
