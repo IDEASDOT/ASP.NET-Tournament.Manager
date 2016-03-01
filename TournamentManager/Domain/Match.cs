@@ -44,5 +44,15 @@ namespace Domain
         public int? SecondTeamFourthMapRoundsWon { get; set; }
         public int? FirstTeamFifthMapRoundsWon { get; set; }
         public int? SecondTeamFifthMapRoundsWon { get; set; }
+
+        #region NotMapped
+
+        public string FirstMap => + FirstTeamFirstMapRoundsWon + ":" + SecondTeamFirstMapRoundsWon;
+        public string SecondMap => +FirstTeamSecondMapRoundsWon + ":" + SecondTeamSecondMapRoundsWon;
+        public string ThirdMap => +FirstTeamThirdMapRoundsWon + ":" + SecondTeamThirdMapRoundsWon;
+        public string FourthMap => +FirstTeamFourthMapRoundsWon + ":" + SecondTeamFourthMapRoundsWon;
+        public string FifthMap => +FirstTeamFifthMapRoundsWon + ":" + SecondTeamFifthMapRoundsWon;
+
+        #endregion
     }
 }

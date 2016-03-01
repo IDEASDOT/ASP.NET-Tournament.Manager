@@ -50,17 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBaseContext.cs" />
-    <Compile Include="Migrations\201602240808559_InitialCreateOfDatabase.cs" />
-    <Compile Include="Migrations\201602240808559_InitialCreateOfDatabase.Designer.cs">
-      <DependentUpon>201602240808559_InitialCreateOfDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602240821016_Added new Seed.cs" />
-    <Compile Include="Migrations\201602240821016_Added new Seed.Designer.cs">
-      <DependentUpon>201602240821016_Added new Seed.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602271219588_CreatedNewDatabaseModelForMatches.cs" />
-    <Compile Include="Migrations\201602271219588_CreatedNewDatabaseModelForMatches.Designer.cs">
-      <DependentUpon>201602271219588_CreatedNewDatabaseModelForMatches.cs</DependentUpon>
+    <Compile Include="Migrations\201603011705567_New Model Update For ProductSelecting.cs" />
+    <Compile Include="Migrations\201603011705567_New Model Update For ProductSelecting.Designer.cs">
+      <DependentUpon>201603011705567_New Model Update For ProductSelecting.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\MigrationConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,14 +68,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602240808559_InitialCreateOfDatabase.resx">
-      <DependentUpon>201602240808559_InitialCreateOfDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602240821016_Added new Seed.resx">
-      <DependentUpon>201602240821016_Added new Seed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602271219588_CreatedNewDatabaseModelForMatches.resx">
-      <DependentUpon>201602271219588_CreatedNewDatabaseModelForMatches.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603011705567_New Model Update For ProductSelecting.resx">
+      <DependentUpon>201603011705567_New Model Update For ProductSelecting.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

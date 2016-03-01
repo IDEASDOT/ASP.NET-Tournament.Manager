@@ -24,6 +24,15 @@ namespace DAL
         public DbSet<MapPool> MapPools { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<Match> Matches { get; set; }
-         
+
+        public System.Data.Entity.DbSet<Domain.Manufactorer> Manufactorers { get; set; }
+
+        public System.Data.Entity.DbSet<Domain.ManufactorerType> ManufactorerTypes { get; set; }
+
+        public System.Data.Entity.DbSet<Domain.ModelSerie> ModelSeries { get; set; }
+
+        public System.Data.Entity.DbSet<Domain.ModelSerieType> ModelSerieTypes { get; set; }
+
+        public System.Data.Entity.DbSet<Domain.ProductSelector> ProductSelectors { get; set; }
     }
 }

@@ -51,9 +51,14 @@
   <ItemGroup>
     <Compile Include="ComputerSpecification.cs" />
     <Compile Include="GameSpecification.cs" />
+    <Compile Include="Manufactorer.cs" />
+    <Compile Include="ManufactorerType.cs" />
     <Compile Include="MapPool.cs" />
     <Compile Include="Match.cs" />
+    <Compile Include="ModelSerie.cs" />
+    <Compile Include="ModelSerieType.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="ProductSelector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Team.cs" />
   </ItemGroup>

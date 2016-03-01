@@ -7,13 +7,13 @@ namespace DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class InitialCreateOfDatabase : IMigrationMetadata
+    public sealed partial class NewModelUpdateForProductSelecting : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreateOfDatabase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(NewModelUpdateForProductSelecting));
         
         string IMigrationMetadata.Id
         {
-            get { return "201602240808559_InitialCreateOfDatabase"; }
+            get { return "201603011705567_New Model Update For ProductSelecting"; }
         }
         
         string IMigrationMetadata.Source

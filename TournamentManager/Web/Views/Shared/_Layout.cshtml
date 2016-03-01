@@ -26,18 +26,29 @@
                     <li>@Html.ActionLink("ComputerSpecifications", "Index", "ComputerSpecifications")</li>
                     <li>@Html.ActionLink("GameSpecifications", "Index", "GameSpecifications")</li>
                     <li>@Html.ActionLink("Matches", "Index", "Matches")</li>
-
+                    <li>@Html.ActionLink("ModelSeries", "Index", "ModelSeries")</li>
+                    <li>@Html.ActionLink("ModelSerieTypes", "Index", "ModelSerieTypes")</li>
+                    <li>@Html.ActionLink("Manufactorers", "Index", "Manufactorers")</li>
+                    <li>@Html.ActionLink("ManufactorerTypes", "Index", "ManufactorerTypes")</li>
+                    <li>@Html.ActionLink("ProductSelectors", "Index", "ProductSelectors")</li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+<div class="container body-content">
+    <br/>   <!-- TODO: Find a way for not to use these-->
+    <br/>
+    <br />
+    <br/>
+    <br />
+    <br />
+
+    @RenderBody()
+    <hr/>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+</div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

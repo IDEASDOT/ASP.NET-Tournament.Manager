@@ -11,21 +11,6 @@
     <h4>Player</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FavouriteMap.MapName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FavouriteMap.MapName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Team.TeamName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Team.TeamName)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.FirstName)
@@ -50,37 +35,36 @@
         <dd>
             @Html.DisplayFor(model => model.LastName)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.AllTimeWins)
+            @Html.DisplayNameFor(model => model.Team.TeamName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AllTimeWins)
+            @Html.DisplayFor(model => model.Team.TeamName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FavouriteMap.MapName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FavouriteMap.MapName)
+        </dd>
+        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentWinLose)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentWinLose)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CurrentWins)
+            @Html.DisplayNameFor(model => model.AllTimeWinLose)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CurrentWins)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AllTimeLost)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AllTimeLost)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CurrentLost)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CurrentLost)
+            @Html.DisplayFor(model => model.AllTimeWinLose)
         </dd>
 
     </dl>

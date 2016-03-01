@@ -15,7 +15,7 @@ namespace Domain
         [Key]
         public int CompSpecId { get; set; }
 
-        //TODO: Add different database context for computer spec ( manufactorer -> modelSerie -> ModelName ) + SEED the values
+        //TODO: Add different database context for computer spec ( tüüp -> >manufactorer ->  modelSerie -> ModelName ) + SEED the values
 
         //Computer Specifications
         [MaxLength(128)]

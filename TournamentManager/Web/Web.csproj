@@ -131,9 +131,14 @@
     <Compile Include="Controllers\ComputerSpecificationsController.cs" />
     <Compile Include="Controllers\GameSpecificationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManufactorersController.cs" />
+    <Compile Include="Controllers\ManufactorerTypesController.cs" />
     <Compile Include="Controllers\MapPoolsController.cs" />
     <Compile Include="Controllers\MatchesController.cs" />
+    <Compile Include="Controllers\ModelSeriesController.cs" />
+    <Compile Include="Controllers\ModelSerieTypesController.cs" />
     <Compile Include="Controllers\PlayersController.cs" />
+    <Compile Include="Controllers\ProductSelectorsController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -217,6 +222,31 @@
     <Content Include="Views\Teams\Details.cshtml" />
     <Content Include="Views\Teams\Edit.cshtml" />
     <Content Include="Views\Teams\Index.cshtml" />
+    <Content Include="Views\ModelSeries\Create.cshtml" />
+    <Content Include="Views\ModelSeries\Delete.cshtml" />
+    <Content Include="Views\ModelSeries\Details.cshtml" />
+    <Content Include="Views\ModelSeries\Edit.cshtml" />
+    <Content Include="Views\ModelSeries\Index.cshtml" />
+    <Content Include="Views\ModelSerieTypes\Create.cshtml" />
+    <Content Include="Views\ModelSerieTypes\Delete.cshtml" />
+    <Content Include="Views\ModelSerieTypes\Details.cshtml" />
+    <Content Include="Views\ModelSerieTypes\Edit.cshtml" />
+    <Content Include="Views\ModelSerieTypes\Index.cshtml" />
+    <Content Include="Views\Manufactorers\Create.cshtml" />
+    <Content Include="Views\Manufactorers\Delete.cshtml" />
+    <Content Include="Views\Manufactorers\Details.cshtml" />
+    <Content Include="Views\Manufactorers\Edit.cshtml" />
+    <Content Include="Views\Manufactorers\Index.cshtml" />
+    <Content Include="Views\ManufactorerTypes\Create.cshtml" />
+    <Content Include="Views\ManufactorerTypes\Delete.cshtml" />
+    <Content Include="Views\ManufactorerTypes\Details.cshtml" />
+    <Content Include="Views\ManufactorerTypes\Edit.cshtml" />
+    <Content Include="Views\ManufactorerTypes\Index.cshtml" />
+    <Content Include="Views\ProductSelectors\Create.cshtml" />
+    <Content Include="Views\ProductSelectors\Delete.cshtml" />
+    <Content Include="Views\ProductSelectors\Details.cshtml" />
+    <Content Include="Views\ProductSelectors\Edit.cshtml" />
+    <Content Include="Views\ProductSelectors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
