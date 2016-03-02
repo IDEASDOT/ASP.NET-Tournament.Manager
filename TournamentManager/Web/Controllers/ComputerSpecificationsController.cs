@@ -18,7 +18,7 @@ namespace Web.Controllers
         // GET: ComputerSpecifications
         public ActionResult Index()
         {
-            var computerSpecifications = db.ComputerSpecifications.Include(c => c.Player);
+            var computerSpecifications = db.ComputerSpecifications.Include(c => c.Player).Include(c => c.ProductSelector);
             return View(computerSpecifications.ToList());
         }
 
@@ -41,6 +41,7 @@ namespace Web.Controllers
         public ActionResult Create()
         {
             ViewBag.PlayerId = new SelectList(db.Players, "PlayerId", "FirstName");
+            ViewBag.ProductSelectorId = new SelectList(db.ProductSelectors, "ProductSelectorId", "ProductSelectorId");
             return View();
         }
 
@@ -49,7 +50,7 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CompSpecId,ProcessorName,GraphicName,StorageName,RamName,OsName,MouseName,MousePadName,HeadsetName,KeyboardName,PlayerId,CompWins,CompLost")] ComputerSpecification computerSpecification)
+        public ActionResult Create([Bind(Include = "CompSpecId,ProductSelectorId,OsName,PlayerId,CompWins,CompLost")] ComputerSpecification computerSpecification)
         {
             if (ModelState.IsValid)
             {
@@ -59,6 +60,7 @@ namespace Web.Controllers
             }
 
             ViewBag.PlayerId = new SelectList(db.Players, "PlayerId", "FirstName", computerSpecification.PlayerId);
+            ViewBag.ProductSelectorId = new SelectList(db.ProductSelectors, "ProductSelectorId", "ProductSelectorId", computerSpecification.ProductSelectorId);
             return View(computerSpecification);
         }
 
@@ -75,6 +77,7 @@ namespace Web.Controllers
                 return HttpNotFound();
             }
             ViewBag.PlayerId = new SelectList(db.Players, "PlayerId", "FirstName", computerSpecification.PlayerId);
+            ViewBag.ProductSelectorId = new SelectList(db.ProductSelectors, "ProductSelectorId", "ProductSelectorId", computerSpecification.ProductSelectorId);
             return View(computerSpecification);
         }
 
@@ -83,7 +86,7 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CompSpecId,ProcessorName,GraphicName,StorageName,RamName,OsName,MouseName,MousePadName,HeadsetName,KeyboardName,PlayerId,CompWins,CompLost")] ComputerSpecification computerSpecification)
+        public ActionResult Edit([Bind(Include = "CompSpecId,ProductSelectorId,OsName,PlayerId,CompWins,CompLost")] ComputerSpecification computerSpecification)
         {
             if (ModelState.IsValid)
             {
@@ -92,6 +95,7 @@ namespace Web.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.PlayerId = new SelectList(db.Players, "PlayerId", "FirstName", computerSpecification.PlayerId);
+            ViewBag.ProductSelectorId = new SelectList(db.ProductSelectors, "ProductSelectorId", "ProductSelectorId", computerSpecification.ProductSelectorId);
             return View(computerSpecification);
         }
 

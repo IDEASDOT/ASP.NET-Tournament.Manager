@@ -15,31 +15,13 @@ namespace Domain
         [Key]
         public int CompSpecId { get; set; }
 
-        //TODO: Add different database context for computer spec ( tüüp -> >manufactorer ->  modelSerie -> ModelName ) + SEED the values
-
         //Computer Specifications
-        [MaxLength(128)]
-        public string ProcessorName { get; set; }
-        [MaxLength(128)]
-        public string GraphicName { get; set; }
-        [MaxLength(128)]
-        public string StorageName { get; set; }
-        [MaxLength(128)]
-        public string RamName { get; set; }
+        public int ProductSelectorId { get; set; }
+        public virtual ProductSelector ProductSelector { get; set; }
+
         [MaxLength(128)]
         public string OsName { get; set; }
 
-        //TODO: Add database contex for mouse and keyoard set ( manufactorer -> Name)  + SEED the values
-
-        //Mouse&Keyboard&Headset Specifications
-        [MaxLength(128)]
-        public string MouseName { get; set; }
-        [MaxLength(128)]
-        public string MousePadName { get; set; }
-        [MaxLength(128)]
-        public string HeadsetName { get; set; }
-        [MaxLength(128)]
-        public string KeyboardName { get; set; }
 
         //One computerspec one player
         public int PlayerId { get; set; }

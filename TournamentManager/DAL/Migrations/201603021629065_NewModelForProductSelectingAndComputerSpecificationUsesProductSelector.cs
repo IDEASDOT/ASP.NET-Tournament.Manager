@@ -3,7 +3,7 @@ namespace DAL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class NewModelUpdateForProductSelecting : DbMigration
+    public partial class NewModelForProductSelectingAndComputerSpecificationUsesProductSelector : DbMigration
     {
         public override void Up()
         {
@@ -12,21 +12,16 @@ namespace DAL.Migrations
                 c => new
                     {
                         CompSpecId = c.Int(nullable: false, identity: true),
-                        ProcessorName = c.String(maxLength: 128),
-                        GraphicName = c.String(maxLength: 128),
-                        StorageName = c.String(maxLength: 128),
-                        RamName = c.String(maxLength: 128),
+                        ProductSelectorId = c.Int(nullable: false),
                         OsName = c.String(maxLength: 128),
-                        MouseName = c.String(maxLength: 128),
-                        MousePadName = c.String(maxLength: 128),
-                        HeadsetName = c.String(maxLength: 128),
-                        KeyboardName = c.String(maxLength: 128),
                         PlayerId = c.Int(nullable: false),
                         CompWins = c.Int(),
                         CompLost = c.Int(),
                     })
                 .PrimaryKey(t => t.CompSpecId)
                 .ForeignKey("dbo.Players", t => t.PlayerId, cascadeDelete: false)
+                .ForeignKey("dbo.ProductSelectors", t => t.ProductSelectorId, cascadeDelete: false)
+                .Index(t => t.ProductSelectorId)
                 .Index(t => t.PlayerId);
             
             CreateTable(
@@ -95,6 +90,26 @@ namespace DAL.Migrations
                 .PrimaryKey(t => t.TeamId);
             
             CreateTable(
+                "dbo.ProductSelectors",
+                c => new
+                    {
+                        ProductSelectorId = c.Int(nullable: false, identity: true),
+                        ManufactorerTypeId = c.Int(nullable: false),
+                        ManufactorerId = c.Int(nullable: false),
+                        ModelSerieId = c.Int(nullable: false),
+                        ModelSerieTypeId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.ProductSelectorId)
+                .ForeignKey("dbo.Manufactorers", t => t.ManufactorerId, cascadeDelete: false)
+                .ForeignKey("dbo.ManufactorerTypes", t => t.ManufactorerTypeId, cascadeDelete: false)
+                .ForeignKey("dbo.ModelSeries", t => t.ModelSerieId, cascadeDelete: false)
+                .ForeignKey("dbo.ModelSerieTypes", t => t.ModelSerieTypeId, cascadeDelete: false)
+                .Index(t => t.ManufactorerTypeId)
+                .Index(t => t.ManufactorerId)
+                .Index(t => t.ModelSerieId)
+                .Index(t => t.ModelSerieTypeId);
+            
+            CreateTable(
                 "dbo.Manufactorers",
                 c => new
                     {
@@ -111,6 +126,24 @@ namespace DAL.Migrations
                         ManufactorerTypeName = c.String(nullable: false, maxLength: 64),
                     })
                 .PrimaryKey(t => t.ManufactorerTypeId);
+            
+            CreateTable(
+                "dbo.ModelSeries",
+                c => new
+                    {
+                        ModelSerieId = c.Int(nullable: false, identity: true),
+                        ModelSerieName = c.String(nullable: false, maxLength: 64),
+                    })
+                .PrimaryKey(t => t.ModelSerieId);
+            
+            CreateTable(
+                "dbo.ModelSerieTypes",
+                c => new
+                    {
+                        ModelSerieTypeId = c.Int(nullable: false, identity: true),
+                        ModelSerieTypeName = c.String(nullable: false, maxLength: 64),
+                    })
+                .PrimaryKey(t => t.ModelSerieTypeId);
             
             CreateTable(
                 "dbo.Matches",
@@ -137,67 +170,30 @@ namespace DAL.Migrations
                 .Index(t => t.FirstTeamId)
                 .Index(t => t.SecondTeamId);
             
-            CreateTable(
-                "dbo.ModelSeries",
-                c => new
-                    {
-                        ModelSerieId = c.Int(nullable: false, identity: true),
-                        ModelSerieName = c.String(nullable: false, maxLength: 64),
-                    })
-                .PrimaryKey(t => t.ModelSerieId);
-            
-            CreateTable(
-                "dbo.ModelSerieTypes",
-                c => new
-                    {
-                        ModelSerieTypeId = c.Int(nullable: false, identity: true),
-                        ModelSerieTypeName = c.String(nullable: false, maxLength: 64),
-                    })
-                .PrimaryKey(t => t.ModelSerieTypeId);
-            
-            CreateTable(
-                "dbo.ProductSelectors",
-                c => new
-                    {
-                        ProductSelectorId = c.Int(nullable: false, identity: true),
-                        ManufactorerTypeId = c.Int(nullable: false),
-                        ManufactorerId = c.Int(nullable: false),
-                        ModelSerieId = c.Int(nullable: false),
-                        ModelSerieTypeId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.ProductSelectorId)
-                .ForeignKey("dbo.Manufactorers", t => t.ManufactorerId, cascadeDelete: false)
-                .ForeignKey("dbo.ManufactorerTypes", t => t.ManufactorerTypeId, cascadeDelete: false)
-                .ForeignKey("dbo.ModelSeries", t => t.ModelSerieId, cascadeDelete: false)
-                .ForeignKey("dbo.ModelSerieTypes", t => t.ModelSerieTypeId, cascadeDelete: false)
-                .Index(t => t.ManufactorerTypeId)
-                .Index(t => t.ManufactorerId)
-                .Index(t => t.ModelSerieId)
-                .Index(t => t.ModelSerieTypeId);
-            
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.ProductSelectors", "ModelSerieTypeId", "dbo.ModelSerieTypes");
-            DropForeignKey("dbo.ProductSelectors", "ModelSerieId", "dbo.ModelSeries");
-            DropForeignKey("dbo.ProductSelectors", "ManufactorerTypeId", "dbo.ManufactorerTypes");
-            DropForeignKey("dbo.ProductSelectors", "ManufactorerId", "dbo.Manufactorers");
             DropForeignKey("dbo.Players", "Match_MatchId1", "dbo.Matches");
             DropForeignKey("dbo.Matches", "SecondTeamId", "dbo.Teams");
             DropForeignKey("dbo.MapPools", "Match_MatchId", "dbo.Matches");
             DropForeignKey("dbo.Players", "Match_MatchId", "dbo.Matches");
             DropForeignKey("dbo.Matches", "FirstTeamId", "dbo.Teams");
+            DropForeignKey("dbo.ComputerSpecifications", "ProductSelectorId", "dbo.ProductSelectors");
+            DropForeignKey("dbo.ProductSelectors", "ModelSerieTypeId", "dbo.ModelSerieTypes");
+            DropForeignKey("dbo.ProductSelectors", "ModelSerieId", "dbo.ModelSeries");
+            DropForeignKey("dbo.ProductSelectors", "ManufactorerTypeId", "dbo.ManufactorerTypes");
+            DropForeignKey("dbo.ProductSelectors", "ManufactorerId", "dbo.Manufactorers");
             DropForeignKey("dbo.Players", "TeamId", "dbo.Teams");
             DropForeignKey("dbo.GameSpecifications", "PlayerId", "dbo.Players");
             DropForeignKey("dbo.Players", "MapId", "dbo.MapPools");
             DropForeignKey("dbo.ComputerSpecifications", "PlayerId", "dbo.Players");
+            DropIndex("dbo.Matches", new[] { "SecondTeamId" });
+            DropIndex("dbo.Matches", new[] { "FirstTeamId" });
             DropIndex("dbo.ProductSelectors", new[] { "ModelSerieTypeId" });
             DropIndex("dbo.ProductSelectors", new[] { "ModelSerieId" });
             DropIndex("dbo.ProductSelectors", new[] { "ManufactorerId" });
             DropIndex("dbo.ProductSelectors", new[] { "ManufactorerTypeId" });
-            DropIndex("dbo.Matches", new[] { "SecondTeamId" });
-            DropIndex("dbo.Matches", new[] { "FirstTeamId" });
             DropIndex("dbo.GameSpecifications", new[] { "PlayerId" });
             DropIndex("dbo.MapPools", new[] { "Match_MatchId" });
             DropIndex("dbo.Players", new[] { "Match_MatchId1" });
@@ -205,12 +201,13 @@ namespace DAL.Migrations
             DropIndex("dbo.Players", new[] { "TeamId" });
             DropIndex("dbo.Players", new[] { "MapId" });
             DropIndex("dbo.ComputerSpecifications", new[] { "PlayerId" });
-            DropTable("dbo.ProductSelectors");
+            DropIndex("dbo.ComputerSpecifications", new[] { "ProductSelectorId" });
+            DropTable("dbo.Matches");
             DropTable("dbo.ModelSerieTypes");
             DropTable("dbo.ModelSeries");
-            DropTable("dbo.Matches");
             DropTable("dbo.ManufactorerTypes");
             DropTable("dbo.Manufactorers");
+            DropTable("dbo.ProductSelectors");
             DropTable("dbo.Teams");
             DropTable("dbo.GameSpecifications");
             DropTable("dbo.MapPools");

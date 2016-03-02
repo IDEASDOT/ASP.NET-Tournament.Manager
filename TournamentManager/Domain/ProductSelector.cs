@@ -22,5 +22,10 @@ namespace Domain
 
         public int ModelSerieTypeId { get; set; }
         public virtual ModelSerieType ModelSerieType { get; set; }
+
+        #region NotMapped
+
+        public string FullName => ManufactorerType.ManufactorerTypeName + ": " + Manufactorer.ManufactorerName + " " + ModelSerieType.ModelSerieTypeName + " " + ModelSerie.ModelSerieName;
+        #endregion
     }
 }

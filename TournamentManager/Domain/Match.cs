@@ -30,7 +30,7 @@ namespace Domain
 
         //Information about the match
         public int? NumberOfMapsPlayed  { get; set; }
-        [Required]
+
         public virtual List<MapPool> MapsPlayed { get; set; }
 
         //Information about maprounds (Max maps 5, thus 5 statistics)

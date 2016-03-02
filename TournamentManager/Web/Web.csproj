@@ -197,11 +197,6 @@
     <Content Include="Views\Players\Details.cshtml" />
     <Content Include="Views\Players\Edit.cshtml" />
     <Content Include="Views\Players\Index.cshtml" />
-    <Content Include="Views\ComputerSpecifications\Create.cshtml" />
-    <Content Include="Views\ComputerSpecifications\Delete.cshtml" />
-    <Content Include="Views\ComputerSpecifications\Details.cshtml" />
-    <Content Include="Views\ComputerSpecifications\Edit.cshtml" />
-    <Content Include="Views\ComputerSpecifications\Index.cshtml" />
     <Content Include="Views\GameSpecifications\Create.cshtml" />
     <Content Include="Views\GameSpecifications\Delete.cshtml" />
     <Content Include="Views\GameSpecifications\Details.cshtml" />
@@ -247,6 +242,11 @@
     <Content Include="Views\ProductSelectors\Details.cshtml" />
     <Content Include="Views\ProductSelectors\Edit.cshtml" />
     <Content Include="Views\ProductSelectors\Index.cshtml" />
+    <Content Include="Views\ComputerSpecifications\Create.cshtml" />
+    <Content Include="Views\ComputerSpecifications\Delete.cshtml" />
+    <Content Include="Views\ComputerSpecifications\Details.cshtml" />
+    <Content Include="Views\ComputerSpecifications\Edit.cshtml" />
+    <Content Include="Views\ComputerSpecifications\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
