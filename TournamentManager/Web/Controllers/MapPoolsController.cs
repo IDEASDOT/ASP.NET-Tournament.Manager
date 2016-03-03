@@ -7,18 +7,25 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DAL;
+using DAL.Interfaces;
 using Domain;
 
 namespace Web.Controllers
 {
     public class MapPoolsController : Controller
     {
-        private DataBaseContext db = new DataBaseContext();
+        //private DataBaseContext db = new DataBaseContext();
+        private readonly IUOW _uow;
+        public MapPoolsController(IUOW uow)
+        {
+            _uow = uow;
 
+        }
         // GET: MapPools
         public ActionResult Index()
         {
-            return View(db.MapPools.ToList());
+            var mapPool = _uow.MapPools.All;
+            return View(mapPool);
         }
 
         // GET: MapPools/Details/5
@@ -28,7 +35,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MapPool mapPool = db.MapPools.Find(id);
+            MapPool mapPool = _uow.MapPools.GetById(id);
             if (mapPool == null)
             {
                 return HttpNotFound();
@@ -51,8 +58,8 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.MapPools.Add(mapPool);
-                db.SaveChanges();
+                _uow.MapPools.Add(mapPool);
+                _uow.Commit();
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +73,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MapPool mapPool = db.MapPools.Find(id);
+            MapPool mapPool = _uow.MapPools.GetById(id);
             if (mapPool == null)
             {
                 return HttpNotFound();
@@ -83,8 +90,8 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(mapPool).State = EntityState.Modified;
-                db.SaveChanges();
+                _uow.MapPools.Update(mapPool);
+                _uow.Commit();
                 return RedirectToAction("Index");
             }
             return View(mapPool);
@@ -97,7 +104,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MapPool mapPool = db.MapPools.Find(id);
+            MapPool mapPool = _uow.MapPools.GetById(id);
             if (mapPool == null)
             {
                 return HttpNotFound();
@@ -110,9 +117,7 @@ namespace Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            MapPool mapPool = db.MapPools.Find(id);
-            db.MapPools.Remove(mapPool);
-            db.SaveChanges();
+            _uow.MapPools.Delete(id);
             return RedirectToAction("Index");
         }
 
@@ -120,7 +125,7 @@ namespace Web.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _uow.MapPools.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DAL;
+using DAL.Interfaces;
 using Domain;
 
 namespace Web.Controllers
@@ -14,12 +15,21 @@ namespace Web.Controllers
     public class PlayersController : Controller
     {
         private DataBaseContext db = new DataBaseContext();
+        private readonly IUOW _uow;
+
+        public PlayersController(IUOW uow)
+        {
+            _uow = uow;
+
+        }
 
         // GET: Players
         public ActionResult Index()
         {
-            var players = db.Players.Include(p => p.FavouriteMap).Include(p => p.Team);
-            return View(players.ToList());
+            //db.Players.Include(p => p.FavouriteMap).Include(p => p.Team)
+            // _uow.Players.All();
+            var vm = _uow.Players.All;
+            return View(vm);
         }
 
         // GET: Players/Details/5
@@ -29,7 +39,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Player player = db.Players.Find(id);
+            Player player = _uow.Players.GetById(id);
             if (player == null)
             {
                 return HttpNotFound();
@@ -54,8 +64,8 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Players.Add(player);
-                db.SaveChanges();
+                _uow.Players.Add(player);
+                _uow.Commit();
                 return RedirectToAction("Index");
             }
 
@@ -71,7 +81,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Player player = db.Players.Find(id);
+            Player player = _uow.Players.GetById(id);
             if (player == null)
             {
                 return HttpNotFound();
@@ -90,8 +100,8 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(player).State = EntityState.Modified;
-                db.SaveChanges();
+                _uow.Players.Update(player);
+                _uow.Commit();
                 return RedirectToAction("Index");
             }
             ViewBag.MapId = new SelectList(db.MapPools, "MapId", "MapName", player.MapId);
@@ -106,7 +116,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Player player = db.Players.Find(id);
+            Player player = _uow.Players.GetById(id);
             if (player == null)
             {
                 return HttpNotFound();
@@ -119,9 +129,8 @@ namespace Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Player player = db.Players.Find(id);
-            db.Players.Remove(player);
-            db.SaveChanges();
+            _uow.Players.Delete(id);
+            _uow.Commit();
             return RedirectToAction("Index");
         }
 
@@ -129,9 +138,10 @@ namespace Web.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _uow.Players.Dispose();
             }
             base.Dispose(disposing);
         }
     }
 }
+ 

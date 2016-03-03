@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DAL;
+using DAL.Interfaces;
 using Domain;
 
 namespace Web.Controllers
@@ -14,12 +15,17 @@ namespace Web.Controllers
     public class ProductSelectorsController : Controller
     {
         private DataBaseContext db = new DataBaseContext();
+        private readonly IUOW _uow;
+        public ProductSelectorsController(IUOW uow)
+        {
+            _uow = uow;
 
+        }
         // GET: ProductSelectors
         public ActionResult Index()
         {
-            var productSelectors = db.ProductSelectors.Include(p => p.Manufactorer).Include(p => p.ManufactorerType).Include(p => p.ModelSerie).Include(p => p.ModelSerieType);
-            return View(productSelectors.ToList());
+            var productSelectors = _uow.ProductSelectors.All;
+            return View(productSelectors);
         }
 
         // GET: ProductSelectors/Details/5
@@ -29,7 +35,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProductSelector productSelector = db.ProductSelectors.Find(id);
+            ProductSelector productSelector = _uow.ProductSelectors.GetById(id);
             if (productSelector == null)
             {
                 return HttpNotFound();
@@ -56,8 +62,8 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ProductSelectors.Add(productSelector);
-                db.SaveChanges();
+                _uow.ProductSelectors.Add(productSelector);
+                _uow.Commit();
                 return RedirectToAction("Index");
             }
 
@@ -75,7 +81,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProductSelector productSelector = db.ProductSelectors.Find(id);
+            ProductSelector productSelector = _uow.ProductSelectors.GetById(id);
             if (productSelector == null)
             {
                 return HttpNotFound();
@@ -96,8 +102,8 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(productSelector).State = EntityState.Modified;
-                db.SaveChanges();
+                _uow.ProductSelectors.Update(productSelector);
+                _uow.Commit();
                 return RedirectToAction("Index");
             }
             ViewBag.ManufactorerId = new SelectList(db.Manufactorers, "ManufactorerId", "ManufactorerName", productSelector.ManufactorerId);
@@ -114,7 +120,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProductSelector productSelector = db.ProductSelectors.Find(id);
+            ProductSelector productSelector = _uow.ProductSelectors.GetById(id);
             if (productSelector == null)
             {
                 return HttpNotFound();
@@ -127,9 +133,8 @@ namespace Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ProductSelector productSelector = db.ProductSelectors.Find(id);
-            db.ProductSelectors.Remove(productSelector);
-            db.SaveChanges();
+            _uow.ProductSelectors.Delete(id);
+            _uow.Commit();
             return RedirectToAction("Index");
         }
 
@@ -137,7 +142,7 @@ namespace Web.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _uow.ProductSelectors.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DAL;
+using DAL.Interfaces;
 using Domain;
 
 namespace Web.Controllers
@@ -14,11 +15,17 @@ namespace Web.Controllers
     public class ManufactorersController : Controller
     {
         private DataBaseContext db = new DataBaseContext();
+        private readonly IUOW _uow;
+        public ManufactorersController(IUOW uow)
+        {
+            _uow = uow;
 
+        }
         // GET: Manufactorers
         public ActionResult Index()
         {
-            return View(db.Manufactorers.ToList());
+            var manufactorers = _uow.Manufactorers.All;
+            return View(manufactorers);
         }
 
         // GET: Manufactorers/Details/5
@@ -28,7 +35,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Manufactorer manufactorer = db.Manufactorers.Find(id);
+            Manufactorer manufactorer = _uow.Manufactorers.GetById(id);
             if (manufactorer == null)
             {
                 return HttpNotFound();
@@ -51,8 +58,8 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Manufactorers.Add(manufactorer);
-                db.SaveChanges();
+                _uow.Manufactorers.Add(manufactorer);
+                _uow.Commit();
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +73,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Manufactorer manufactorer = db.Manufactorers.Find(id);
+            Manufactorer manufactorer = _uow.Manufactorers.GetById(id);
             if (manufactorer == null)
             {
                 return HttpNotFound();
@@ -83,8 +90,8 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(manufactorer).State = EntityState.Modified;
-                db.SaveChanges();
+                _uow.Manufactorers.Update(manufactorer);
+                _uow.Commit();
                 return RedirectToAction("Index");
             }
             return View(manufactorer);
@@ -97,7 +104,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Manufactorer manufactorer = db.Manufactorers.Find(id);
+            Manufactorer manufactorer = _uow.Manufactorers.GetById(id);
             if (manufactorer == null)
             {
                 return HttpNotFound();
@@ -110,9 +117,8 @@ namespace Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Manufactorer manufactorer = db.Manufactorers.Find(id);
-            db.Manufactorers.Remove(manufactorer);
-            db.SaveChanges();
+            _uow.Manufactorers.Delete(id);
+            _uow.Commit();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +126,7 @@ namespace Web.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _uow.Manufactorers.Dispose();
             }
             base.Dispose(disposing);
         }

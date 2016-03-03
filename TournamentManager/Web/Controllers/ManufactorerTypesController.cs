@@ -7,18 +7,25 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DAL;
+using DAL.Interfaces;
 using Domain;
 
 namespace Web.Controllers
 {
     public class ManufactorerTypesController : Controller
     {
-        private DataBaseContext db = new DataBaseContext();
+        //private DataBaseContext db = new DataBaseContext();
+        private readonly IUOW _uow;
+        public ManufactorerTypesController(IUOW uow)
+        {
+            _uow = uow;
 
+        }
         // GET: ManufactorerTypes
         public ActionResult Index()
         {
-            return View(db.ManufactorerTypes.ToList());
+            var manufactorerType = _uow.ManufactorerTypes.All;
+            return View(manufactorerType);
         }
 
         // GET: ManufactorerTypes/Details/5
@@ -28,7 +35,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ManufactorerType manufactorerType = db.ManufactorerTypes.Find(id);
+            ManufactorerType manufactorerType = _uow.ManufactorerTypes.GetById(id);
             if (manufactorerType == null)
             {
                 return HttpNotFound();
@@ -51,8 +58,8 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ManufactorerTypes.Add(manufactorerType);
-                db.SaveChanges();
+                _uow.ManufactorerTypes.Add(manufactorerType);
+                _uow.Commit();
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +73,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ManufactorerType manufactorerType = db.ManufactorerTypes.Find(id);
+            ManufactorerType manufactorerType = _uow.ManufactorerTypes.GetById(id);
             if (manufactorerType == null)
             {
                 return HttpNotFound();
@@ -83,8 +90,8 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(manufactorerType).State = EntityState.Modified;
-                db.SaveChanges();
+                _uow.ManufactorerTypes.Update(manufactorerType);
+                _uow.Commit();
                 return RedirectToAction("Index");
             }
             return View(manufactorerType);
@@ -97,7 +104,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ManufactorerType manufactorerType = db.ManufactorerTypes.Find(id);
+            ManufactorerType manufactorerType = _uow.ManufactorerTypes.GetById(id);
             if (manufactorerType == null)
             {
                 return HttpNotFound();
@@ -110,9 +117,8 @@ namespace Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ManufactorerType manufactorerType = db.ManufactorerTypes.Find(id);
-            db.ManufactorerTypes.Remove(manufactorerType);
-            db.SaveChanges();
+            _uow.ManufactorerTypes.Delete(id);
+            _uow.Commit();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +126,7 @@ namespace Web.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _uow.ManufactorerTypes.Dispose();
             }
             base.Dispose(disposing);
         }

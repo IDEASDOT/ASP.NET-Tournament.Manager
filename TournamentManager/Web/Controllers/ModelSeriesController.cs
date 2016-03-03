@@ -7,18 +7,24 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DAL;
+using DAL.Interfaces;
 using Domain;
 
 namespace Web.Controllers
 {
     public class ModelSeriesController : Controller
     {
-        private DataBaseContext db = new DataBaseContext();
+        //private DataBaseContext db = new DataBaseContext();
+        private readonly IUOW _uow;
+        public ModelSeriesController(IUOW uow)
+        {
+            _uow = uow;
 
+        }
         // GET: ModelSeries
         public ActionResult Index()
         {
-            return View(db.ModelSeries.ToList());
+            return View(_uow.ModelSeries.All);
         }
 
         // GET: ModelSeries/Details/5
@@ -28,7 +34,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ModelSerie modelSerie = db.ModelSeries.Find(id);
+            ModelSerie modelSerie = _uow.ModelSeries.GetById(id);
             if (modelSerie == null)
             {
                 return HttpNotFound();
@@ -51,8 +57,8 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ModelSeries.Add(modelSerie);
-                db.SaveChanges();
+                _uow.ModelSeries.Add(modelSerie);
+                _uow.Commit();
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +72,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ModelSerie modelSerie = db.ModelSeries.Find(id);
+            ModelSerie modelSerie = _uow.ModelSeries.GetById(id);
             if (modelSerie == null)
             {
                 return HttpNotFound();
@@ -83,8 +89,8 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(modelSerie).State = EntityState.Modified;
-                db.SaveChanges();
+                _uow.ModelSeries.Update(modelSerie);
+                _uow.Commit();
                 return RedirectToAction("Index");
             }
             return View(modelSerie);
@@ -97,7 +103,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ModelSerie modelSerie = db.ModelSeries.Find(id);
+            ModelSerie modelSerie = _uow.ModelSeries.GetById(id);
             if (modelSerie == null)
             {
                 return HttpNotFound();
@@ -110,9 +116,8 @@ namespace Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ModelSerie modelSerie = db.ModelSeries.Find(id);
-            db.ModelSeries.Remove(modelSerie);
-            db.SaveChanges();
+            _uow.ModelSeries.Delete(id);
+            _uow.Commit();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +125,7 @@ namespace Web.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _uow.ModelSeries.Dispose();
             }
             base.Dispose(disposing);
         }

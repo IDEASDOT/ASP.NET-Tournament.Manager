@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DAL;
+using DAL.Interfaces;
 using Domain;
 
 namespace Web.Controllers
@@ -14,12 +15,18 @@ namespace Web.Controllers
     public class MatchesController : Controller
     {
         private DataBaseContext db = new DataBaseContext();
+        private readonly IUOW _uow;
+        public MatchesController(IUOW uow)
+        {
+            _uow = uow;
 
+        }
         // GET: Matches
         public ActionResult Index()
         {
-            var matches = db.Matches.Include(m => m.FirstTeam).Include(m => m.SecondTeam);
-            return View(matches.ToList());
+            //var matches = db.Matches.Include(m => m.FirstTeam).Include(m => m.SecondTeam);
+            var matches = _uow.Matches.All;
+            return View(matches);
         }
 
         // GET: Matches/Details/5
@@ -29,7 +36,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Match match = db.Matches.Find(id);
+            Match match = _uow.Matches.GetById(id);
             if (match == null)
             {
                 return HttpNotFound();
@@ -55,7 +62,7 @@ namespace Web.Controllers
             if (ModelState.IsValid)
             {
                 db.Matches.Add(match);
-                db.SaveChanges();
+                _uow.Commit();
                 return RedirectToAction("Index");
             }
 
@@ -71,7 +78,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Match match = db.Matches.Find(id);
+            Match match = _uow.Matches.GetById(id);
             if (match == null)
             {
                 return HttpNotFound();
@@ -90,8 +97,8 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(match).State = EntityState.Modified;
-                db.SaveChanges();
+                _uow.Matches.Update(match);
+                _uow.Commit();
                 return RedirectToAction("Index");
             }
             ViewBag.FirstTeamId = new SelectList(db.Teams, "TeamId", "TeamName", match.FirstTeamId);
@@ -106,7 +113,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Match match = db.Matches.Find(id);
+            Match match = _uow.Matches.GetById(id);
             if (match == null)
             {
                 return HttpNotFound();
@@ -119,9 +126,8 @@ namespace Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Match match = db.Matches.Find(id);
-            db.Matches.Remove(match);
-            db.SaveChanges();
+            _uow.Matches.Delete(id);
+            _uow.Commit();
             return RedirectToAction("Index");
         }
 
@@ -129,7 +135,7 @@ namespace Web.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _uow.Matches.Dispose();
             }
             base.Dispose(disposing);
         }

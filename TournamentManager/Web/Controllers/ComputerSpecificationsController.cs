@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DAL;
+using DAL.Interfaces;
 using Domain;
 
 namespace Web.Controllers
@@ -14,12 +15,17 @@ namespace Web.Controllers
     public class ComputerSpecificationsController : Controller
     {
         private DataBaseContext db = new DataBaseContext();
+        private readonly IUOW _uow;
+        public ComputerSpecificationsController(IUOW uow)
+        {
+            _uow = uow;
 
+        }
         // GET: ComputerSpecifications
         public ActionResult Index()
         {
-            var computerSpecifications = db.ComputerSpecifications.Include(c => c.Player).Include(c => c.ProductSelector);
-            return View(computerSpecifications.ToList());
+            var computerSpecifications = _uow.ComputerSpecifications.All;
+            return View(computerSpecifications);
         }
 
         // GET: ComputerSpecifications/Details/5
@@ -54,8 +60,8 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ComputerSpecifications.Add(computerSpecification);
-                db.SaveChanges();
+                _uow.ComputerSpecifications.Add(computerSpecification);
+                _uow.Commit();
                 return RedirectToAction("Index");
             }
 
@@ -71,7 +77,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ComputerSpecification computerSpecification = db.ComputerSpecifications.Find(id);
+            ComputerSpecification computerSpecification = _uow.ComputerSpecifications.GetById(id);
             if (computerSpecification == null)
             {
                 return HttpNotFound();
@@ -90,8 +96,8 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(computerSpecification).State = EntityState.Modified;
-                db.SaveChanges();
+                _uow.ComputerSpecifications.Update(computerSpecification);
+                _uow.Commit();
                 return RedirectToAction("Index");
             }
             ViewBag.PlayerId = new SelectList(db.Players, "PlayerId", "FirstName", computerSpecification.PlayerId);
@@ -106,7 +112,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ComputerSpecification computerSpecification = db.ComputerSpecifications.Find(id);
+            ComputerSpecification computerSpecification = _uow.ComputerSpecifications.GetById(id);
             if (computerSpecification == null)
             {
                 return HttpNotFound();
@@ -119,9 +125,8 @@ namespace Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ComputerSpecification computerSpecification = db.ComputerSpecifications.Find(id);
-            db.ComputerSpecifications.Remove(computerSpecification);
-            db.SaveChanges();
+            _uow.ComputerSpecifications.Delete(id);
+            _uow.Commit();
             return RedirectToAction("Index");
         }
 
@@ -129,7 +134,7 @@ namespace Web.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _uow.ComputerSpecifications.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -7,18 +7,25 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DAL;
+using DAL.Interfaces;
 using Domain;
 
 namespace Web.Controllers
 {
     public class TeamsController : Controller
     {
-        private DataBaseContext db = new DataBaseContext();
+        //private DataBaseContext _uow = new DataBaseContext();
+        private readonly IUOW _uow;
+        public TeamsController(IUOW uow)
+        {
+            _uow = uow;
 
+        }
         // GET: Teams
         public ActionResult Index()
         {
-            return View(db.Teams.ToList());
+            var team = _uow.Teams.All;
+            return View(team);
         }
 
         // GET: Teams/Details/5
@@ -28,7 +35,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Team team = db.Teams.Find(id);
+            Team team = _uow.Teams.GetById(id);
             if (team == null)
             {
                 return HttpNotFound();
@@ -51,8 +58,8 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Teams.Add(team);
-                db.SaveChanges();
+                _uow.Teams.Add(team);
+                _uow.Commit();
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +73,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Team team = db.Teams.Find(id);
+            Team team = _uow.Teams.GetById(id);
             if (team == null)
             {
                 return HttpNotFound();
@@ -83,8 +90,8 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(team).State = EntityState.Modified;
-                db.SaveChanges();
+                _uow.Teams.Update(team);
+                _uow.Commit();
                 return RedirectToAction("Index");
             }
             return View(team);
@@ -97,7 +104,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Team team = db.Teams.Find(id);
+            Team team = _uow.Teams.GetById(id);
             if (team == null)
             {
                 return HttpNotFound();
@@ -110,9 +117,8 @@ namespace Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Team team = db.Teams.Find(id);
-            db.Teams.Remove(team);
-            db.SaveChanges();
+            _uow.Teams.Delete(id);
+            _uow.Commit();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +126,7 @@ namespace Web.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _uow.Teams.Dispose();
             }
             base.Dispose(disposing);
         }

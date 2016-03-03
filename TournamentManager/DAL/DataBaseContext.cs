@@ -2,20 +2,25 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.Interfaces;
 using DAL.Migrations;
 using Domain;
 
 namespace DAL
 {
-    public class DataBaseContext:DbContext
+    public class DataBaseContext:DbContext, IDbContext
     {
 
         public DataBaseContext() : base ("name = TournamentDBConnection")
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<DataBaseContext,MigrationConfiguration>());
+#if DEBUG
+            Database.Log = s => Trace.Write(s);
+#endif
         }
 
         public DbSet<Player> Players { get; set; }

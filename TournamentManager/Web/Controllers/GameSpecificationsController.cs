@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DAL;
+using DAL.Interfaces;
 using Domain;
 
 namespace Web.Controllers
@@ -14,12 +15,18 @@ namespace Web.Controllers
     public class GameSpecificationsController : Controller
     {
         private DataBaseContext db = new DataBaseContext();
+        private readonly IUOW _uow;
+        public GameSpecificationsController(IUOW uow)
+        {
+            _uow = uow;
+
+        }
 
         // GET: GameSpecifications
         public ActionResult Index()
         {
-            var gameSpecifications = db.GameSpecifications.Include(g => g.Player);
-            return View(gameSpecifications.ToList());
+            var gameSpecifications = _uow.GameSpecifications.All;
+            return View(gameSpecifications);
         }
 
         // GET: GameSpecifications/Details/5
@@ -53,8 +60,8 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.GameSpecifications.Add(gameSpecification);
-                db.SaveChanges();
+                _uow.GameSpecifications.Add(gameSpecification);
+                _uow.Commit();
                 return RedirectToAction("Index");
             }
 
@@ -69,7 +76,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GameSpecification gameSpecification = db.GameSpecifications.Find(id);
+            GameSpecification gameSpecification = _uow.GameSpecifications.GetById(id);
             if (gameSpecification == null)
             {
                 return HttpNotFound();
@@ -87,8 +94,8 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(gameSpecification).State = EntityState.Modified;
-                db.SaveChanges();
+                _uow.GameSpecifications.Update(gameSpecification);
+                _uow.Commit();
                 return RedirectToAction("Index");
             }
             ViewBag.PlayerId = new SelectList(db.Players, "PlayerId", "FirstName", gameSpecification.PlayerId);
@@ -102,7 +109,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GameSpecification gameSpecification = db.GameSpecifications.Find(id);
+            GameSpecification gameSpecification = _uow.GameSpecifications.GetById(id);
             if (gameSpecification == null)
             {
                 return HttpNotFound();
@@ -115,9 +122,9 @@ namespace Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            GameSpecification gameSpecification = db.GameSpecifications.Find(id);
-            db.GameSpecifications.Remove(gameSpecification);
-            db.SaveChanges();
+
+           _uow.GameSpecifications.Delete(id);
+            _uow.Commit();
             return RedirectToAction("Index");
         }
 
@@ -125,7 +132,7 @@ namespace Web.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _uow.GameSpecifications.Dispose();
             }
             base.Dispose(disposing);
         }
