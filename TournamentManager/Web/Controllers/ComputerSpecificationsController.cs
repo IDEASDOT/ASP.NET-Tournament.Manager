@@ -14,7 +14,7 @@ namespace Web.Controllers
 {
     public class ComputerSpecificationsController : Controller
     {
-        private DataBaseContext db = new DataBaseContext();
+        //private DataBaseContext db = new DataBaseContext();
         private readonly IUOW _uow;
         public ComputerSpecificationsController(IUOW uow)
         {
@@ -24,7 +24,8 @@ namespace Web.Controllers
         // GET: ComputerSpecifications
         public ActionResult Index()
         {
-            var computerSpecifications = _uow.ComputerSpecifications.All;
+            //var computerSpecifications = db.ComputerSpecifications.Include(c => c.Player).Include(c => c.ProductSelector);
+            var computerSpecifications = _uow.ComputerSpecifications.GetAllIncluding();
             return View(computerSpecifications);
         }
 
@@ -35,7 +36,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ComputerSpecification computerSpecification = db.ComputerSpecifications.Find(id);
+            ComputerSpecification computerSpecification = _uow.ComputerSpecifications.GetById(id);
             if (computerSpecification == null)
             {
                 return HttpNotFound();
@@ -46,8 +47,8 @@ namespace Web.Controllers
         // GET: ComputerSpecifications/Create
         public ActionResult Create()
         {
-            ViewBag.PlayerId = new SelectList(db.Players, "PlayerId", "FirstName");
-            ViewBag.ProductSelectorId = new SelectList(db.ProductSelectors, "ProductSelectorId", "ProductSelectorId");
+            ViewBag.PlayerId = new SelectList(_uow.ComputerSpecifications.All, "PlayerId", "FirstName");
+            ViewBag.ProductSelectorId = new SelectList(_uow.ComputerSpecifications.All, "ProductSelectorId", "ProductSelectorId");
             return View();
         }
 
@@ -65,8 +66,8 @@ namespace Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PlayerId = new SelectList(db.Players, "PlayerId", "FirstName", computerSpecification.PlayerId);
-            ViewBag.ProductSelectorId = new SelectList(db.ProductSelectors, "ProductSelectorId", "ProductSelectorId", computerSpecification.ProductSelectorId);
+            ViewBag.PlayerId = new SelectList(_uow.Players.All, "PlayerId", "FirstName", computerSpecification.PlayerId);
+            ViewBag.ProductSelectorId = new SelectList(_uow.ProductSelectors.All, "ProductSelectorId", "ProductSelectorId", computerSpecification.ProductSelectorId);
             return View(computerSpecification);
         }
 
@@ -82,8 +83,8 @@ namespace Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PlayerId = new SelectList(db.Players, "PlayerId", "FirstName", computerSpecification.PlayerId);
-            ViewBag.ProductSelectorId = new SelectList(db.ProductSelectors, "ProductSelectorId", "ProductSelectorId", computerSpecification.ProductSelectorId);
+            ViewBag.PlayerId = new SelectList(_uow.Players.All, "PlayerId", "FirstName", computerSpecification.PlayerId);
+            ViewBag.ProductSelectorId = new SelectList(_uow.ProductSelectors.All, "ProductSelectorId", "ProductSelectorId", computerSpecification.ProductSelectorId);
             return View(computerSpecification);
         }
 
@@ -100,8 +101,8 @@ namespace Web.Controllers
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
-            ViewBag.PlayerId = new SelectList(db.Players, "PlayerId", "FirstName", computerSpecification.PlayerId);
-            ViewBag.ProductSelectorId = new SelectList(db.ProductSelectors, "ProductSelectorId", "ProductSelectorId", computerSpecification.ProductSelectorId);
+            ViewBag.PlayerId = new SelectList(_uow.Players.All, "PlayerId", "FirstName", computerSpecification.PlayerId);
+            ViewBag.ProductSelectorId = new SelectList(_uow.ProductSelectors.All, "ProductSelectorId", "ProductSelectorId", computerSpecification.ProductSelectorId);
             return View(computerSpecification);
         }
 

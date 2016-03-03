@@ -14,7 +14,7 @@ namespace Web.Controllers
 {
     public class ProductSelectorsController : Controller
     {
-        private DataBaseContext db = new DataBaseContext();
+        //private DataBaseContext _uow = new DataBaseContext();
         private readonly IUOW _uow;
         public ProductSelectorsController(IUOW uow)
         {
@@ -24,7 +24,8 @@ namespace Web.Controllers
         // GET: ProductSelectors
         public ActionResult Index()
         {
-            var productSelectors = _uow.ProductSelectors.All;
+            //var productSelectors = _uow.ProductSelectors.Include(p => p.Manufactorer).Include(p => p.ManufactorerType).Include(p => p.ModelSerie).Include(p => p.ModelSerieType);
+            var productSelectors = _uow.ProductSelectors.GetAllIncluding();
             return View(productSelectors);
         }
 
@@ -46,10 +47,10 @@ namespace Web.Controllers
         // GET: ProductSelectors/Create
         public ActionResult Create()
         {
-            ViewBag.ManufactorerId = new SelectList(db.Manufactorers, "ManufactorerId", "ManufactorerName");
-            ViewBag.ManufactorerTypeId = new SelectList(db.ManufactorerTypes, "ManufactorerTypeId", "ManufactorerTypeName");
-            ViewBag.ModelSerieId = new SelectList(db.ModelSeries, "ModelSerieId", "ModelSerieName");
-            ViewBag.ModelSerieTypeId = new SelectList(db.ModelSerieTypes, "ModelSerieTypeId", "ModelSerieTypeName");
+            ViewBag.ManufactorerId = new SelectList(_uow.Manufactorers.All, "ManufactorerId", "ManufactorerName");
+            ViewBag.ManufactorerTypeId = new SelectList(_uow.ManufactorerTypes.All, "ManufactorerTypeId", "ManufactorerTypeName");
+            ViewBag.ModelSerieId = new SelectList(_uow.ModelSeries.All, "ModelSerieId", "ModelSerieName");
+            ViewBag.ModelSerieTypeId = new SelectList(_uow.ModelSerieTypes.All, "ModelSerieTypeId", "ModelSerieTypeName");
             return View();
         }
 
@@ -67,10 +68,10 @@ namespace Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ManufactorerId = new SelectList(db.Manufactorers, "ManufactorerId", "ManufactorerName", productSelector.ManufactorerId);
-            ViewBag.ManufactorerTypeId = new SelectList(db.ManufactorerTypes, "ManufactorerTypeId", "ManufactorerTypeName", productSelector.ManufactorerTypeId);
-            ViewBag.ModelSerieId = new SelectList(db.ModelSeries, "ModelSerieId", "ModelSerieName", productSelector.ModelSerieId);
-            ViewBag.ModelSerieTypeId = new SelectList(db.ModelSerieTypes, "ModelSerieTypeId", "ModelSerieTypeName", productSelector.ModelSerieTypeId);
+            ViewBag.ManufactorerId = new SelectList(_uow.Manufactorers.All, "ManufactorerId", "ManufactorerName", productSelector.ManufactorerId);
+            ViewBag.ManufactorerTypeId = new SelectList(_uow.ManufactorerTypes.All, "ManufactorerTypeId", "ManufactorerTypeName", productSelector.ManufactorerTypeId);
+            ViewBag.ModelSerieId = new SelectList(_uow.ModelSeries.All, "ModelSerieId", "ModelSerieName", productSelector.ModelSerieId);
+            ViewBag.ModelSerieTypeId = new SelectList(_uow.ModelSerieTypes.All, "ModelSerieTypeId", "ModelSerieTypeName", productSelector.ModelSerieTypeId);
             return View(productSelector);
         }
 
@@ -86,10 +87,10 @@ namespace Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ManufactorerId = new SelectList(db.Manufactorers, "ManufactorerId", "ManufactorerName", productSelector.ManufactorerId);
-            ViewBag.ManufactorerTypeId = new SelectList(db.ManufactorerTypes, "ManufactorerTypeId", "ManufactorerTypeName", productSelector.ManufactorerTypeId);
-            ViewBag.ModelSerieId = new SelectList(db.ModelSeries, "ModelSerieId", "ModelSerieName", productSelector.ModelSerieId);
-            ViewBag.ModelSerieTypeId = new SelectList(db.ModelSerieTypes, "ModelSerieTypeId", "ModelSerieTypeName", productSelector.ModelSerieTypeId);
+            ViewBag.ManufactorerId = new SelectList(_uow.Manufactorers.All, "ManufactorerId", "ManufactorerName", productSelector.ManufactorerId);
+            ViewBag.ManufactorerTypeId = new SelectList(_uow.ManufactorerTypes.All, "ManufactorerTypeId", "ManufactorerTypeName", productSelector.ManufactorerTypeId);
+            ViewBag.ModelSerieId = new SelectList(_uow.ModelSeries.All, "ModelSerieId", "ModelSerieName", productSelector.ModelSerieId);
+            ViewBag.ModelSerieTypeId = new SelectList(_uow.ModelSerieTypes.All, "ModelSerieTypeId", "ModelSerieTypeName", productSelector.ModelSerieTypeId);
             return View(productSelector);
         }
 
@@ -106,10 +107,10 @@ namespace Web.Controllers
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
-            ViewBag.ManufactorerId = new SelectList(db.Manufactorers, "ManufactorerId", "ManufactorerName", productSelector.ManufactorerId);
-            ViewBag.ManufactorerTypeId = new SelectList(db.ManufactorerTypes, "ManufactorerTypeId", "ManufactorerTypeName", productSelector.ManufactorerTypeId);
-            ViewBag.ModelSerieId = new SelectList(db.ModelSeries, "ModelSerieId", "ModelSerieName", productSelector.ModelSerieId);
-            ViewBag.ModelSerieTypeId = new SelectList(db.ModelSerieTypes, "ModelSerieTypeId", "ModelSerieTypeName", productSelector.ModelSerieTypeId);
+            ViewBag.ManufactorerId = new SelectList(_uow.Manufactorers.All, "ManufactorerId", "ManufactorerName", productSelector.ManufactorerId);
+            ViewBag.ManufactorerTypeId = new SelectList(_uow.ManufactorerTypes.All, "ManufactorerTypeId", "ManufactorerTypeName", productSelector.ManufactorerTypeId);
+            ViewBag.ModelSerieId = new SelectList(_uow.ModelSeries.All, "ModelSerieId", "ModelSerieName", productSelector.ModelSerieId);
+            ViewBag.ModelSerieTypeId = new SelectList(_uow.ModelSerieTypes.All, "ModelSerieTypeId", "ModelSerieTypeName", productSelector.ModelSerieTypeId);
             return View(productSelector);
         }
 

@@ -14,7 +14,7 @@ namespace Web.Controllers
 {
     public class ManufactorersController : Controller
     {
-        private DataBaseContext db = new DataBaseContext();
+        //private DataBaseContext db = new DataBaseContext();
         private readonly IUOW _uow;
         public ManufactorersController(IUOW uow)
         {

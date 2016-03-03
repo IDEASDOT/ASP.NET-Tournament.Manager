@@ -14,7 +14,7 @@ namespace Web.Controllers
 {
     public class GameSpecificationsController : Controller
     {
-        private DataBaseContext db = new DataBaseContext();
+        //private DataBaseContext db = new DataBaseContext();
         private readonly IUOW _uow;
         public GameSpecificationsController(IUOW uow)
         {
@@ -25,7 +25,8 @@ namespace Web.Controllers
         // GET: GameSpecifications
         public ActionResult Index()
         {
-            var gameSpecifications = _uow.GameSpecifications.All;
+            //var gameSpecifications = db.GameSpecifications.Include(g => g.Player);
+            var gameSpecifications = _uow.GameSpecifications.GetAllIncluding();
             return View(gameSpecifications);
         }
 
@@ -36,7 +37,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GameSpecification gameSpecification = db.GameSpecifications.Find(id);
+            GameSpecification gameSpecification = _uow.GameSpecifications.GetById(id);
             if (gameSpecification == null)
             {
                 return HttpNotFound();
@@ -47,7 +48,7 @@ namespace Web.Controllers
         // GET: GameSpecifications/Create
         public ActionResult Create()
         {
-            ViewBag.PlayerId = new SelectList(db.Players, "PlayerId", "FirstName");
+            ViewBag.PlayerId = new SelectList(_uow.Players.All, "PlayerId", "FirstName");
             return View();
         }
 
@@ -65,7 +66,7 @@ namespace Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PlayerId = new SelectList(db.Players, "PlayerId", "FirstName", gameSpecification.PlayerId);
+            ViewBag.PlayerId = new SelectList(_uow.Players.All, "PlayerId", "FirstName", gameSpecification.PlayerId);
             return View(gameSpecification);
         }
 
@@ -81,7 +82,7 @@ namespace Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PlayerId = new SelectList(db.Players, "PlayerId", "FirstName", gameSpecification.PlayerId);
+            ViewBag.PlayerId = new SelectList(_uow.Players.All, "PlayerId", "FirstName", gameSpecification.PlayerId);
             return View(gameSpecification);
         }
 
@@ -98,7 +99,7 @@ namespace Web.Controllers
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
-            ViewBag.PlayerId = new SelectList(db.Players, "PlayerId", "FirstName", gameSpecification.PlayerId);
+            ViewBag.PlayerId = new SelectList(_uow.Players.All, "PlayerId", "FirstName", gameSpecification.PlayerId);
             return View(gameSpecification);
         }
 

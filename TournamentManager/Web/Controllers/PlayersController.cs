@@ -14,7 +14,7 @@ namespace Web.Controllers
 {
     public class PlayersController : Controller
     {
-        private DataBaseContext db = new DataBaseContext();
+        //private DataBaseContext _uow = new DataBaseContext();
         private readonly IUOW _uow;
 
         public PlayersController(IUOW uow)
@@ -26,9 +26,9 @@ namespace Web.Controllers
         // GET: Players
         public ActionResult Index()
         {
-            //db.Players.Include(p => p.FavouriteMap).Include(p => p.Team)
+            //_uow.Players.Include(p => p.FavouriteMap).Include(p => p.Team)
             // _uow.Players.All();
-            var vm = _uow.Players.All;
+            var vm = _uow.Players.GetAllIncluding();
             return View(vm);
         }
 
@@ -50,8 +50,8 @@ namespace Web.Controllers
         // GET: Players/Create
         public ActionResult Create()
         {
-            ViewBag.MapId = new SelectList(db.MapPools, "MapId", "MapName");
-            ViewBag.TeamId = new SelectList(db.Teams, "TeamId", "TeamName");
+            ViewBag.MapId = new SelectList(_uow.MapPools.All, "MapId", "MapName");
+            ViewBag.TeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName");
             return View();
         }
 
@@ -69,8 +69,8 @@ namespace Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MapId = new SelectList(db.MapPools, "MapId", "MapName", player.MapId);
-            ViewBag.TeamId = new SelectList(db.Teams, "TeamId", "TeamName", player.TeamId);
+            ViewBag.MapId = new SelectList(_uow.MapPools.All, "MapId", "MapName", player.MapId);
+            ViewBag.TeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName", player.TeamId);
             return View(player);
         }
 
@@ -86,8 +86,8 @@ namespace Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MapId = new SelectList(db.MapPools, "MapId", "MapName", player.MapId);
-            ViewBag.TeamId = new SelectList(db.Teams, "TeamId", "TeamName", player.TeamId);
+            ViewBag.MapId = new SelectList(_uow.MapPools.All, "MapId", "MapName", player.MapId);
+            ViewBag.TeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName", player.TeamId);
             return View(player);
         }
 
@@ -104,8 +104,8 @@ namespace Web.Controllers
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
-            ViewBag.MapId = new SelectList(db.MapPools, "MapId", "MapName", player.MapId);
-            ViewBag.TeamId = new SelectList(db.Teams, "TeamId", "TeamName", player.TeamId);
+            ViewBag.MapId = new SelectList(_uow.MapPools.All, "MapId", "MapName", player.MapId);
+            ViewBag.TeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName", player.TeamId);
             return View(player);
         }
 

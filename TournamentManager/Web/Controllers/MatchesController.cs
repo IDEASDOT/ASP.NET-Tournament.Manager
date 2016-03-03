@@ -14,7 +14,7 @@ namespace Web.Controllers
 {
     public class MatchesController : Controller
     {
-        private DataBaseContext db = new DataBaseContext();
+        //private DataBaseContext _uow = new DataBaseContext();
         private readonly IUOW _uow;
         public MatchesController(IUOW uow)
         {
@@ -24,8 +24,8 @@ namespace Web.Controllers
         // GET: Matches
         public ActionResult Index()
         {
-            //var matches = db.Matches.Include(m => m.FirstTeam).Include(m => m.SecondTeam);
-            var matches = _uow.Matches.All;
+            //var matches = _uow.Matches.Include(m => m.FirstTeam).Include(m => m.SecondTeam);
+            var matches = _uow.Matches.GetAllIncluding();
             return View(matches);
         }
 
@@ -47,8 +47,8 @@ namespace Web.Controllers
         // GET: Matches/Create
         public ActionResult Create()
         {
-            ViewBag.FirstTeamId = new SelectList(db.Teams, "TeamId", "TeamName");
-            ViewBag.SecondTeamId = new SelectList(db.Teams, "TeamId", "TeamName");
+            ViewBag.FirstTeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName");
+            ViewBag.SecondTeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName");
             return View();
         }
 
@@ -61,13 +61,13 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Matches.Add(match);
+                _uow.Matches.Add(match);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.FirstTeamId = new SelectList(db.Teams, "TeamId", "TeamName", match.FirstTeamId);
-            ViewBag.SecondTeamId = new SelectList(db.Teams, "TeamId", "TeamName", match.SecondTeamId);
+            ViewBag.FirstTeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName", match.FirstTeamId);
+            ViewBag.SecondTeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName", match.SecondTeamId);
             return View(match);
         }
 
@@ -83,8 +83,8 @@ namespace Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.FirstTeamId = new SelectList(db.Teams, "TeamId", "TeamName", match.FirstTeamId);
-            ViewBag.SecondTeamId = new SelectList(db.Teams, "TeamId", "TeamName", match.SecondTeamId);
+            ViewBag.FirstTeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName", match.FirstTeamId);
+            ViewBag.SecondTeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName", match.SecondTeamId);
             return View(match);
         }
 
@@ -101,8 +101,8 @@ namespace Web.Controllers
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
-            ViewBag.FirstTeamId = new SelectList(db.Teams, "TeamId", "TeamName", match.FirstTeamId);
-            ViewBag.SecondTeamId = new SelectList(db.Teams, "TeamId", "TeamName", match.SecondTeamId);
+            ViewBag.FirstTeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName", match.FirstTeamId);
+            ViewBag.SecondTeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName", match.SecondTeamId);
             return View(match);
         }
 
