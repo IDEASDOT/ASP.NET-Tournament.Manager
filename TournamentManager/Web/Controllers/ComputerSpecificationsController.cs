@@ -7,26 +7,19 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DAL;
-using DAL.Interfaces;
 using Domain;
 
 namespace Web.Controllers
 {
     public class ComputerSpecificationsController : Controller
     {
-        //private DataBaseContext db = new DataBaseContext();
-        private readonly IUOW _uow;
-        public ComputerSpecificationsController(IUOW uow)
-        {
-            _uow = uow;
+        private DataBaseContext db = new DataBaseContext();
 
-        }
         // GET: ComputerSpecifications
         public ActionResult Index()
         {
-            //var computerSpecifications = db.ComputerSpecifications.Include(c => c.Player).Include(c => c.ProductSelector);
-            var computerSpecifications = _uow.ComputerSpecifications.GetAllIncluding();
-            return View(computerSpecifications);
+            var computerSpecifications = db.ComputerSpecifications.Include(c => c.Player);
+            return View(computerSpecifications.ToList());
         }
 
         // GET: ComputerSpecifications/Details/5
@@ -36,7 +29,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ComputerSpecification computerSpecification = _uow.ComputerSpecifications.GetById(id);
+            ComputerSpecification computerSpecification = db.ComputerSpecifications.Find(id);
             if (computerSpecification == null)
             {
                 return HttpNotFound();
@@ -47,8 +40,7 @@ namespace Web.Controllers
         // GET: ComputerSpecifications/Create
         public ActionResult Create()
         {
-            ViewBag.PlayerId = new SelectList(_uow.ComputerSpecifications.All, "PlayerId", "FirstName");
-            ViewBag.ProductSelectorId = new SelectList(_uow.ComputerSpecifications.All, "ProductSelectorId", "ProductSelectorId");
+            ViewBag.PlayerId = new SelectList(db.Players, "PlayerId", "FirstName");
             return View();
         }
 
@@ -57,17 +49,16 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CompSpecId,ProductSelectorId,OsName,PlayerId,CompWins,CompLost")] ComputerSpecification computerSpecification)
+        public ActionResult Create([Bind(Include = "CompSpecId,OsName,PlayerId,CompWins,CompLost")] ComputerSpecification computerSpecification)
         {
             if (ModelState.IsValid)
             {
-                _uow.ComputerSpecifications.Add(computerSpecification);
-                _uow.Commit();
+                db.ComputerSpecifications.Add(computerSpecification);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PlayerId = new SelectList(_uow.Players.All, "PlayerId", "FirstName", computerSpecification.PlayerId);
-            ViewBag.ProductSelectorId = new SelectList(_uow.ProductSelectors.All, "ProductSelectorId", "ProductSelectorId", computerSpecification.ProductSelectorId);
+            ViewBag.PlayerId = new SelectList(db.Players, "PlayerId", "FirstName", computerSpecification.PlayerId);
             return View(computerSpecification);
         }
 
@@ -78,13 +69,12 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ComputerSpecification computerSpecification = _uow.ComputerSpecifications.GetById(id);
+            ComputerSpecification computerSpecification = db.ComputerSpecifications.Find(id);
             if (computerSpecification == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.PlayerId = new SelectList(_uow.Players.All, "PlayerId", "FirstName", computerSpecification.PlayerId);
-            ViewBag.ProductSelectorId = new SelectList(_uow.ProductSelectors.All, "ProductSelectorId", "ProductSelectorId", computerSpecification.ProductSelectorId);
+            ViewBag.PlayerId = new SelectList(db.Players, "PlayerId", "FirstName", computerSpecification.PlayerId);
             return View(computerSpecification);
         }
 
@@ -93,16 +83,15 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CompSpecId,ProductSelectorId,OsName,PlayerId,CompWins,CompLost")] ComputerSpecification computerSpecification)
+        public ActionResult Edit([Bind(Include = "CompSpecId,OsName,PlayerId,CompWins,CompLost")] ComputerSpecification computerSpecification)
         {
             if (ModelState.IsValid)
             {
-                _uow.ComputerSpecifications.Update(computerSpecification);
-                _uow.Commit();
+                db.Entry(computerSpecification).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.PlayerId = new SelectList(_uow.Players.All, "PlayerId", "FirstName", computerSpecification.PlayerId);
-            ViewBag.ProductSelectorId = new SelectList(_uow.ProductSelectors.All, "ProductSelectorId", "ProductSelectorId", computerSpecification.ProductSelectorId);
+            ViewBag.PlayerId = new SelectList(db.Players, "PlayerId", "FirstName", computerSpecification.PlayerId);
             return View(computerSpecification);
         }
 
@@ -113,7 +102,7 @@ namespace Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ComputerSpecification computerSpecification = _uow.ComputerSpecifications.GetById(id);
+            ComputerSpecification computerSpecification = db.ComputerSpecifications.Find(id);
             if (computerSpecification == null)
             {
                 return HttpNotFound();
@@ -126,8 +115,9 @@ namespace Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            _uow.ComputerSpecifications.Delete(id);
-            _uow.Commit();
+            ComputerSpecification computerSpecification = db.ComputerSpecifications.Find(id);
+            db.ComputerSpecifications.Remove(computerSpecification);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -135,7 +125,7 @@ namespace Web.Controllers
         {
             if (disposing)
             {
-                _uow.ComputerSpecifications.Dispose();
+                db.Dispose();
             }
             base.Dispose(disposing);
         }

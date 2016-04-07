@@ -12,16 +12,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ManufactorerType.ManufactorerTypeName)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Manufactorer.ManufactorerName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ModelSerieType.ModelSerieTypeName)
+            @Html.DisplayNameFor(model => model.ManufactorerType.ManufactorerTypeName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ModelSerie.ModelSerieName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModelSerieType.ModelSerieTypeName)
         </th>
         <th></th>
     </tr>
@@ -29,16 +29,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ManufactorerType.ManufactorerTypeName)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Manufactorer.ManufactorerName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ModelSerieType.ModelSerieTypeName)
+            @Html.DisplayFor(modelItem => item.ManufactorerType.ManufactorerTypeName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ModelSerie.ModelSerieName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModelSerieType.ModelSerieTypeName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ProductSelectorId }) |

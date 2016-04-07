@@ -16,8 +16,8 @@ namespace Domain
         public int CompSpecId { get; set; }
 
         //Computer Specifications
-        public int ProductSelectorId { get; set; }
-        public virtual ProductSelector ProductSelector { get; set; }
+        
+        public virtual List<PieceInComputer> PieceInComputers { get; set; } 
 
         [MaxLength(128)]
         public string OsName { get; set; }

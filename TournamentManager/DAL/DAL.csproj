@@ -67,13 +67,9 @@
     <Compile Include="Interfaces\IProductSelectorRepository.cs" />
     <Compile Include="Interfaces\ITeamRepository.cs" />
     <Compile Include="Interfaces\IUOW.cs" />
-    <Compile Include="Migrations\201603021629065_NewModelForProductSelectingAndComputerSpecificationUsesProductSelector.cs" />
-    <Compile Include="Migrations\201603021629065_NewModelForProductSelectingAndComputerSpecificationUsesProductSelector.Designer.cs">
-      <DependentUpon>201603021629065_NewModelForProductSelectingAndComputerSpecificationUsesProductSelector.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603021705347_FixedMatchModel.cs" />
-    <Compile Include="Migrations\201603021705347_FixedMatchModel.Designer.cs">
-      <DependentUpon>201603021705347_FixedMatchModel.cs</DependentUpon>
+    <Compile Include="Migrations\201603041211488_NewModelForDatabasae.cs" />
+    <Compile Include="Migrations\201603041211488_NewModelForDatabasae.Designer.cs">
+      <DependentUpon>201603041211488_NewModelForDatabasae.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\MigrationConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -102,11 +98,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603021629065_NewModelForProductSelectingAndComputerSpecificationUsesProductSelector.resx">
-      <DependentUpon>201603021629065_NewModelForProductSelectingAndComputerSpecificationUsesProductSelector.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603021705347_FixedMatchModel.resx">
-      <DependentUpon>201603021705347_FixedMatchModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603041211488_NewModelForDatabasae.resx">
+      <DependentUpon>201603041211488_NewModelForDatabasae.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

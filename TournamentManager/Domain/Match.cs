@@ -10,23 +10,18 @@ namespace Domain
 {
     public class Match
     {
+        //TODO: Datetime for match
         //Primary key for a match
         public int MatchId { get; set; }
         //FK for first team
         public int FirstTeamId { get; set; }
-        [Required]
-        [ForeignKey("FirstTeamId")]
+        [Required, ForeignKey("FirstTeamId")]
         public virtual Team FirstTeam { get; set; }
-        [Required]
-        public virtual List<Player> FirstTeamPlayers { get; set; }
-
         //FK for second team
         public int SecondTeamId { get; set; }
-        [Required]
-        [ForeignKey("SecondTeamId")]
+        
+        [Required, ForeignKey("SecondTeamId")]
         public virtual Team SecondTeam { get; set; }
-        [Required]
-        public virtual List<Player> SecondTeamPlayers { get; set; }
 
         //Information about the match
         public int? NumberOfMapsPlayed  { get; set; }

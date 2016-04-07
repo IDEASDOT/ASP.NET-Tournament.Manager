@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.Interfaces;
-using DAL.Migrations;
+using DAL.Migrations; 
 using Domain;
 
 namespace DAL
@@ -34,5 +34,6 @@ namespace DAL
         public DbSet<ModelSerie> ModelSeries { get; set; }
         public DbSet<ModelSerieType> ModelSerieTypes { get; set; }
         public DbSet<ProductSelector> ProductSelectors { get; set; }
+        public DbSet<PieceInComputer> PieceInComputers { get; set; } 
     }
 }

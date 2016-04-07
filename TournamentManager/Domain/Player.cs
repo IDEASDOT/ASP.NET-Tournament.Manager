@@ -19,8 +19,8 @@ namespace Domain
         [Required, MaxLength(128, ErrorMessage = "Your last name cannot be longer than 128 characters"), MinLength(3, ErrorMessage = "Your last name cannot be less than 3 characters")]
         public string LastName { get; set; }
 
-        //Favourite Map of Player + FK
-        public int MapId { get; set; }
+      //Favourite Map of Player + FK
+        public int MapId { get; set; } //favourite map id. /FK to mapid
         public virtual MapPool FavouriteMap { get; set; }
         
         //Information about win/lose rate

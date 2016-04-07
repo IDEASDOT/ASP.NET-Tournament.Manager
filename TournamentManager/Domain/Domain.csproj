@@ -57,6 +57,7 @@
     <Compile Include="Match.cs" />
     <Compile Include="ModelSerie.cs" />
     <Compile Include="ModelSerieType.cs" />
+    <Compile Include="PieceInComputer.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="ProductSelector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
