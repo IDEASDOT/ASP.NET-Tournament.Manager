@@ -43,10 +43,19 @@ namespace DAL
         public IEFRepository<ModelSerieType> ModelSerieTypes => GetStandardRepo<ModelSerieType>();
         public IEFRepository<ProductSelector> ProductSelectors => GetStandardRepo<ProductSelector>();
         public IEFRepository<Team> Teams => GetStandardRepo<Team>();
+        public IEFRepository<MultiLangString> MultiLangStrings => GetStandardRepo<MultiLangString>();
+        public IEFRepository<Translation> Translations => GetStandardRepo<Translation>();
 
         // repo with custom methods
         // add it also in EFRepositoryFactories.cs, in method GetCustomFactories
         //public IPersonRepository Persons => GetRepo<IPersonRepository>();
+        public IArticleRepository Articles => GetRepo<IArticleRepository>();
+
+        public IUserIntRepository UsersInt => GetRepo<IUserIntRepository>();
+        public IUserRoleIntRepository UserRolesInt => GetRepo<IUserRoleIntRepository>();
+        public IRoleIntRepository RolesInt => GetRepo<IRoleIntRepository>();
+        public IUserClaimIntRepository UserClaimsInt => GetRepo<IUserClaimIntRepository>();
+        public IUserLoginIntRepository UserLoginsInt => GetRepo<IUserLoginIntRepository>();
 
         // calling standard EF repo provider
         private IEFRepository<T> GetStandardRepo<T>() where T : class

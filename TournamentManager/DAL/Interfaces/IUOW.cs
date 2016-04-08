@@ -29,7 +29,16 @@ namespace DAL.Interfaces
         IEFRepository<Team> Teams { get; }
 
 
+        IEFRepository<MultiLangString> MultiLangStrings { get; }
+        IEFRepository<Translation> Translations { get; }
+
         //Customs repos, manually implemented
-       // IPersonRepository Persons { get; }
+        // IPersonRepository Persons { get; }
+        IArticleRepository Articles { get; }
+        IUserIntRepository UsersInt { get; }
+        IUserRoleIntRepository UserRolesInt { get; }
+        IRoleIntRepository RolesInt { get; }
+        IUserClaimIntRepository UserClaimsInt { get; }
+        IUserLoginIntRepository UserLoginsInt { get; }
     }
 }

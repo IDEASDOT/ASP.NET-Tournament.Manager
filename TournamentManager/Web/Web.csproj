@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.2.1\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.2.1\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
-  <Import Project="..\packages\Microsoft.Net.Compilers.1.1.1\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.1.1\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -57,36 +57,113 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.Web.Common.3.2.0.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+      <HintPath>..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Ninject.Web.Mvc, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.Web.4.2\lib\net35\NLog.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -132,7 +209,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
-      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <HintPath>..\packages\WebActivatorEx.2.1.0\lib\net40\WebActivatorEx.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -143,27 +220,87 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ComputerSpecificationsController.cs" />
-    <Compile Include="Controllers\GameSpecificationsController.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ArticlesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MultiLangStringsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SystemLogController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TranslationsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserClaimsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserLoginsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserRolesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ArticleViewModels.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ContactTypeViewModels.cs" />
+    <Compile Include="Areas\Admin\ViewModels\SystemLogViewModels.cs" />
+    <Compile Include="Areas\Admin\ViewModels\TranslationsViewModels.cs" />
+    <Compile Include="Areas\Admin\ViewModels\UserRoleViewModels.cs" />
+    <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
+    <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
+    <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageAreaRegistration.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageConfigurationExtensions.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\CollectionModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ComplexTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\DictionaryModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumValueDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\IModelDocumentationProvider.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\KeyValuePairModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescriptionGenerator.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameAttribute.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameHelper.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterAnnotation.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\SimpleTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\Models\HelpPageApiModel.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleKey.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ImageSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\InvalidSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ObjectGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
+    <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApiAccountController.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManufactorersController.cs" />
-    <Compile Include="Controllers\ManufactorerTypesController.cs" />
-    <Compile Include="Controllers\MapPoolsController.cs" />
-    <Compile Include="Controllers\MatchesController.cs" />
-    <Compile Include="Controllers\ModelSeriesController.cs" />
-    <Compile Include="Controllers\ModelSerieTypesController.cs" />
-    <Compile Include="Controllers\PieceInComputersController.cs" />
-    <Compile Include="Controllers\PlayersController.cs" />
-    <Compile Include="Controllers\ProductSelectorsController.cs" />
-    <Compile Include="Controllers\TeamsController.cs" />
+    <Compile Include="Controllers\LanguageController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CultureHelper.cs" />
+    <Compile Include="Helpers\HtmlHelper.cs" />
+    <Compile Include="Helpers\IListHelper.cs" />
+    <Compile Include="Helpers\ModelStateHelper.cs" />
+    <Compile Include="Helpers\PagedListHelper.cs" />
+    <Compile Include="Helpers\PasswordHelper.cs" />
+    <Compile Include="Helpers\SessionHelper.cs" />
+    <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="Results\ChallengeResult.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AccountBindingModels.cs" />
+    <Compile Include="ViewModels\AccountViewModels.cs" />
+    <Compile Include="ViewModels\ApiAccountViewModels.cs" />
+    <Compile Include="ViewModels\ContactViewModels.cs" />
+    <Compile Include="ViewModels\HomeViewModels.cs" />
+    <Compile Include="ViewModels\ManageViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="bower_components\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="bower_components\bootstrap\dist\css\bootstrap-theme.min.css" />
     <Content Include="bower_components\bootstrap\dist\css\bootstrap.css" />
@@ -436,6 +573,123 @@
     <Content Include="bower_components\globalize\src\util\string\hash.js" />
     <Content Include="bower_components\globalize\src\util\string\pad.js" />
     <Content Include="bower_components\globalize\src\util\to-string.js" />
+    <Content Include="bower_components\jquery-validation-globalize\gulpfile.js" />
+    <Content Include="bower_components\jquery-validation-globalize\jquery.validate.globalize.js" />
+    <Content Include="bower_components\jquery-validation-globalize\jquery.validate.globalize.min.js" />
+    <Content Include="bower_components\jquery-validation\build\release.js" />
+    <Content Include="bower_components\jquery-validation\dist\additional-methods.js" />
+    <Content Include="bower_components\jquery-validation\dist\additional-methods.min.js" />
+    <Content Include="bower_components\jquery-validation\dist\jquery.validate.js" />
+    <Content Include="bower_components\jquery-validation\dist\jquery.validate.min.js" />
+    <Content Include="bower_components\jquery-validation\Gruntfile.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\accept.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\additional.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\alphanumeric.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\bankaccountNL.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\bankorgiroaccountNL.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\bic.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\cifES.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\cpfBR.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\creditcard.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\creditcardtypes.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\currency.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\dateFA.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\dateITA.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\dateNL.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\extension.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\giroaccountNL.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\iban.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\integer.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\ipv4.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\ipv6.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\lettersonly.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\letterswithbasicpunc.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\mobileNL.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\mobileUK.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\nieES.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\nifES.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\notEqualTo.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\nowhitespace.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\pattern.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\phoneNL.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\phonesUK.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\phoneUK.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\phoneUS.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\postalcodeBR.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\postalCodeCA.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\postalcodeIT.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\postalcodeNL.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\postcodeUK.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\require_from_group.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\skip_or_fill_minimum.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\statesUS.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\strippedminlength.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\time.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\time12h.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\url2.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\vinUS.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\zipcodeUS.js" />
+    <Content Include="bower_components\jquery-validation\src\additional\ziprange.js" />
+    <Content Include="bower_components\jquery-validation\src\ajax.js" />
+    <Content Include="bower_components\jquery-validation\src\core.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_ar.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_bg.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_bn_BD.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_ca.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_cs.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_da.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_de.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_el.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_es.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_es_AR.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_es_PE.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_et.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_eu.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_fa.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_fi.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_fr.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_ge.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_gl.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_he.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_hr.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_hu.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_hy_AM.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_id.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_is.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_it.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_ja.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_ka.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_kk.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_ko.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_lt.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_lv.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_mk.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_my.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_nl.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_no.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_pl.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_pt_BR.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_pt_PT.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_ro.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_ru.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_si.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_sk.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_sl.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_sr.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_sr_lat.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_sv.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_th.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_tj.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_tr.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_uk.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_vi.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_zh.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\messages_zh_TW.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\methods_de.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\methods_es_CL.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\methods_fi.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\methods_nl.js" />
+    <Content Include="bower_components\jquery-validation\src\localization\methods_pt.js" />
     <Content Include="bower_components\jquery\AUTHORS.txt" />
     <Content Include="bower_components\jquery\dist\jquery.js" />
     <Content Include="bower_components\jquery\dist\jquery.min.js" />
@@ -1395,7 +1649,95 @@
     <Content Include="bower_components\cldr-data\main\root\timeZoneNames.json" />
     <Content Include="bower_components\cldr-data\main\root\units.json" />
     <Content Include="bower_components\cldr-data\main\root\variants.json" />
-    <None Include="Scripts\jquery-2.2.0.intellisense.js" />
+    <Content Include="Areas\Admin\Views\Articles\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Articles\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Articles\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Articles\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Articles\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Articles\_CreateEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\ContactTypes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ContactTypes\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ContactTypes\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ContactTypes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ContactTypes\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ContactTypes\_CreateEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\MultiLangStrings\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\MultiLangStrings\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\MultiLangStrings\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\MultiLangStrings\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\MultiLangStrings\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SystemLog\DeleteAllLogFiles.cshtml" />
+    <Content Include="Areas\Admin\Views\SystemLog\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Translations\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Translations\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Translations\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Translations\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Translations\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\UserClaims\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\UserClaims\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\UserClaims\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\UserClaims\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\UserClaims\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\UserLogins\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\UserLogins\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\UserLogins\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\UserLogins\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\UserLogins\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\UserRoles\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\UserRoles\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\UserRoles\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\UserRoles\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\UserRoles\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ComplexTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\DictionaryModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\EnumTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ImageSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\InvalidSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\KeyValuePairModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ModelDescriptionLink.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Parameters.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Samples.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\SimpleTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TextSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Index.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Web.config" />
+    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
+    <Content Include="bower_components\jquery-validation\.bower.json" />
+    <Content Include="bower_components\jquery-validation\bower.json" />
+    <Content Include="bower_components\jquery-validation\changelog.md" />
+    <Content Include="bower_components\jquery-validation\CONTRIBUTING.md" />
+    <Content Include="bower_components\jquery-validation\LICENSE.md" />
+    <Content Include="bower_components\jquery-validation\package.json" />
+    <Content Include="bower_components\jquery-validation\README.md" />
+    <Content Include="bower_components\jquery-validation\validation.jquery.json" />
+    <Content Include="bower_components\jquery-validation-globalize\.bower.json" />
+    <Content Include="bower_components\jquery-validation-globalize\bower.json" />
+    <Content Include="bower_components\jquery-validation-globalize\LICENSE" />
+    <Content Include="bower_components\jquery-validation-globalize\package.json" />
+    <Content Include="bower_components\jquery-validation-globalize\README.md" />
+    <Content Include="logs\2016-04-07.log" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\App\app.js" />
     <Content Include="Scripts\App\ganalytics.js" />
     <Content Include="Scripts\App\jquery.validate.fixdata.js" />
@@ -1403,8 +1745,12 @@
     <Content Include="Scripts\App\tinymce.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-2.2.0.js" />
-    <Content Include="Scripts\jquery-2.2.0.min.js" />
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Scripts\jquery-2.2.2.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.2.js" />
+    <Content Include="Scripts\jquery-2.2.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -1588,66 +1934,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Players\Create.cshtml" />
-    <Content Include="Views\Players\Delete.cshtml" />
-    <Content Include="Views\Players\Details.cshtml" />
-    <Content Include="Views\Players\Edit.cshtml" />
-    <Content Include="Views\Players\Index.cshtml" />
-    <Content Include="Views\GameSpecifications\Create.cshtml" />
-    <Content Include="Views\GameSpecifications\Delete.cshtml" />
-    <Content Include="Views\GameSpecifications\Details.cshtml" />
-    <Content Include="Views\GameSpecifications\Edit.cshtml" />
-    <Content Include="Views\GameSpecifications\Index.cshtml" />
-    <Content Include="Views\MapPools\Create.cshtml" />
-    <Content Include="Views\MapPools\Delete.cshtml" />
-    <Content Include="Views\MapPools\Details.cshtml" />
-    <Content Include="Views\MapPools\Edit.cshtml" />
-    <Content Include="Views\MapPools\Index.cshtml" />
-    <Content Include="Views\Matches\Create.cshtml" />
-    <Content Include="Views\Matches\Delete.cshtml" />
-    <Content Include="Views\Matches\Details.cshtml" />
-    <Content Include="Views\Matches\Edit.cshtml" />
-    <Content Include="Views\Matches\Index.cshtml" />
-    <Content Include="Views\Teams\Create.cshtml" />
-    <Content Include="Views\Teams\Delete.cshtml" />
-    <Content Include="Views\Teams\Details.cshtml" />
-    <Content Include="Views\Teams\Edit.cshtml" />
-    <Content Include="Views\Teams\Index.cshtml" />
-    <Content Include="Views\ModelSeries\Create.cshtml" />
-    <Content Include="Views\ModelSeries\Delete.cshtml" />
-    <Content Include="Views\ModelSeries\Details.cshtml" />
-    <Content Include="Views\ModelSeries\Edit.cshtml" />
-    <Content Include="Views\ModelSeries\Index.cshtml" />
-    <Content Include="Views\ModelSerieTypes\Create.cshtml" />
-    <Content Include="Views\ModelSerieTypes\Delete.cshtml" />
-    <Content Include="Views\ModelSerieTypes\Details.cshtml" />
-    <Content Include="Views\ModelSerieTypes\Edit.cshtml" />
-    <Content Include="Views\ModelSerieTypes\Index.cshtml" />
-    <Content Include="Views\Manufactorers\Create.cshtml" />
-    <Content Include="Views\Manufactorers\Delete.cshtml" />
-    <Content Include="Views\Manufactorers\Details.cshtml" />
-    <Content Include="Views\Manufactorers\Edit.cshtml" />
-    <Content Include="Views\Manufactorers\Index.cshtml" />
-    <Content Include="Views\ManufactorerTypes\Create.cshtml" />
-    <Content Include="Views\ManufactorerTypes\Delete.cshtml" />
-    <Content Include="Views\ManufactorerTypes\Details.cshtml" />
-    <Content Include="Views\ManufactorerTypes\Edit.cshtml" />
-    <Content Include="Views\ManufactorerTypes\Index.cshtml" />
-    <Content Include="Views\ProductSelectors\Create.cshtml" />
-    <Content Include="Views\ProductSelectors\Delete.cshtml" />
-    <Content Include="Views\ProductSelectors\Details.cshtml" />
-    <Content Include="Views\ProductSelectors\Edit.cshtml" />
-    <Content Include="Views\ProductSelectors\Index.cshtml" />
-    <Content Include="Views\ComputerSpecifications\Create.cshtml" />
-    <Content Include="Views\ComputerSpecifications\Delete.cshtml" />
-    <Content Include="Views\ComputerSpecifications\Details.cshtml" />
-    <Content Include="Views\ComputerSpecifications\Edit.cshtml" />
-    <Content Include="Views\ComputerSpecifications\Index.cshtml" />
-    <Content Include="Views\PieceInComputers\Create.cshtml" />
-    <Content Include="Views\PieceInComputers\Delete.cshtml" />
-    <Content Include="Views\PieceInComputers\Details.cshtml" />
-    <Content Include="Views\PieceInComputers\Edit.cshtml" />
-    <Content Include="Views\PieceInComputers\Index.cshtml" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
@@ -1661,12 +1947,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-2.2.0.min.map" />
+    <Content Include="Scripts\jquery-2.2.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">
@@ -1676,6 +1963,14 @@
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{9f27711a-d8ff-47ee-9df0-2401c90ddb6e}</Project>
       <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Identity\Identity.csproj">
+      <Project>{5b0755b3-5cf6-4cfb-b328-e152c98e6e22}</Project>
+      <Name>Identity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Resources\Resources.csproj">
+      <Project>{7308994F-36C4-49C2-8421-215AFF278799}</Project>
+      <Name>Resources</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
@@ -1710,8 +2005,8 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.1.1\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.1.1\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.2.1\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.2.1\build\Microsoft.Net.Compilers.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

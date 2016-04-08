@@ -1,7 +1,3 @@
-using DAL;
-using DAL.Helpers;
-using DAL.Interfaces;
-
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Web.App_Start.NinjectWebCommon), "Stop")]
 
@@ -65,10 +61,6 @@ namespace Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IDbContext>().To<DataBaseContext>().InRequestScope();
-            kernel.Bind<EFRepositoryFactories>().To<EFRepositoryFactories>().InSingletonScope();
-            kernel.Bind<IEFRepositoryProvider>().To<EFRepositoryProvider>().InRequestScope();
-            kernel.Bind<IUOW>().To<UOW>().InRequestScope();
         }        
     }
 }
