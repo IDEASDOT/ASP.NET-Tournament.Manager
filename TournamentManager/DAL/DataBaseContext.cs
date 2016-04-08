@@ -25,6 +25,7 @@ namespace DAL
         [Inject]
         public DataBaseContext(ILogger logger) : base ("name = TournamentDBConnection")
         {
+            
             _logger = logger;
             _logger.Debug("InstanceId: " + _instanceId);
 
@@ -48,9 +49,11 @@ namespace DAL
         public DbSet<Player> Players { get; set; }
         public DbSet<ComputerSpecification> ComputerSpecifications { get; set; }
         public DbSet<GameSpecification> GameSpecifications { get; set; }
-        public DbSet<MapPool> MapPools { get; set; }
+        public DbSet<Map> MapPools { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<Match> Matches { get; set; }
+        public DbSet<MapInfo> MapInfos { get; set; } 
+
         public DbSet<Manufactorer> Manufactorers { get; set; }
         public DbSet<ManufactorerType> ManufactorerTypes { get; set; }
         public DbSet<ModelSerie> ModelSeries { get; set; }

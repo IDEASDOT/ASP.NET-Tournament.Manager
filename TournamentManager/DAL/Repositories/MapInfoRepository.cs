@@ -8,9 +8,9 @@ using Domain;
 
 namespace DAL.Repositories
 {
-    public class MapPoolRepository : EFRepository<MapPool>, IMapPoolRepository
+    public class MapInfoRepository : EFRepository<MapInfo>, IMapInfoRepository
     {
-        public MapPoolRepository(IDbContext dbContext) : base(dbContext)
+        public MapInfoRepository(IDbContext dbContext) : base(dbContext)
         {
         }
     }

@@ -10,7 +10,6 @@ namespace Domain
 {
     public class Match
     {
-        //TODO: Datetime for match
         //Primary key for a match
         public int MatchId { get; set; }
         //FK for first team
@@ -23,31 +22,16 @@ namespace Domain
         [Required, ForeignKey("SecondTeamId")]
         public virtual Team SecondTeam { get; set; }
 
-        //Information about the match
-        public int? NumberOfMapsPlayed  { get; set; }
+        [Display(Name = nameof(Resources.Domain.DateTime), ResourceType = typeof(Resources.Domain))]
+        public DateTime DateTime { get; set; }
+        [Display(Name = nameof(Resources.Domain.Date), ResourceType = typeof(Resources.Domain))]
+        public DateTime Date { get; set; }
+        [Display(Name = nameof(Resources.Domain.Time), ResourceType = typeof(Resources.Domain))]
+        public DateTime Time { get; set; }
 
-        public virtual List<MapPool> MapsPlayed { get; set; }
 
-        //Information about maprounds (Max maps 5, thus 5 statistics)
-        public int? FirstTeamFirstMapRoundsWon { get; set; }
-        public int? SecondTeamFirstMapRoundsWon { get; set; }
-        public int? FirstTeamSecondMapRoundsWon { get; set; }
-        public int? SecondTeamSecondMapRoundsWon { get; set; }
-        public int? FirstTeamThirdMapRoundsWon { get; set; }
-        public int? SecondTeamThirdMapRoundsWon { get; set; }
-        public int? FirstTeamFourthMapRoundsWon { get; set; }
-        public int? SecondTeamFourthMapRoundsWon { get; set; }
-        public int? FirstTeamFifthMapRoundsWon { get; set; }
-        public int? SecondTeamFifthMapRoundsWon { get; set; }
-
-        #region NotMapped
-
-        public string FirstMap => + FirstTeamFirstMapRoundsWon + ":" + SecondTeamFirstMapRoundsWon;
-        public string SecondMap => +FirstTeamSecondMapRoundsWon + ":" + SecondTeamSecondMapRoundsWon;
-        public string ThirdMap => +FirstTeamThirdMapRoundsWon + ":" + SecondTeamThirdMapRoundsWon;
-        public string FourthMap => +FirstTeamFourthMapRoundsWon + ":" + SecondTeamFourthMapRoundsWon;
-        public string FifthMap => +FirstTeamFifthMapRoundsWon + ":" + SecondTeamFifthMapRoundsWon;
-
-        #endregion
+        //Information about the maps played
+        public virtual List<MapInfo> MapInfos { get; set; }
+                
     }
 }

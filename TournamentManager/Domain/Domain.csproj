@@ -140,7 +140,8 @@
     <Compile Include="Identity\UserRole.cs" />
     <Compile Include="Manufactorer.cs" />
     <Compile Include="ManufactorerType.cs" />
-    <Compile Include="MapPool.cs" />
+    <Compile Include="Map.cs" />
+    <Compile Include="MapInfo.cs" />
     <Compile Include="Match.cs" />
     <Compile Include="ModelSerie.cs" />
     <Compile Include="ModelSerieType.cs" />

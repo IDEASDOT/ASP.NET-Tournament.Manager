@@ -7,7 +7,7 @@ using Domain;
 
 namespace DAL.Interfaces
 {
-    public interface IMapPoolRepository : IEFRepository<MapPool>
+    public interface IMapInfoRepository : IEFRepository<MapInfo>
     {
     }
 }

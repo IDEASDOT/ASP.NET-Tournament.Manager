@@ -22,13 +22,12 @@ namespace DAL.Interfaces
         IEFRepository<GameSpecification> GameSpecifications { get; }
         IEFRepository<Manufactorer> Manufactorers { get; }
         IEFRepository<ManufactorerType> ManufactorerTypes { get; }
-        IEFRepository<MapPool> MapPools { get; }
+        IEFRepository<Map> MapPools { get; }
         IEFRepository<ModelSerie> ModelSeries { get; }
         IEFRepository<ModelSerieType> ModelSerieTypes { get; }
         IEFRepository<ProductSelector> ProductSelectors { get; }
         IEFRepository<Team> Teams { get; }
-
-
+        IEFRepository<MapInfo> MapInfos { get; }
         IEFRepository<MultiLangString> MultiLangStrings { get; }
         IEFRepository<Translation> Translations { get; }
 

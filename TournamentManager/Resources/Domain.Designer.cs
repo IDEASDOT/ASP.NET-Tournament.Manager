@@ -61,6 +61,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All-time lost.
+        /// </summary>
+        public static string AllTimeLost {
+            get {
+                return ResourceManager.GetString("AllTimeLost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All-time Win/Lose ratio.
+        /// </summary>
+        public static string AllTimeWinLose {
+            get {
+                return ResourceManager.GetString("AllTimeWinLose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All-time wins.
+        /// </summary>
+        public static string AllTimeWins {
+            get {
+                return ResourceManager.GetString("AllTimeWins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Body.
         /// </summary>
         public static string ArticleBody {
@@ -79,20 +106,83 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contact type name too long..
+        ///   Looks up a localized string similar to Computer lost.
         /// </summary>
-        public static string ContactTypeNameLengthError {
+        public static string CompLost {
             get {
-                return ResourceManager.GetString("ContactTypeNameLengthError", resourceCulture);
+                return ResourceManager.GetString("CompLost", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contact too long..
+        ///   Looks up a localized string similar to Computer specifications.
         /// </summary>
-        public static string ContactValueLengthError {
+        public static string ComputerSpecifications {
             get {
-                return ResourceManager.GetString("ContactValueLengthError", resourceCulture);
+                return ResourceManager.GetString("ComputerSpecifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Computer wins.
+        /// </summary>
+        public static string CompWins {
+            get {
+                return ResourceManager.GetString("CompWins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current lost.
+        /// </summary>
+        public static string CurrentLost {
+            get {
+                return ResourceManager.GetString("CurrentLost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Win/Lose ratio.
+        /// </summary>
+        public static string CurrentWinLose {
+            get {
+                return ResourceManager.GetString("CurrentWinLose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current wins.
+        /// </summary>
+        public static string CurrentWins {
+            get {
+                return ResourceManager.GetString("CurrentWins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date&amp;Time.
+        /// </summary>
+        public static string DateTime {
+            get {
+                return ResourceManager.GetString("DateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DPI value.
+        /// </summary>
+        public static string DpiValue {
+            get {
+                return ResourceManager.GetString("DpiValue", resourceCulture);
             }
         }
         
@@ -106,56 +196,299 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Favourite map.
+        /// </summary>
+        public static string FavouriteMap {
+            get {
+                return ResourceManager.GetString("FavouriteMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First, Lastname.
         /// </summary>
-        public static string FirstLastname {
+        public static string FirstLastName {
             get {
-                return ResourceManager.GetString("FirstLastname", resourceCulture);
+                return ResourceManager.GetString("FirstLastName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to First name.
         /// </summary>
-        public static string Firstname {
+        public static string FirstName {
             get {
-                return ResourceManager.GetString("Firstname", resourceCulture);
+                return ResourceManager.GetString("FirstName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to First name too long..
         /// </summary>
-        public static string FirstnameLengthError {
+        public static string FirstNameLengthError {
             get {
-                return ResourceManager.GetString("FirstnameLengthError", resourceCulture);
+                return ResourceManager.GetString("FirstNameLengthError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First, Nick, Lastname.
+        /// </summary>
+        public static string FullName {
+            get {
+                return ResourceManager.GetString("FullName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GameSpecification lost.
+        /// </summary>
+        public static string GameLost {
+            get {
+                return ResourceManager.GetString("GameLost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game specifications.
+        /// </summary>
+        public static string GameSpecifications {
+            get {
+                return ResourceManager.GetString("GameSpecifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GameSpecification wins.
+        /// </summary>
+        public static string GameWins {
+            get {
+                return ResourceManager.GetString("GameWins", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Last, Firstname.
         /// </summary>
-        public static string LastFirstname {
+        public static string LastFirstName {
             get {
-                return ResourceManager.GetString("LastFirstname", resourceCulture);
+                return ResourceManager.GetString("LastFirstName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Last name.
         /// </summary>
-        public static string Lastname {
+        public static string LastName {
             get {
-                return ResourceManager.GetString("Lastname", resourceCulture);
+                return ResourceManager.GetString("LastName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Last name too long..
         /// </summary>
-        public static string LastnameLengthError {
+        public static string LastNameLengthError {
             get {
-                return ResourceManager.GetString("LastnameLengthError", resourceCulture);
+                return ResourceManager.GetString("LastNameLengthError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manufactorer.
+        /// </summary>
+        public static string Manufactorer {
+            get {
+                return ResourceManager.GetString("Manufactorer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manufactorer Name too long..
+        /// </summary>
+        public static string ManufactorerNameLengthError {
+            get {
+                return ResourceManager.GetString("ManufactorerNameLengthError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manufactorer type.
+        /// </summary>
+        public static string ManufactorerType {
+            get {
+                return ResourceManager.GetString("ManufactorerType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manufactorer type name too long..
+        /// </summary>
+        public static string ManufactorerTypeNameLengthError {
+            get {
+                return ResourceManager.GetString("ManufactorerTypeNameLengthError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map name.
+        /// </summary>
+        public static string MapName {
+            get {
+                return ResourceManager.GetString("MapName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map name too long..
+        /// </summary>
+        public static string MapNameLengthError {
+            get {
+                return ResourceManager.GetString("MapNameLengthError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Model Serie.
+        /// </summary>
+        public static string ModelSerie {
+            get {
+                return ResourceManager.GetString("ModelSerie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Model Serie Name too long..
+        /// </summary>
+        public static string ModelSerieNameLengthError {
+            get {
+                return ResourceManager.GetString("ModelSerieNameLengthError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Model Serie type.
+        /// </summary>
+        public static string ModelSerieType {
+            get {
+                return ResourceManager.GetString("ModelSerieType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Model Serie Type Name too long.
+        /// </summary>
+        public static string ModelSerieTypeNameLengthError {
+            get {
+                return ResourceManager.GetString("ModelSerieTypeNameLengthError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nick Name.
+        /// </summary>
+        public static string NickName {
+            get {
+                return ResourceManager.GetString("NickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nick name too long..
+        /// </summary>
+        public static string NickNameLengthError {
+            get {
+                return ResourceManager.GetString("NickNameLengthError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operating System name.
+        /// </summary>
+        public static string OsName {
+            get {
+                return ResourceManager.GetString("OsName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operating system too long..
+        /// </summary>
+        public static string OsNameLengthError {
+            get {
+                return ResourceManager.GetString("OsNameLengthError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Score.
+        /// </summary>
+        public static string Score {
+            get {
+                return ResourceManager.GetString("Score", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sensitivity value.
+        /// </summary>
+        public static string SensitivityValue {
+            get {
+                return ResourceManager.GetString("SensitivityValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Team.
+        /// </summary>
+        public static string Team {
+            get {
+                return ResourceManager.GetString("Team", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Team abbrevation.
+        /// </summary>
+        public static string TeamAbbrevation {
+            get {
+                return ResourceManager.GetString("TeamAbbrevation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Team abbrevation too long..
+        /// </summary>
+        public static string TeamAbbrevationLengthError {
+            get {
+                return ResourceManager.GetString("TeamAbbrevationLengthError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Team name.
+        /// </summary>
+        public static string TeamName {
+            get {
+                return ResourceManager.GetString("TeamName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Team name too long..
+        /// </summary>
+        public static string TeamNameLengthError {
+            get {
+                return ResourceManager.GetString("TeamNameLengthError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time.
+        /// </summary>
+        public static string Time {
+            get {
+                return ResourceManager.GetString("Time", resourceCulture);
             }
         }
     }

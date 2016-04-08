@@ -17,9 +17,11 @@ namespace Domain
 
         //Computer Specifications
         
-        public virtual List<PieceInComputer> PieceInComputers { get; set; } 
+        public virtual List<PieceInComputer> PieceInComputers { get; set; }
 
-        [MaxLength(128)]
+        [MaxLength(128, ErrorMessageResourceName = "OsNameLengthError", ErrorMessageResourceType = typeof(Resources.Domain))]
+        [MinLength(1, ErrorMessageResourceName = "OsNameLengthError", ErrorMessageResourceType = typeof(Resources.Domain))]
+        [Display(Name = nameof(Resources.Domain.OsName), ResourceType = typeof(Resources.Domain))]
         public string OsName { get; set; }
 
 
@@ -28,8 +30,9 @@ namespace Domain
         public virtual Player Player { get; set; }
 
         //Win / Lose rate
-
+        [Display(Name = nameof(Resources.Domain.CompWins), ResourceType = typeof(Resources.Domain))]
         public int? CompWins { get; set; }
+        [Display(Name = nameof(Resources.Domain.CompLost), ResourceType = typeof(Resources.Domain))]
         public int? CompLost { get; set; }
             
 

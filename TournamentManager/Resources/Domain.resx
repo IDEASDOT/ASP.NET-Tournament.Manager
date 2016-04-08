@@ -123,31 +123,142 @@
   <data name="ArticleHeadline" xml:space="preserve">
     <value>Headline</value>
   </data>
-  <data name="FirstLastname" xml:space="preserve">
+  <data name="FirstLastName" xml:space="preserve">
     <value>First, Lastname</value>
   </data>
-  <data name="LastFirstname" xml:space="preserve">
+  <data name="LastFirstName" xml:space="preserve">
     <value>Last, Firstname</value>
   </data>
   <data name="EntityPrimaryKey" xml:space="preserve">
     <value>Id</value>
   </data>
-  <data name="ContactTypeNameLengthError" xml:space="preserve">
-    <value>Contact type name too long.</value>
-  </data>
-  <data name="ContactValueLengthError" xml:space="preserve">
-    <value>Contact too long.</value>
-  </data>
-  <data name="Firstname" xml:space="preserve">
+  <data name="FirstName" xml:space="preserve">
     <value>First name</value>
   </data>
-  <data name="FirstnameLengthError" xml:space="preserve">
+  <data name="FirstNameLengthError" xml:space="preserve">
     <value>First name too long.</value>
   </data>
-  <data name="Lastname" xml:space="preserve">
+  <data name="LastName" xml:space="preserve">
     <value>Last name</value>
   </data>
-  <data name="LastnameLengthError" xml:space="preserve">
+  <data name="LastNameLengthError" xml:space="preserve">
     <value>Last name too long.</value>
+  </data>
+  <data name="AllTimeLost" xml:space="preserve">
+    <value>All-time lost</value>
+  </data>
+  <data name="AllTimeWins" xml:space="preserve">
+    <value>All-time wins</value>
+  </data>
+  <data name="ComputerSpecifications" xml:space="preserve">
+    <value>Computer specifications</value>
+  </data>
+  <data name="CurrentLost" xml:space="preserve">
+    <value>Current lost</value>
+  </data>
+  <data name="CurrentWins" xml:space="preserve">
+    <value>Current wins</value>
+  </data>
+  <data name="FavouriteMap" xml:space="preserve">
+    <value>Favourite map</value>
+  </data>
+  <data name="GameSpecifications" xml:space="preserve">
+    <value>Game specifications</value>
+  </data>
+  <data name="NickName" xml:space="preserve">
+    <value>Nick Name</value>
+  </data>
+  <data name="NickNameLengthError" xml:space="preserve">
+    <value>Nick name too long.</value>
+  </data>
+  <data name="Team" xml:space="preserve">
+    <value>Team</value>
+  </data>
+  <data name="AllTimeWinLose" xml:space="preserve">
+    <value>All-time Win/Lose ratio</value>
+  </data>
+  <data name="CompLost" xml:space="preserve">
+    <value>Computer lost</value>
+  </data>
+  <data name="CompWins" xml:space="preserve">
+    <value>Computer wins</value>
+  </data>
+  <data name="CurrentWinLose" xml:space="preserve">
+    <value>Current Win/Lose ratio</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="DateTime" xml:space="preserve">
+    <value>Date&amp;Time</value>
+  </data>
+  <data name="DpiValue" xml:space="preserve">
+    <value>DPI value</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>First, Nick, Lastname</value>
+  </data>
+  <data name="GameLost" xml:space="preserve">
+    <value>GameSpecification lost</value>
+  </data>
+  <data name="GameWins" xml:space="preserve">
+    <value>GameSpecification wins</value>
+  </data>
+  <data name="Manufactorer" xml:space="preserve">
+    <value>Manufactorer</value>
+  </data>
+  <data name="ManufactorerNameLengthError" xml:space="preserve">
+    <value>Manufactorer Name too long.</value>
+  </data>
+  <data name="ManufactorerType" xml:space="preserve">
+    <value>Manufactorer type</value>
+  </data>
+  <data name="ManufactorerTypeNameLengthError" xml:space="preserve">
+    <value>Manufactorer type name too long.</value>
+  </data>
+  <data name="MapName" xml:space="preserve">
+    <value>Map name</value>
+  </data>
+  <data name="MapNameLengthError" xml:space="preserve">
+    <value>Map name too long.</value>
+  </data>
+  <data name="ModelSerie" xml:space="preserve">
+    <value>Model Serie</value>
+  </data>
+  <data name="ModelSerieNameLengthError" xml:space="preserve">
+    <value>Model Serie Name too long.</value>
+  </data>
+  <data name="ModelSerieType" xml:space="preserve">
+    <value>Model Serie type</value>
+  </data>
+  <data name="ModelSerieTypeNameLengthError" xml:space="preserve">
+    <value>Model Serie Type Name too long</value>
+  </data>
+  <data name="OsName" xml:space="preserve">
+    <value>Operating System name</value>
+  </data>
+  <data name="OsNameLengthError" xml:space="preserve">
+    <value>Operating system too long.</value>
+  </data>
+  <data name="Score" xml:space="preserve">
+    <value>Score</value>
+  </data>
+  <data name="SensitivityValue" xml:space="preserve">
+    <value>Sensitivity value</value>
+  </data>
+  <data name="TeamAbbrevation" xml:space="preserve">
+    <value>Team abbrevation</value>
+  </data>
+  <data name="TeamAbbrevationLengthError" xml:space="preserve">
+    <value>Team abbrevation too long.</value>
+  </data>
+  <data name="TeamName" xml:space="preserve">
+    <value>Team name</value>
+  </data>
+  <data name="TeamNameLengthError" xml:space="preserve">
+    <value>Team name too long.</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
   </data>
 </root>

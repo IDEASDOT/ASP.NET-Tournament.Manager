@@ -153,7 +153,8 @@
     <Compile Include="Interfaces\IGameSpecificationRepository.cs" />
     <Compile Include="Interfaces\IManufactorerRepository.cs" />
     <Compile Include="Interfaces\IManufactorerTypeRepository.cs" />
-    <Compile Include="Interfaces\IMapPoolRepository.cs" />
+    <Compile Include="Interfaces\IMapInfoRepository.cs" />
+    <Compile Include="Interfaces\IMapRepository.cs" />
     <Compile Include="Interfaces\IMatchRepository.cs" />
     <Compile Include="Interfaces\IModelSerieRepository.cs" />
     <Compile Include="Interfaces\IModelSerieTypeRepository.cs" />
@@ -166,11 +167,11 @@
     <Compile Include="Interfaces\IUserLoginRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Interfaces\IUserRoleRepository.cs" />
-    <Compile Include="Migrations\201603041211488_NewModelForDatabasae.cs" />
-    <Compile Include="Migrations\201603041211488_NewModelForDatabasae.Designer.cs">
-      <DependentUpon>201603041211488_NewModelForDatabasae.cs</DependentUpon>
+    <Compile Include="Migrations\201604080739462_initial.cs" />
+    <Compile Include="Migrations\201604080739462_initial.Designer.cs">
+      <DependentUpon>201604080739462_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\MigrationConfiguration.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NLogCommandInterceptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ArticleRepository.cs" />
@@ -179,7 +180,8 @@
     <Compile Include="Repositories\GameSpecificationRepository.cs" />
     <Compile Include="Repositories\ManufactorerRepository.cs" />
     <Compile Include="Repositories\ManufactorerTypeRepository.cs" />
-    <Compile Include="Repositories\MapPoolRepository.cs" />
+    <Compile Include="Repositories\MapInfoRepository.cs" />
+    <Compile Include="Repositories\MapRepository.cs" />
     <Compile Include="Repositories\MatchRepository.cs" />
     <Compile Include="Repositories\ModelSerieRepository.cs" />
     <Compile Include="Repositories\ModelSerieTypeRepository.cs" />
@@ -214,8 +216,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603041211488_NewModelForDatabasae.resx">
-      <DependentUpon>201603041211488_NewModelForDatabasae.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604080739462_initial.resx">
+      <DependentUpon>201604080739462_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
