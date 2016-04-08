@@ -1,0 +1,50 @@
+﻿@model Domain.ComputerSpecification
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ComputerSpecification</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Player.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Player.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OsName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OsName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompWins)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompWins)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompLost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompLost)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CompSpecId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

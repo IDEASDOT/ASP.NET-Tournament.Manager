@@ -38,12 +38,13 @@ namespace DAL
         public IEFRepository<GameSpecification> GameSpecifications => GetStandardRepo<GameSpecification>();
         public IEFRepository<Manufactorer> Manufactorers => GetStandardRepo<Manufactorer>();
         public IEFRepository<ManufactorerType> ManufactorerTypes => GetStandardRepo<ManufactorerType>();
-        public IEFRepository<Map> MapPools => GetStandardRepo<Map>();
+        public IEFRepository<Map> Maps => GetStandardRepo<Map>();
         public IEFRepository<ModelSerie> ModelSeries => GetStandardRepo<ModelSerie>();
         public IEFRepository<ModelSerieType> ModelSerieTypes => GetStandardRepo<ModelSerieType>();
         public IEFRepository<ProductSelector> ProductSelectors => GetStandardRepo<ProductSelector>();
         public IEFRepository<Team> Teams => GetStandardRepo<Team>();
         public IEFRepository<MapInfo> MapInfos => GetStandardRepo<MapInfo>();
+        public IEFRepository<PieceInComputer> PieceInComputers { get; set; }
 
         public IEFRepository<MultiLangString> MultiLangStrings => GetStandardRepo<MultiLangString>();
         public IEFRepository<Translation> Translations => GetStandardRepo<Translation>();
