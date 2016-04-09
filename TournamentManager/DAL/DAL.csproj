@@ -167,9 +167,9 @@
     <Compile Include="Interfaces\IUserLoginRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Interfaces\IUserRoleRepository.cs" />
-    <Compile Include="Migrations\201604090603567_initial.cs" />
-    <Compile Include="Migrations\201604090603567_initial.Designer.cs">
-      <DependentUpon>201604090603567_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201604091219025_new.cs" />
+    <Compile Include="Migrations\201604091219025_new.Designer.cs">
+      <DependentUpon>201604091219025_new.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NLogCommandInterceptor.cs" />
@@ -216,8 +216,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201604090603567_initial.resx">
-      <DependentUpon>201604090603567_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604091219025_new.resx">
+      <DependentUpon>201604091219025_new.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

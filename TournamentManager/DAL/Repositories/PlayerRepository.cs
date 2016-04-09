@@ -15,5 +15,15 @@ namespace DAL.Repositories
         {
             
         }
+        public List<Player> GetAllForUser(int userId)
+        {
+            return DbSet.Where(p => p.UserId == userId).OrderBy(o => o.LastName).ThenBy(o => o.FirstName).Include(c => c.ComputerSpecifications).
+            Include(d => d.GameSpecifications).Include(e => e.Team).Include(g => g.FavouriteMap).ToList();
+        }
+
+        public Player GetForUser(int personId, int userId)
+        {
+            return DbSet.FirstOrDefault(a => a.PlayerId == personId && a.UserId == userId);
+        }
     }
 }

@@ -31,7 +31,7 @@ namespace DAL.Helpers
         {
             return new Dictionary<Type, Func<IDbContext, object>>
                 {
-                    //{typeof(IPersonRepository), dbContext => new PersonRepository(dbContext)},
+                    {typeof(IPlayerRepository), dbContext => new PlayerRepository(dbContext)},
                     {typeof (IArticleRepository), dbContext => new ArticleRepository(dbContext)},
                     {typeof (IUserIntRepository), dbContext => new UserIntRepository(dbContext)},
                     {typeof (IUserRoleIntRepository), dbContext => new UserRoleIntRepository(dbContext)},

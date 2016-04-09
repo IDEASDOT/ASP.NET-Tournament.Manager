@@ -11,29 +11,26 @@ using DAL.Interfaces;
 using Domain;
 using Microsoft.AspNet.Identity;
 
+
 namespace Web.Controllers
 {
     [Authorize]
     public class PlayersController : BaseController
     {
-        //TODO FIX ALL THINGIES
         private readonly IUOW _uow;
-        //private DataBaseContext _uow = new DataBaseContext();
 
         public PlayersController(IUOW uow)
         {
             _uow = uow;
         }
-        // GET: Players
+
+        // GET: players
         public ActionResult Index()
         {
-            //var players = _uow.Players.Include(p => p.FavouriteMap).Include(p => p.Team).Include(p => p.User);
-            //return System.Web.UI.WebControls.View(_uow.Players.GetAllForUser(User.Identity.GetUserId<int>()));
-            var players = _uow.Players.AllIncluding();
-            return View(players);
+            return View(_uow.Players.GetAllForUser(User.Identity.GetUserId<int>()));
         }
 
-        // GET: Players/Details/5
+        // GET: players/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -48,29 +45,29 @@ namespace Web.Controllers
             return View(player);
         }
 
-        // GET: Players/Create
+        // GET: players/Create
         public ActionResult Create()
         {
-//            ViewBag.MapId = new SelectList(_uow.Maps.All, "MapId", "MapName");
-//            ViewBag.TeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName");
-                    //ViewBag.UserId = new SelectList(_uow.UserInts.All, "Id", "Email");
+            ViewBag.MapId = new SelectList(_uow.Maps.All, "MapId", "MapName");
+            ViewBag.TeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName");
             return View();
         }
 
-        // POST: Players/Create
+        // POST: players/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PlayerId,FirstName,NickName,LastName,MapId,AllTimeWins,CurrentWins,AllTimeLost,CurrentLost,TeamId,UserId")] Player player)
+        public ActionResult Create(Player player)
         {
             if (ModelState.IsValid)
             {
+                // do not get user id from html get/post!!!!
+                player.UserId = User.Identity.GetUserId<int>();
 
-                //Player.UserId= User.Identity.GetUserId<int>();
                 _uow.Players.Add(player);
                 _uow.Commit();
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
 
             ViewBag.MapId = new SelectList(_uow.Maps.All, "MapId", "MapName", player.MapId);
@@ -78,52 +75,55 @@ namespace Web.Controllers
             return View(player);
         }
 
-        // GET: Players/Edit/5
+        // GET: players/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Player player = _uow.Players.GetForUser(id.Value, User.Identity.GetUserId<int>());
-            Player player = _uow.Players.GetById(id);
+            // check user id!!!!
+            Player player = _uow.Players.GetForUser(id.Value, User.Identity.GetUserId<int>());
             if (player == null)
             {
                 return HttpNotFound();
             }
+
+
             ViewBag.MapId = new SelectList(_uow.Maps.All, "MapId", "MapName", player.MapId);
             ViewBag.TeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName", player.TeamId);
             return View(player);
         }
 
-        // POST: Players/Edit/5
+        // POST: players/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PlayerId,FirstName,NickName,LastName,MapId,AllTimeWins,CurrentWins,AllTimeLost,CurrentLost,TeamId,UserId")] Player player)
+        public ActionResult Edit(Player player)
         {
             if (ModelState.IsValid)
             {
+                // do not get user id from html get/post!!!!
                 player.UserId = User.Identity.GetUserId<int>();
+
                 _uow.Players.Update(player);
                 _uow.Commit();
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             ViewBag.MapId = new SelectList(_uow.Maps.All, "MapId", "MapName", player.MapId);
             ViewBag.TeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName", player.TeamId);
             return View(player);
         }
 
-        // GET: Players/Delete/5
+        // GET: players/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Player player = _uow.Players.GetForUser(id.Value, User.Identity.GetUserId<int>());
-            Player player = _uow.Players.GetById(id);
+            Player player = _uow.Players.GetForUser(id.Value, User.Identity.GetUserId<int>());
             if (player == null)
             {
                 return HttpNotFound();
@@ -131,23 +131,23 @@ namespace Web.Controllers
             return View(player);
         }
 
-        // POST: Players/Delete/5
+        // POST: players/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
-        { 
+        {
             _uow.Players.Delete(id);
             _uow.Commit();
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                _uow.Players.Dispose();
             }
             base.Dispose(disposing);
         }
     }
 }
+

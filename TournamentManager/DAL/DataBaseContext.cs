@@ -49,7 +49,7 @@ namespace DAL
         public DbSet<Player> Players { get; set; }
         public DbSet<ComputerSpecification> ComputerSpecifications { get; set; }
         public DbSet<GameSpecification> GameSpecifications { get; set; }
-        public DbSet<Map> MapPools { get; set; }
+        public DbSet<Map> Maps { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<Match> Matches { get; set; }
         public DbSet<MapInfo> MapInfos { get; set; } 

@@ -8,8 +8,8 @@ using Microsoft.AspNet.Identity;
 
 namespace DAL
 {
-    //    public class DatabaseInitializer : DropCreateDatabaseIfModelChanges<DataBaseContext>
-    public class DatabaseInitializer : DropCreateDatabaseAlways<DataBaseContext>
+       public class DatabaseInitializer : DropCreateDatabaseIfModelChanges<DataBaseContext>
+    //public class DatabaseInitializer : DropCreateDatabaseAlways<DataBaseContext>
     {
         protected override void Seed(DataBaseContext context)
         {

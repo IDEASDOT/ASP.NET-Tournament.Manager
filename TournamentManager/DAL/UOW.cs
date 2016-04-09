@@ -32,7 +32,6 @@ namespace DAL
 
 
         //standard repos
-        public IEFRepository<Player> Players => GetStandardRepo<Player>();
         public IEFRepository<ComputerSpecification> ComputerSpecifications => GetStandardRepo<ComputerSpecification>();
         public IEFRepository<Match> Matches => GetStandardRepo<Match>();
         public IEFRepository<GameSpecification> GameSpecifications => GetStandardRepo<GameSpecification>();
@@ -51,7 +50,7 @@ namespace DAL
 
         // repo with custom methods
         // add it also in EFRepositoryFactories.cs, in method GetCustomFactories
-        //public IPersonRepository Persons => GetRepo<IPersonRepository>();
+        public IPlayerRepository Players => GetRepo<IPlayerRepository>();
         public IArticleRepository Articles => GetRepo<IArticleRepository>();
 
         public IUserIntRepository UsersInt => GetRepo<IUserIntRepository>();
