@@ -261,4 +261,25 @@
   <data name="Time" xml:space="preserve">
     <value>Time</value>
   </data>
+  <data name="FirstTeamId" xml:space="preserve">
+    <value>First Team ID</value>
+  </data>
+  <data name="FirstTeamScore" xml:space="preserve">
+    <value>First Team Score</value>
+  </data>
+  <data name="MapId" xml:space="preserve">
+    <value>Map Id</value>
+  </data>
+  <data name="MatchId" xml:space="preserve">
+    <value>Match Id</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="SecondTeamId" xml:space="preserve">
+    <value>Second Team ID</value>
+  </data>
+  <data name="SecondTeamScore" xml:space="preserve">
+    <value>Second Team Score</value>
+  </data>
 </root>

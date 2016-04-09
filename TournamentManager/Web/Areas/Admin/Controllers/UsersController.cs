@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using DAL.Interfaces;
+using Domain;
 using Domain.Identity;
+using Web.Controllers;
 
 namespace Web.Areas.Admin.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class UsersController : Controller
+    public class UsersController : BaseController
     {
         private readonly NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
         private readonly string _instanceId = Guid.NewGuid().ToString();
@@ -128,6 +132,23 @@ namespace Web.Areas.Admin.Controllers
             _uow.Commit();
             return RedirectToAction("Index");
         }
+
+        public ActionResult Profile(int id)
+        {
+            if (id == default(int))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var user = _uow.UsersInt.GetById(id);
+            var userx = _uow.Players.GetAllForUser(user.Id);
+
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(userx);
+        }
+
 
         protected override void Dispose(bool disposing)
         {

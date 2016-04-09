@@ -232,6 +232,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to First Team ID.
+        /// </summary>
+        public static string FirstTeamId {
+            get {
+                return ResourceManager.GetString("FirstTeamId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First Team Score.
+        /// </summary>
+        public static string FirstTeamScore {
+            get {
+                return ResourceManager.GetString("FirstTeamScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First, Nick, Lastname.
         /// </summary>
         public static string FullName {
@@ -331,6 +349,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Map Id.
+        /// </summary>
+        public static string MapId {
+            get {
+                return ResourceManager.GetString("MapId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Map name.
         /// </summary>
         public static string MapName {
@@ -345,6 +372,15 @@ namespace Resources {
         public static string MapNameLengthError {
             get {
                 return ResourceManager.GetString("MapNameLengthError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Match Id.
+        /// </summary>
+        public static string MatchId {
+            get {
+                return ResourceManager.GetString("MatchId", resourceCulture);
             }
         }
         
@@ -421,11 +457,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quantity.
+        /// </summary>
+        public static string Quantity {
+            get {
+                return ResourceManager.GetString("Quantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Score.
         /// </summary>
         public static string Score {
             get {
                 return ResourceManager.GetString("Score", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Second Team ID.
+        /// </summary>
+        public static string SecondTeamId {
+            get {
+                return ResourceManager.GetString("SecondTeamId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Second Team Score.
+        /// </summary>
+        public static string SecondTeamScore {
+            get {
+                return ResourceManager.GetString("SecondTeamScore", resourceCulture);
             }
         }
         

@@ -13,13 +13,17 @@ namespace Domain
         //Primary key for a match
         public int MatchId { get; set; }
         //FK for first team
+        [Display(Name = nameof(Resources.Domain.FirstTeamId), ResourceType = typeof(Resources.Domain))]
         public int FirstTeamId { get; set; }
         [Required, ForeignKey("FirstTeamId")]
+
         public virtual Team FirstTeam { get; set; }
         //FK for second team
+        [Display(Name = nameof(Resources.Domain.SecondTeamId), ResourceType = typeof(Resources.Domain))]
         public int SecondTeamId { get; set; }
         
         [Required, ForeignKey("SecondTeamId")]
+        
         public virtual Team SecondTeam { get; set; }
 
         [DataType(DataType.DateTime)]

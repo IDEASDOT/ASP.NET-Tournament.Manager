@@ -35,6 +35,7 @@ namespace Domain
         //Favourite Map of Player + FK
         [Display(Name = nameof(Resources.Domain.FavouriteMap), ResourceType = typeof(Resources.Domain))]
         public int MapId { get; set; } //favourite map id. /FK to mapid
+        [Display(Name = nameof(Resources.Domain.FavouriteMap), ResourceType = typeof(Resources.Domain))]
         public virtual Map FavouriteMap { get; set; }
 
         //Information about win/lose rate
@@ -57,6 +58,7 @@ namespace Domain
 
         [Display(Name = nameof(Resources.Domain.Team), ResourceType = typeof(Resources.Domain))]
         public int TeamId { get; set; }
+        [Display(Name = nameof(Resources.Domain.Team), ResourceType = typeof(Resources.Domain))]
         public virtual Team Team { get; set; }
 
         [ForeignKey(nameof(User))]

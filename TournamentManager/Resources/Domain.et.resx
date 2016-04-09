@@ -258,4 +258,25 @@
   <data name="Time" xml:space="preserve">
     <value>Kell</value>
   </data>
+  <data name="FirstTeamId" xml:space="preserve">
+    <value>Esimese tiimi ID</value>
+  </data>
+  <data name="FirstTeamScore" xml:space="preserve">
+    <value>Esimese tiimi skoor</value>
+  </data>
+  <data name="MapId" xml:space="preserve">
+    <value>Kaardi ID</value>
+  </data>
+  <data name="MatchId" xml:space="preserve">
+    <value>Matsi ID</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Kogus</value>
+  </data>
+  <data name="SecondTeamId" xml:space="preserve">
+    <value>Teise tiimi ID</value>
+  </data>
+  <data name="SecondTeamScore" xml:space="preserve">
+    <value>Teise tiimi skoor</value>
+  </data>
 </root>

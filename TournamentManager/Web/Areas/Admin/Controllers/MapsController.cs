@@ -9,11 +9,12 @@ using System.Web.Mvc;
 using DAL;
 using DAL.Interfaces;
 using Domain;
+using Web.Controllers;
 
 namespace Web.Areas.Admin.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class MapsController : Controller
+    public class MapsController : BaseController
     {
         //private DataBaseContext _uow = new DataBaseContext();
         private readonly IUOW _uow;
