@@ -9,9 +9,11 @@ using System.Web.Mvc;
 using DAL;
 using DAL.Interfaces;
 using Domain;
+using Web.Controllers;
 
-namespace Web.Controllers
+namespace Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ModelSerieTypesController : BaseController
     {
         private readonly IUOW _uow;

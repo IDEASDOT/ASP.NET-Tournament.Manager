@@ -12,6 +12,7 @@ using Domain;
 
 namespace Web.Controllers
 {
+    [Authorize]
     public class GameSpecificationsController : BaseController
     {
         private readonly IUOW _uow;

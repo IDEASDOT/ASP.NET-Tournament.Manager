@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Web.Controllers
 {
+    [Authorize]
     public class PlayersController : BaseController
     {
         //TODO FIX ALL THINGIES

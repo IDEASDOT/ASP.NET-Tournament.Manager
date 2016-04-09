@@ -9,115 +9,117 @@ using System.Web.Mvc;
 using DAL;
 using DAL.Interfaces;
 using Domain;
+using Web.Controllers;
 
-namespace Web.Controllers
+namespace Web.Areas.Admin.Controllers
 {
-    public class ManufactorersController : BaseController
+    [Authorize(Roles = "Admin")]
+    public class ModelSeriesController : BaseController
     {
-        //private DataBaseContext _uow = new DataBaseContext();
         private readonly IUOW _uow;
+        //private DataBaseContext _uow = new DataBaseContext();
 
-        public ManufactorersController(IUOW uow)
+        public ModelSeriesController(IUOW uow)
         {
             _uow = uow;
         }
-
-        // GET: Manufactorers
+        // GET: ModelSeries
         public ActionResult Index()
         {
-            return View(_uow.Manufactorers.All);
+            return View(_uow.ModelSeries.All);
         }
 
-        // GET: Manufactorers/Details/5
+        // GET: ModelSeries/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Manufactorer manufactorer = _uow.Manufactorers.GetById(id);
-            if (manufactorer == null)
+            ModelSerie modelSerie = _uow.ModelSeries.GetById(id);
+            if (modelSerie == null)
             {
                 return HttpNotFound();
             }
-            return View(manufactorer);
+            return View(modelSerie);
         }
 
-        // GET: Manufactorers/Create
+        // GET: ModelSeries/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Manufactorers/Create
+        // POST: ModelSeries/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ManufactorerId,ManufactorerName")] Manufactorer manufactorer)
+        public ActionResult Create([Bind(Include = "ModelSerieId,ModelSerieName")] ModelSerie modelSerie)
         {
             if (ModelState.IsValid)
             {
-                _uow.Manufactorers.Add(manufactorer);
+                _uow.ModelSeries.Add(modelSerie);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
 
-            return View(manufactorer);
+            return View(modelSerie);
         }
 
-        // GET: Manufactorers/Edit/5
+        // GET: ModelSeries/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Manufactorer manufactorer = _uow.Manufactorers.GetById(id);
-            if (manufactorer == null)
+            ModelSerie modelSerie = _uow.ModelSeries.GetById(id);
+            if (modelSerie == null)
             {
                 return HttpNotFound();
             }
-            return View(manufactorer);
+            return View(modelSerie);
         }
 
-        // POST: Manufactorers/Edit/5
+        // POST: ModelSeries/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ManufactorerId,ManufactorerName")] Manufactorer manufactorer)
+        public ActionResult Edit([Bind(Include = "ModelSerieId,ModelSerieName")] ModelSerie modelSerie)
         {
             if (ModelState.IsValid)
             {
-                _uow.Manufactorers.Update(manufactorer);
+                _uow.ModelSeries.Update(modelSerie);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
-            return View(manufactorer);
+            return View(modelSerie);
         }
 
-        // GET: Manufactorers/Delete/5
+        // GET: ModelSeries/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Manufactorer manufactorer = _uow.Manufactorers.GetById(id);
-            if (manufactorer == null)
+            ModelSerie modelSerie = _uow.ModelSeries.GetById(id);
+            if (modelSerie == null)
             {
                 return HttpNotFound();
             }
-            return View(manufactorer);
+            return View(modelSerie);
         }
 
-        // POST: Manufactorers/Delete/5
+        // POST: ModelSeries/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            _uow.Manufactorers.Delete(id);
+            
+            _uow.ModelSeries.Delete(id);
             _uow.Commit();
             return RedirectToAction("Index");
         }
@@ -126,7 +128,7 @@ namespace Web.Controllers
         {
             if (disposing)
             {
-                _uow.Manufactorers.Dispose();
+                _uow.ModelSeries.Dispose();
             }
             base.Dispose(disposing);
         }

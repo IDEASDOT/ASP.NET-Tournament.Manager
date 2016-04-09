@@ -12,6 +12,7 @@ using Domain;
 
 namespace Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProductSelectorsController : BaseController
     {
         private readonly IUOW _uow;
@@ -134,7 +135,7 @@ namespace Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-           
+
             _uow.ProductSelectors.Delete(id);
             _uow.Commit();
             return RedirectToAction("Index");

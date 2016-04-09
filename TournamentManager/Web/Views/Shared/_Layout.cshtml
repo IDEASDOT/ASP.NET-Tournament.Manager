@@ -46,10 +46,27 @@
                 <ul class="nav navbar-nav">
                     @if (Request.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Players", "Index", "Players", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("Players", "Index", "Players", new {area = ""}, null)</li>
+
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Teams <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+
+                                <li>@Html.ActionLink("Teams", "Index", new { area = "", controller = "Teams" })</li>
+                                <li>@Html.ActionLink("Matches", "Index", new {area = "", controller = "Matches"})</li>
+                                <li>@Html.ActionLink("MapInfos", "Index", new {area = "", controller = "MapInfos"})</li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Specifications <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("GameSpecifications", "Index", new { area = "", controller = "GameSpecifications" })</li>
+                                <li>@Html.ActionLink("ComputerSpecifications", "Index", new {area = "", controller = "ComputerSpecifications"})</li>
+                                <li>@Html.ActionLink("PieceInComputers", "Index", new { area = "", controller = "PieceInComputers" })</li>
+                            </ul>
+                        </li>
                     }
-                    @*<li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>*@
-                    @*<li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>*@
                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                     {
                         <li class="dropdown">
@@ -60,19 +77,30 @@
                                 <li class="divider"></li>
                                 <li>@Html.ActionLink("MultiLangStrings", "Index", new { area = "Admin", controller = "MultiLangStrings" })</li>
                                 <li>@Html.ActionLink("Translations", "Index", new { area = "Admin", controller = "Translations" })</li>
-                                <li>@Html.ActionLink("System logs", "Index", new { area = "Admin", controller = "SystemLog" })</li>
+                                @*<li>@Html.ActionLink("System logs", "Index", new { area = "Admin", controller = "SystemLog" })</li>*@
                             </ul>
-                        </li>
+                        </li>   
                         <li class="dropdown">
                             <a href="#" data-toggle="dropdown" class="dropdown-toggle">Identity <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Users", "Index", new { area = "Admin", controller = "Users" })</li>
-                                <li>@Html.ActionLink("Roles", "Index", new { area = "Admin", controller = "Roles" })</li>
-                                <li>@Html.ActionLink("Users in Roles", "Index", new { area = "Admin", controller = "UserRoles" })</li>
-                                <li>@Html.ActionLink("Logins", "Index", new { area = "Admin", controller = "UserLogins" })</li>
-                                <li>@Html.ActionLink("Claims", "Index", new { area = "Admin", controller = "UserClaims" })</li>
+                                <li>@Html.ActionLink("Users", "Index", new {area = "Admin", controller = "Users"})</li>
+                                <li>@Html.ActionLink("Roles", "Index", new {area = "Admin", controller = "Roles"})</li>
+                                <li>@Html.ActionLink("Users in Roles", "Index", new {area = "Admin", controller = "UserRoles"})</li>
+                                <li>@Html.ActionLink("Logins", "Index", new {area = "Admin", controller = "UserLogins"})</li>
+                                <li>@Html.ActionLink("Claims", "Index", new {area = "Admin", controller = "UserClaims"})</li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Computer Items <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("ProductSelectors", "Index", new {area = "Admin", controller = "ProductSelectors"})</li>
+                                <li>@Html.ActionLink("ManufactorerTypes", "Index", new {area = "Admin", controller = "ManufactorerTypes"})</li>
+                                <li>@Html.ActionLink("Manufactorers", "Index", new {area = "Admin", controller = "Manufactorers"})</li>
+                                <li>@Html.ActionLink("ModelSerieTypes", "Index", new {area = "Admin", controller = "ModelSerieTypes"})</li>
+                                <li>@Html.ActionLink("ModelSeries", "Index", new {area = "Admin", controller = "ModelSeries"})</li>
+                            </ul>
+                        </li>
+                        <li>@Html.ActionLink("Maps", "Index", new { area = "Admin", controller = "Maps" })</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

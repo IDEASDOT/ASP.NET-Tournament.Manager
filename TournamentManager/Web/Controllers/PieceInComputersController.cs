@@ -12,6 +12,7 @@ using Domain;
 
 namespace Web.Controllers
 {
+    [Authorize]
     public class PieceInComputersController : BaseController
     {
         private readonly IUOW _uow;
@@ -97,7 +98,7 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-               _uow.PieceInComputers.Update(pieceInComputer);
+                _uow.PieceInComputers.Update(pieceInComputer);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }

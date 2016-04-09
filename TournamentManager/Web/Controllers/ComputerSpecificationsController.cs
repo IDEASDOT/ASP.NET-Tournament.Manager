@@ -12,6 +12,7 @@ using Domain;
 
 namespace Web.Controllers
 {
+    [Authorize]
     public class ComputerSpecificationsController : BaseController
     {
         //Taipohh kui ma kuskil _uow näen

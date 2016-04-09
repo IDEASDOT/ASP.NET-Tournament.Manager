@@ -10,115 +10,115 @@ using DAL;
 using DAL.Interfaces;
 using Domain;
 
-namespace Web.Controllers
+namespace Web.Areas.Admin.Controllers
 {
-    public class ManufactorerTypesController : BaseController
+    [Authorize(Roles = "Admin")]
+    public class MapsController : Controller
     {
         //private DataBaseContext _uow = new DataBaseContext();
         private readonly IUOW _uow;
 
-
-        public ManufactorerTypesController(IUOW uow
-        )
+        public MapsController(IUOW uow)
         {
             _uow = uow;
         }
-        // GET: ManufactorerTypes
+
+        // GET: Maps
         public ActionResult Index()
         {
-            return View(_uow.ManufactorerTypes.All);
+            return View(_uow.Maps.All);
         }
 
-        // GET: ManufactorerTypes/Details/5
+        // GET: Maps/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ManufactorerType manufactorerType = _uow.ManufactorerTypes.GetById(id);
-            if (manufactorerType == null)
+            Map map = _uow.Maps.GetById(id);
+            if (map == null)
             {
                 return HttpNotFound();
             }
-            return View(manufactorerType);
+            return View(map);
         }
 
-        // GET: ManufactorerTypes/Create
+        // GET: Maps/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ManufactorerTypes/Create
+        // POST: Maps/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ManufactorerTypeId,ManufactorerTypeName")] ManufactorerType manufactorerType)
+        public ActionResult Create([Bind(Include = "MapId,MapName")] Map map)
         {
             if (ModelState.IsValid)
             {
-                _uow.ManufactorerTypes.Add(manufactorerType);
+                _uow.Maps.Add(map);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
 
-            return View(manufactorerType);
+            return View(map);
         }
 
-        // GET: ManufactorerTypes/Edit/5
+        // GET: Maps/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ManufactorerType manufactorerType = _uow.ManufactorerTypes.GetById(id);
-            if (manufactorerType == null)
+            Map map = _uow.Maps.GetById(id);
+            if (map == null)
             {
                 return HttpNotFound();
             }
-            return View(manufactorerType);
+            return View(map);
         }
 
-        // POST: ManufactorerTypes/Edit/5
+        // POST: Maps/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ManufactorerTypeId,ManufactorerTypeName")] ManufactorerType manufactorerType)
+        public ActionResult Edit([Bind(Include = "MapId,MapName")] Map map)
         {
             if (ModelState.IsValid)
             {
-               _uow.ManufactorerTypes.Update(manufactorerType);
+                _uow.Maps.Update(map);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
-            return View(manufactorerType);
+            return View(map);
         }
 
-        // GET: ManufactorerTypes/Delete/5
+        // GET: Maps/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ManufactorerType manufactorerType = _uow.ManufactorerTypes.GetById(id);
-            if (manufactorerType == null)
+            Map map = _uow.Maps.GetById(id);
+            if (map == null)
             {
                 return HttpNotFound();
             }
-            return View(manufactorerType);
+            return View(map);
         }
 
-        // POST: ManufactorerTypes/Delete/5
+        // POST: Maps/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            _uow.ManufactorerTypes.Delete(id);
+            _uow.Maps.Delete(id);
             _uow.Commit();
             return RedirectToAction("Index");
         }
@@ -127,7 +127,7 @@ namespace Web.Controllers
         {
             if (disposing)
             {
-                _uow.ManufactorerTypes.Dispose();
+                _uow.Maps.Dispose();
             }
             base.Dispose(disposing);
         }
