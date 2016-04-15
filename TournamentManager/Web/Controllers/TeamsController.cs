@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Net;
 using System.Web.Mvc;
-using DAL;
 using DAL.Interfaces;
 using Domain;
 
@@ -54,7 +47,7 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TeamId,TeamName,TeamAbbreviation")] Team team)
+        public ActionResult Create(Team team)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +79,7 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TeamId,TeamName,TeamAbbreviation")] Team team)
+        public ActionResult Edit(Team team)
         {
             if (ModelState.IsValid)
             {
@@ -124,11 +117,5 @@ namespace Web.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                _uow.Teams.Dispose();
-            }
-            base.Dispose(disposing);
         }
-    }
 }

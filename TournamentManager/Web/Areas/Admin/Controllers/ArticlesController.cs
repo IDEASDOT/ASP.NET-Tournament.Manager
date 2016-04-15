@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Threading;
-using System.Web;
+﻿using System.Net;
 using System.Web.Mvc;
-using DAL;
 using DAL.Interfaces;
 using Domain;
 using Web.Areas.Admin.ViewModels;

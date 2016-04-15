@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Net;
 using System.Web.Mvc;
-using DAL;
 using DAL.Interfaces;
 using Domain;
 using Microsoft.AspNet.Identity;
@@ -143,10 +136,6 @@ namespace Web.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-            }
-            base.Dispose(disposing);
         }
     }
 }

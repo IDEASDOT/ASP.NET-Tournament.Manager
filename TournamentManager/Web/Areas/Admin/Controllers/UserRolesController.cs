@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using DAL;
 using DAL.Interfaces;
 using Domain.Identity;
 using Microsoft.Owin.Security;

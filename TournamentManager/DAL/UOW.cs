@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DAL.Interfaces;
 using Domain;
 
@@ -43,8 +39,7 @@ namespace DAL
         public IEFRepository<ProductSelector> ProductSelectors => GetStandardRepo<ProductSelector>();
         public IEFRepository<Team> Teams => GetStandardRepo<Team>();
         public IEFRepository<MapInfo> MapInfos => GetStandardRepo<MapInfo>();
-        public IEFRepository<PieceInComputer> PieceInComputers { get; set; }
-
+        public IEFRepository<PieceInComputer> PieceInComputers => GetStandardRepo<PieceInComputer>();
         public IEFRepository<MultiLangString> MultiLangStrings => GetStandardRepo<MultiLangString>();
         public IEFRepository<Translation> Translations => GetStandardRepo<Translation>();
 

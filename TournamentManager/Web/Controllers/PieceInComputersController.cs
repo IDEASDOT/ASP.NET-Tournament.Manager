@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Net;
 using System.Web.Mvc;
-using DAL;
 using DAL.Interfaces;
 using Domain;
 
@@ -58,7 +51,7 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PieceInComputerId,Quantity,ProductSelectorId,CompSpecId")] PieceInComputer pieceInComputer)
+        public ActionResult Create(PieceInComputer pieceInComputer)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +87,7 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PieceInComputerId,Quantity,ProductSelectorId,CompSpecId")] PieceInComputer pieceInComputer)
+        public ActionResult Edit(PieceInComputer pieceInComputer)
         {
             if (ModelState.IsValid)
             {
@@ -132,13 +125,5 @@ namespace Web.Controllers
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _uow.PieceInComputers.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

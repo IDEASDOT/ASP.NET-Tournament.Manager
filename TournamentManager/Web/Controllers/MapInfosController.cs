@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Net;
 using System.Web.Mvc;
-using DAL;
 using DAL.Interfaces;
 using Domain;
 
@@ -22,6 +15,7 @@ namespace Web.Controllers
         {
             _uow = uow;
         }
+
         // GET: MapInfos
         public ActionResult Index()
         {
@@ -58,7 +52,7 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MapInfoId,MapId,MatchId,FirstTeamScore,SecondTeamScore")] MapInfo mapInfo)
+        public ActionResult Create(MapInfo mapInfo)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +88,7 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MapInfoId,MapId,MatchId,FirstTeamScore,SecondTeamScore")] MapInfo mapInfo)
+        public ActionResult Edit(MapInfo mapInfo)
         {
             if (ModelState.IsValid)
             {
@@ -134,11 +128,6 @@ namespace Web.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                _uow.MapInfos.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

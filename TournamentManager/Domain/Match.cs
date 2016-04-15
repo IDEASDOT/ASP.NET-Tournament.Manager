@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain
 {
@@ -15,14 +12,13 @@ namespace Domain
         //FK for first team
         [Display(Name = nameof(Resources.Domain.FirstTeamId), ResourceType = typeof(Resources.Domain))]
         public int FirstTeamId { get; set; }
-        [Required, ForeignKey("FirstTeamId")]
-
+        [ForeignKey("FirstTeamId")]
         public virtual Team FirstTeam { get; set; }
         //FK for second team
         [Display(Name = nameof(Resources.Domain.SecondTeamId), ResourceType = typeof(Resources.Domain))]
         public int SecondTeamId { get; set; }
-        
-        [Required, ForeignKey("SecondTeamId")]
+
+        [ForeignKey("SecondTeamId")]
         
         public virtual Team SecondTeam { get; set; }
 

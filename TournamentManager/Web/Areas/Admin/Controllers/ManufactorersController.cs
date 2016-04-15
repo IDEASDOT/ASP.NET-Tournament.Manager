@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Net;
 using System.Web.Mvc;
-using DAL;
 using DAL.Interfaces;
 using Domain;
 using Web.Controllers;
@@ -57,7 +50,8 @@ namespace Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ManufactorerId,ManufactorerName")] Manufactorer manufactorer)
+        //TODO fix this shit
+        public ActionResult Create( Manufactorer manufactorer)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +83,7 @@ namespace Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ManufactorerId,ManufactorerName")] Manufactorer manufactorer)
+        public ActionResult Edit( Manufactorer manufactorer)
         {
             if (ModelState.IsValid)
             {
@@ -127,11 +121,6 @@ namespace Web.Areas.Admin.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                _uow.Manufactorers.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
