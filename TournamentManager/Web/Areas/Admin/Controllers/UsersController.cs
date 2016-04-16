@@ -130,22 +130,6 @@ namespace Web.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Profile(int id)
-        {
-            if (id == default(int))
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var user = _uow.UsersInt.GetById(id);
-            var userx = _uow.Players.GetAllForUser(user.Id);
-
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(userx);
-        }
-
 
         protected override void Dispose(bool disposing)
         {
