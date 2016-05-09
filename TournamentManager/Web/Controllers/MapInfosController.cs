@@ -49,8 +49,8 @@ namespace Web.Controllers
         public ActionResult Create()
         {
             var vm = new MapInfoCreateEditViewModel();
-            vm.MapSelectList = new SelectList(_uow.Maps.All.Select(a => a.MapId));
-            vm.MatchSelectList = new SelectList(_uow.Matches.All.Select(a => a.MatchId));
+            vm.MapSelectList = new SelectList(_uow.Maps.All, nameof(Map.MapId), nameof(Map.MapName));
+            vm.MatchSelectList = new SelectList(_uow.Matches.All, nameof(Match.MatchId), nameof(Match.FullName));
             return View(vm);
         }
 
@@ -68,8 +68,8 @@ namespace Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            vm.MapSelectList = new SelectList(_uow.Maps.All.Select(a => a.MapId), vm.MapInfo.MapId);
-            vm.MatchSelectList = new SelectList(_uow.Matches.All.Select(a => a.MatchId), vm.MapInfo.MatchId);
+            vm.MapSelectList = new SelectList(_uow.Maps.All, nameof(Map.MapId),nameof(Map.MapName), vm.MapInfo.MapId);
+            vm.MatchSelectList = new SelectList(_uow.Matches.All, nameof(Match.MatchId),nameof(Match.MatchId), vm.MapInfo.MatchId);
             return View(vm);
         }
 
@@ -90,8 +90,8 @@ namespace Web.Controllers
                 MapInfo = mapInfo
             };
 
-            vm.MapSelectList = new SelectList(_uow.Maps.All.Select(a => a.MapName), vm.MapInfo.MapId);
-            vm.MatchSelectList = new SelectList(_uow.Matches.All.Select(a => a.MatchId), vm.MapInfo.MatchId);
+            vm.MapSelectList = new SelectList(_uow.Maps.All, nameof(Map.MapId), nameof(Map.MapName), vm.MapInfo.MapId);
+            vm.MatchSelectList = new SelectList(_uow.Matches.All, nameof(Match.MatchId), nameof(Match.MatchId), vm.MapInfo.MatchId);
             return View(vm);
         }
 
@@ -108,8 +108,8 @@ namespace Web.Controllers
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
-            vm.MapSelectList = new SelectList(_uow.Maps.All.Select(a => a.MapName), vm.MapInfo.MapId);
-            vm.MatchSelectList = new SelectList(_uow.Matches.All.Select(a => a.MatchId), vm.MapInfo.MatchId);
+            vm.MapSelectList = new SelectList(_uow.Maps.All, nameof(Map.MapId), nameof(Map.MapName), vm.MapInfo.MapId);
+            vm.MatchSelectList = new SelectList(_uow.Matches.All, nameof(Match.MatchId), nameof(Match.MatchId), vm.MapInfo.MatchId);
             return View(vm);
         }
 

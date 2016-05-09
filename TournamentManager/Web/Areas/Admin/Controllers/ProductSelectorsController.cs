@@ -48,10 +48,10 @@ namespace Web.Areas.Admin.Controllers
         public ActionResult Create()
         {
             var vm = new ProductSelectorCreateEditViewModel();
-            vm.ManufactorerSelectList = new SelectList(_uow.Manufactorers.All.Select(a => a.ManufactorerId));
-            vm.ManufactorerTypeSelectList = new SelectList(_uow.ManufactorerTypes.All.Select(a => a.ManufactorerTypeId));
-            vm.ModelSerieSelectList = new SelectList(_uow.ModelSeries.All.Select(a => a.ModelSerieId));
-            vm.ModelSerieTypeSelectList = new SelectList(_uow.ModelSerieTypes.All.Select(a => a.ModelSerieTypeId));
+            vm.ManufactorerSelectList = new SelectList(_uow.Manufactorers.All, nameof(Manufactorer.ManufactorerId), nameof(Manufactorer.ManufactorerName));
+            vm.ManufactorerTypeSelectList = new SelectList(_uow.ManufactorerTypes.All, nameof(ManufactorerType.ManufactorerTypeId), nameof(ManufactorerType.ManufactorerTypeName));
+            vm.ModelSerieSelectList = new SelectList(_uow.ModelSeries.All, nameof(ModelSerie.ModelSerieId), nameof(ModelSerie.ModelSerieName));
+            vm.ModelSerieTypeSelectList = new SelectList(_uow.ModelSerieTypes.All, nameof(ModelSerieType.ModelSerieTypeId), nameof(ModelSerieType.ModelSerieTypeName));
 
 //            ViewBag.ManufactorerId = new SelectList(_uow.Manufactorers.All, "ManufactorerId", "ManufactorerName");
 //            ViewBag.ManufactorerTypeId = new SelectList(_uow.ManufactorerTypes.All, "ManufactorerTypeId", "ManufactorerTypeName");
@@ -74,10 +74,10 @@ namespace Web.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            vm.ManufactorerSelectList = new SelectList(_uow.Manufactorers.All.Select(a => a.ManufactorerId), vm.ProductSelector.ManufactorerId);
-            vm.ManufactorerTypeSelectList = new SelectList(_uow.ManufactorerTypes.All.Select(a => a.ManufactorerTypeId), vm.ProductSelector.ManufactorerTypeId);
-            vm.ModelSerieSelectList = new SelectList(_uow.ModelSeries.All.Select(a => a.ModelSerieId), vm.ProductSelector.ModelSerieId);
-            vm.ModelSerieTypeSelectList = new SelectList(_uow.ModelSerieTypes.All.Select(a => a.ModelSerieTypeId), vm.ProductSelector.ModelSerieTypeId); 
+            vm.ManufactorerSelectList = new SelectList(_uow.Manufactorers.All, nameof(Manufactorer.ManufactorerId), nameof(Manufactorer.ManufactorerName), vm.ProductSelector.ManufactorerId);
+            vm.ManufactorerTypeSelectList = new SelectList(_uow.ManufactorerTypes.All, nameof(ManufactorerType.ManufactorerTypeId), nameof(ManufactorerType.ManufactorerTypeName), vm.ProductSelector.ManufactorerTypeId);
+            vm.ModelSerieSelectList = new SelectList(_uow.ModelSeries.All, nameof(ModelSerie.ModelSerieId), nameof(ModelSerie.ModelSerieName), vm.ProductSelector.ModelSerieId);
+            vm.ModelSerieTypeSelectList = new SelectList(_uow.ModelSerieTypes.All, nameof(ModelSerieType.ModelSerieTypeId), nameof(ModelSerieType.ModelSerieTypeName),vm.ProductSelector.ModelSerieTypeId);
             return View(vm);
         }
 
@@ -97,10 +97,10 @@ namespace Web.Areas.Admin.Controllers
             {
                 ProductSelector = productSelector
             };
-            vm.ManufactorerSelectList = new SelectList(_uow.Manufactorers.All.Select(a => a.ManufactorerId), vm.ProductSelector.ManufactorerId);
-            vm.ManufactorerTypeSelectList = new SelectList(_uow.ManufactorerTypes.All.Select(a => a.ManufactorerTypeId), vm.ProductSelector.ManufactorerTypeId);
-            vm.ModelSerieSelectList = new SelectList(_uow.ModelSeries.All.Select(a => a.ModelSerieId), vm.ProductSelector.ModelSerieId);
-            vm.ModelSerieTypeSelectList = new SelectList(_uow.ModelSerieTypes.All.Select(a => a.ModelSerieTypeId), vm.ProductSelector.ModelSerieTypeId);
+            vm.ManufactorerSelectList = new SelectList(_uow.Manufactorers.All, nameof(Manufactorer.ManufactorerId), nameof(Manufactorer.ManufactorerName), vm.ProductSelector.ManufactorerId);
+            vm.ManufactorerTypeSelectList = new SelectList(_uow.ManufactorerTypes.All, nameof(ManufactorerType.ManufactorerTypeId), nameof(ManufactorerType.ManufactorerTypeName), vm.ProductSelector.ManufactorerTypeId);
+            vm.ModelSerieSelectList = new SelectList(_uow.ModelSeries.All, nameof(ModelSerie.ModelSerieId), nameof(ModelSerie.ModelSerieName), vm.ProductSelector.ModelSerieId);
+            vm.ModelSerieTypeSelectList = new SelectList(_uow.ModelSerieTypes.All, nameof(ModelSerieType.ModelSerieTypeId), nameof(ModelSerieType.ModelSerieTypeName), vm.ProductSelector.ModelSerieTypeId);
             return View(vm);
         }
 
@@ -117,10 +117,10 @@ namespace Web.Areas.Admin.Controllers
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
-            vm.ManufactorerSelectList = new SelectList(_uow.Manufactorers.All.Select(a => a.ManufactorerId), vm.ProductSelector.ManufactorerId);
-            vm.ManufactorerTypeSelectList = new SelectList(_uow.ManufactorerTypes.All.Select(a => a.ManufactorerTypeId), vm.ProductSelector.ManufactorerTypeId);
-            vm.ModelSerieSelectList = new SelectList(_uow.ModelSeries.All.Select(a => a.ModelSerieId), vm.ProductSelector.ModelSerieId);
-            vm.ModelSerieTypeSelectList = new SelectList(_uow.ModelSerieTypes.All.Select(a => a.ModelSerieTypeId), vm.ProductSelector.ModelSerieTypeId);
+            vm.ManufactorerSelectList = new SelectList(_uow.Manufactorers.All, nameof(Manufactorer.ManufactorerId), nameof(Manufactorer.ManufactorerName), vm.ProductSelector.ManufactorerId);
+            vm.ManufactorerTypeSelectList = new SelectList(_uow.ManufactorerTypes.All, nameof(ManufactorerType.ManufactorerTypeId), nameof(ManufactorerType.ManufactorerTypeName), vm.ProductSelector.ManufactorerTypeId);
+            vm.ModelSerieSelectList = new SelectList(_uow.ModelSeries.All, nameof(ModelSerie.ModelSerieId), nameof(ModelSerie.ModelSerieName), vm.ProductSelector.ModelSerieId);
+            vm.ModelSerieTypeSelectList = new SelectList(_uow.ModelSerieTypes.All, nameof(ModelSerieType.ModelSerieTypeId), nameof(ModelSerieType.ModelSerieTypeName), vm.ProductSelector.ModelSerieTypeId);
             return View(vm);
         }
 

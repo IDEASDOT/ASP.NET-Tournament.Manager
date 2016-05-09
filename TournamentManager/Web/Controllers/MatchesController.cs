@@ -47,8 +47,8 @@ namespace Web.Controllers
         public ActionResult Create()
         {
             var vm = new MatchCreateEditViewModel();
-            vm.FirstTeamSelectList = new SelectList(_uow.Teams.All.Select(a => a.TeamId));
-            vm.SecondTeamSelectList = new SelectList(_uow.Teams.All.Select(a => a.TeamId));
+            vm.FirstTeamSelectList = new SelectList(_uow.Teams.All, nameof(Team.TeamId), nameof(Team.TeamName));
+            vm.SecondTeamSelectList = new SelectList(_uow.Teams.All, nameof(Team.TeamId), nameof(Team.TeamName));
             return View(vm);
         }
 
@@ -66,8 +66,8 @@ namespace Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            vm.FirstTeamSelectList = new SelectList(_uow.Teams.All.Select(a => a.TeamId), vm.Match.FirstTeamId);
-            vm.SecondTeamSelectList = new SelectList(_uow.Teams.All.Select(a => a.TeamId), vm.Match.SecondTeamId);
+            vm.FirstTeamSelectList = new SelectList(_uow.Teams.All, nameof(Team.TeamId), nameof(Team.TeamName), vm.Match.FirstTeamId);
+            vm.SecondTeamSelectList = new SelectList(_uow.Teams.All, nameof(Team.TeamId), nameof(Team.TeamName), vm.Match.SecondTeamId);
             return View(vm);
         }
 
@@ -88,8 +88,8 @@ namespace Web.Controllers
             {
                 Match = match
             };
-            vm.FirstTeamSelectList = new SelectList(_uow.Teams.All.Select(a => a.TeamId), vm.Match.FirstTeamId);
-            vm.SecondTeamSelectList = new SelectList(_uow.Teams.All.Select(a => a.TeamId), vm.Match.SecondTeamId);
+            vm.FirstTeamSelectList = new SelectList(_uow.Teams.All, nameof(Team.TeamId), nameof(Team.TeamName), vm.Match.FirstTeamId);
+            vm.SecondTeamSelectList = new SelectList(_uow.Teams.All, nameof(Team.TeamId), nameof(Team.TeamName), vm.Match.SecondTeamId);
             return View(vm);
         }
 
@@ -106,8 +106,8 @@ namespace Web.Controllers
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
-            vm.FirstTeamSelectList = new SelectList(_uow.Teams.All.Select(a => a.TeamId), vm.Match.FirstTeamId);
-            vm.SecondTeamSelectList = new SelectList(_uow.Teams.All.Select(a => a.TeamId), vm.Match.SecondTeamId);
+            vm.FirstTeamSelectList = new SelectList(_uow.Teams.All, nameof(Team.TeamId), nameof(Team.TeamName), vm.Match.FirstTeamId);
+            vm.SecondTeamSelectList = new SelectList(_uow.Teams.All, nameof(Team.TeamId), nameof(Team.TeamName), vm.Match.SecondTeamId);
             return View(vm);
         }
 

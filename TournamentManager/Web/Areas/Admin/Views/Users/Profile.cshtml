@@ -1,0 +1,67 @@
+﻿@model List<Domain.Player>
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+<h2>Profile</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Select(a => a.FavouriteMap.MapName))
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Select(b => b.Team.TeamName))
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Select(c => c.User.Email))
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Select(d => d.FullName))
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Select(e => e.AllTimeWins))
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Select(f => f.CurrentWins))
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Select(g => g.CurrentWins))
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Select(h => h.CurrentLost))
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FavouriteMap.MapName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Team.TeamName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AllTimeWins)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CurrentWins)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AllTimeLost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CurrentLost)
+        </td>
+    </tr>
+    }
+
+</table>

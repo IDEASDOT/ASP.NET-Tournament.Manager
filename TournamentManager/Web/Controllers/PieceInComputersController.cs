@@ -47,8 +47,8 @@ namespace Web.Controllers
         public ActionResult Create()
         {
             var vm = new PieceInComputerCreateEditViewModel();
-            vm.ComputerSpecificationSelectList = new SelectList(_uow.ComputerSpecifications.All.Select(a => a.CompSpecId));
-            vm.ProductSelectorSelectList = new SelectList(_uow.ProductSelectors.All.Select(a => a.ProductSelectorId));
+            vm.ComputerSpecificationSelectList = new SelectList(_uow.ComputerSpecifications.All, nameof(ComputerSpecification.CompSpecId), nameof(ComputerSpecification.CompSpecId));
+            vm.ProductSelectorSelectList = new SelectList(_uow.ProductSelectors.All, nameof(ProductSelector.ProductSelectorId), nameof(ProductSelector.FullName));
             return View(vm);
         }
 
@@ -66,8 +66,8 @@ namespace Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            vm.ComputerSpecificationSelectList = new SelectList(_uow.ComputerSpecifications.All.Select(a => a.CompSpecId), vm.PieceInComputer.CompSpecId);
-            vm.ProductSelectorSelectList = new SelectList(_uow.ProductSelectors.All.Select(a => a.ProductSelectorId), vm.PieceInComputer.ProductSelectorId);
+            vm.ComputerSpecificationSelectList = new SelectList(_uow.ComputerSpecifications.All, nameof(ComputerSpecification.CompSpecId), nameof(ComputerSpecification.CompSpecId), vm.PieceInComputer.CompSpecId);
+            vm.ProductSelectorSelectList = new SelectList(_uow.ProductSelectors.All, nameof(ProductSelector.ProductSelectorId), nameof(ProductSelector.FullName), vm.PieceInComputer.ProductSelectorId);
             return View(vm);
         }
 
@@ -87,8 +87,9 @@ namespace Web.Controllers
             {
                 PieceInComputer = pieceInComputer
             };
-            vm.ComputerSpecificationSelectList = new SelectList(_uow.ComputerSpecifications.All.Select(a => a.CompSpecId), vm.PieceInComputer.CompSpecId);
-            vm.ProductSelectorSelectList = new SelectList(_uow.ProductSelectors.All.Select(a => a.ProductSelectorId), vm.PieceInComputer.ProductSelectorId);
+            vm.ComputerSpecificationSelectList = new SelectList(_uow.ComputerSpecifications.All, nameof(ComputerSpecification.CompSpecId), nameof(ComputerSpecification.CompSpecId), vm.PieceInComputer.CompSpecId);
+            vm.ProductSelectorSelectList = new SelectList(_uow.ProductSelectors.All, nameof(ProductSelector.ProductSelectorId), nameof(ProductSelector.FullName), vm.PieceInComputer.ProductSelectorId);
+
             return View(vm);
         }
 
@@ -105,8 +106,8 @@ namespace Web.Controllers
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
-            vm.ComputerSpecificationSelectList = new SelectList(_uow.ComputerSpecifications.All.Select(a => a.CompSpecId), vm.PieceInComputer.CompSpecId);
-            vm.ProductSelectorSelectList = new SelectList(_uow.ProductSelectors.All.Select(a => a.ProductSelectorId), vm.PieceInComputer.ProductSelectorId);
+            vm.ComputerSpecificationSelectList = new SelectList(_uow.ComputerSpecifications.All, nameof(ComputerSpecification.CompSpecId), nameof(ComputerSpecification.CompSpecId), vm.PieceInComputer.CompSpecId);
+            vm.ProductSelectorSelectList = new SelectList(_uow.ProductSelectors.All, nameof(ProductSelector.ProductSelectorId), nameof(ProductSelector.FullName), vm.PieceInComputer.ProductSelectorId);
             return View(vm);
         }
 

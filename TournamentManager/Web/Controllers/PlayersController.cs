@@ -48,8 +48,8 @@ namespace Web.Controllers
         public ActionResult Create()
         {
             var vm = new PlayerCreateEditViewModel();
-            vm.MapSelectList = new SelectList(_uow.Maps.All.Select(a => a.MapId));
-            vm.TeamSelectList = new SelectList(_uow.Teams.All.Select(a => a.TeamId));
+            vm.MapSelectList = new SelectList(_uow.Maps.All, nameof(Map.MapId), nameof(Map.MapName));
+            vm.TeamSelectList = new SelectList(_uow.Teams.All, nameof(Team.TeamId), nameof(Team.TeamName));
 //            ViewBag.MapId = new SelectList(_uow.Maps.All, "MapId", "MapName");
 //            ViewBag.TeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName");
             return View(vm);
@@ -72,8 +72,8 @@ namespace Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            vm.MapSelectList = new SelectList(_uow.Maps.All.Select(a => a.MapId), vm.Player.MapId);
-            vm.TeamSelectList = new SelectList(_uow.Teams.All.Select(a => a.TeamId), vm.Player.TeamId);
+            vm.MapSelectList = new SelectList(_uow.Maps.All, nameof(Map.MapId), nameof(Map.MapName), vm.Player.MapId);
+            vm.TeamSelectList = new SelectList(_uow.Teams.All, nameof(Team.TeamId), nameof(Team.TeamName), vm.Player.TeamId);
             return View(vm);
         }
 
@@ -94,8 +94,8 @@ namespace Web.Controllers
             {
                 Player = player
             };
-            vm.MapSelectList = new SelectList(_uow.Maps.All.Select(a => a.MapId), vm.Player.MapId);
-            vm.TeamSelectList = new SelectList(_uow.Teams.All.Select(a => a.TeamId), vm.Player.TeamId);
+            vm.MapSelectList = new SelectList(_uow.Maps.All, nameof(Map.MapId), nameof(Map.MapName), vm.Player.MapId);
+            vm.TeamSelectList = new SelectList(_uow.Teams.All, nameof(Team.TeamId), nameof(Team.TeamName), vm.Player.TeamId);
             return View(vm);
         }
 
@@ -115,8 +115,8 @@ namespace Web.Controllers
                 _uow.Commit();
                 return RedirectToAction(nameof(Index));
             }
-            vm.MapSelectList = new SelectList(_uow.Maps.All.Select(a => a.MapId), vm.Player.MapId);
-            vm.TeamSelectList = new SelectList(_uow.Teams.All.Select(a => a.TeamId), vm.Player.TeamId);
+            vm.MapSelectList = new SelectList(_uow.Maps.All, nameof(Map.MapId), nameof(Map.MapName), vm.Player.MapId);
+            vm.TeamSelectList = new SelectList(_uow.Teams.All, nameof(Team.TeamId), nameof(Team.TeamName), vm.Player.TeamId);
             return View(vm);
         }
 
