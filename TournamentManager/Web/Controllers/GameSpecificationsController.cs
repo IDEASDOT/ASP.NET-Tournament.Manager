@@ -2,6 +2,8 @@
 using System.Web.Mvc;
 using DAL.Interfaces;
 using Domain;
+using Microsoft.AspNet.Identity;
+using Web.ViewModels;
 
 namespace Web.Controllers
 {
@@ -19,8 +21,12 @@ namespace Web.Controllers
         // GET: GameSpecifications
         public ActionResult Index()
         {
+            var vm = new GameSpecificationIndexViewModel()
+            {
+                GameSpecifications = _uow.GameSpecifications.AllIncluding()
+            };
             //var gameSpecifications = _uow.GameSpecifications.Include(g => g.Player);
-            return View(_uow.GameSpecifications.AllIncluding());
+            return View(vm);
         }
 
         // GET: GameSpecifications/Details/5
@@ -41,8 +47,10 @@ namespace Web.Controllers
         // GET: GameSpecifications/Create
         public ActionResult Create()
         {
-            ViewBag.PlayerId = new SelectList(_uow.Players.All, "PlayerId", "FirstName");
-            return View();
+            var vm = new GameSpecificationCreateEditViewModel();
+            vm.PlayerSelectList = new SelectList(_uow.Players.GetAllForUser(User.Identity.GetUserId<int>()), nameof(Player.PlayerId), nameof(Player.FullName));
+            //ViewBag.PlayerId = new SelectList(_uow.Players.All, "PlayerId", "FirstName");
+            return View(vm);
         }
 
         // POST: GameSpecifications/Create
@@ -50,17 +58,17 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(GameSpecification gameSpecification)
+        public ActionResult Create(GameSpecificationCreateEditViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                _uow.GameSpecifications.Add(gameSpecification);
+                _uow.GameSpecifications.Add(vm.GameSpecification);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PlayerId = new SelectList(_uow.Players.All, "PlayerId", "FirstName", gameSpecification.PlayerId);
-            return View(gameSpecification);
+            vm.PlayerSelectList = new SelectList(_uow.Players.GetAllForUser(User.Identity.GetUserId<int>()), nameof(Player.PlayerId), nameof(Player.FullName), vm.GameSpecification.PlayerId);
+            return View(vm);
         }
 
         // GET: GameSpecifications/Edit/5
@@ -75,8 +83,14 @@ namespace Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PlayerId = new SelectList(_uow.Players.All, "PlayerId", "FirstName", gameSpecification.PlayerId);
-            return View(gameSpecification);
+
+            var vm = new GameSpecificationCreateEditViewModel()
+            {
+                GameSpecification = gameSpecification
+            };
+
+            vm.PlayerSelectList = new SelectList(_uow.Players.GetAllForUser(User.Identity.GetUserId<int>()), nameof(Player.PlayerId), nameof(Player.FullName), vm.GameSpecification.PlayerId);
+            return View(vm);
         }
 
         // POST: GameSpecifications/Edit/5
@@ -84,16 +98,16 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( GameSpecification gameSpecification)
+        public ActionResult Edit( GameSpecificationCreateEditViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                _uow.GameSpecifications.Update(gameSpecification);
+                _uow.GameSpecifications.Update(vm.GameSpecification);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
-            ViewBag.PlayerId = new SelectList(_uow.Players.All, "PlayerId", "FirstName", gameSpecification.PlayerId);
-            return View(gameSpecification);
+            vm.PlayerSelectList = new SelectList(_uow.Players.GetAllForUser(User.Identity.GetUserId<int>()), nameof(Player.PlayerId), nameof(Player.FullName), vm.GameSpecification.PlayerId);
+            return View(vm);
         }
 
         // GET: GameSpecifications/Delete/5

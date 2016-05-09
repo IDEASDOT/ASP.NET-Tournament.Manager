@@ -243,6 +243,12 @@
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\ViewModels\ArticleViewModels.cs" />
     <Compile Include="Areas\Admin\ViewModels\ContactTypeViewModels.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ManufactorerTypeViewModels.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ManufactorerViewModels.cs" />
+    <Compile Include="Areas\Admin\ViewModels\MapViewModels.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ModelSerieTypeViewModels.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ModelSerieViewModels.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ProductSelectorViewModels.cs" />
     <Compile Include="Areas\Admin\ViewModels\SystemLogViewModels.cs" />
     <Compile Include="Areas\Admin\ViewModels\TranslationsViewModels.cs" />
     <Compile Include="Areas\Admin\ViewModels\UserRoleViewModels.cs" />
@@ -308,9 +314,16 @@
     <Compile Include="ViewModels\AccountBindingModels.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\ApiAccountViewModels.cs" />
+    <Compile Include="ViewModels\ComputerSpecificationViewModels.cs" />
     <Compile Include="ViewModels\ContactViewModels.cs" />
+    <Compile Include="ViewModels\GameSpecificationViewModels.cs" />
     <Compile Include="ViewModels\HomeViewModels.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
+    <Compile Include="ViewModels\MapInfoViewModels.cs" />
+    <Compile Include="ViewModels\MatchViewModels.cs" />
+    <Compile Include="ViewModels\PieceInComputerViewModels.cs" />
+    <Compile Include="ViewModels\PlayerViewModels.cs" />
+    <Compile Include="ViewModels\TeamViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -1850,6 +1863,12 @@
     <Content Include="Areas\Admin\Views\ProductSelectors\Details.cshtml" />
     <Content Include="Areas\Admin\Views\ProductSelectors\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Profile.cshtml" />
+    <Content Include="Areas\Admin\Views\Manufactorers\_CreateEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\ManufactorerTypes\_CreateEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Maps\_CreateEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\ModelSerieTypes\_CreateEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\ModelSeries\_CreateEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductSelectors\_CreateEdit.cshtml" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -2110,6 +2129,13 @@
     <Content Include="Views\PieceInComputers\Details.cshtml" />
     <Content Include="Views\PieceInComputers\Edit.cshtml" />
     <Content Include="Views\PieceInComputers\Index.cshtml" />
+    <Content Include="Views\ComputerSpecifications\_CreateEdit.cshtml" />
+    <Content Include="Views\GameSpecifications\_CreateEdit.cshtml" />
+    <Content Include="Views\MapInfos\_CreateEdit.cshtml" />
+    <Content Include="Views\Matches\_CreateEdit.cshtml" />
+    <Content Include="Views\PieceInComputers\_CreateEdit.cshtml" />
+    <Content Include="Views\Teams\_CreateEdit.cshtml" />
+    <Content Include="Views\Players\_CreateEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

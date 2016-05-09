@@ -1,10 +1,10 @@
-﻿@model IEnumerable<Domain.Match>
+﻿@model Web.ViewModels.MatchIndexViewModel
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Inde</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,30 +12,24 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FirstTeam.TeamName)
+            @Html.DisplayNameFor(model => model.Matches.FirstOrDefault().FullName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SecondTeam.TeamName)
+            @Html.DisplayNameFor(model => model.Matches.FirstOrDefault().DateTime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateTime)
+            @Html.DisplayNameFor(model => model.Matches.FirstOrDefault().Date)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Time)
+            @Html.DisplayNameFor(model => model.Matches.FirstOrDefault().Time)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Matches) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.FirstTeam.TeamName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SecondTeam.TeamName)
+            @Html.DisplayFor(modelItem => item.FullName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DateTime)

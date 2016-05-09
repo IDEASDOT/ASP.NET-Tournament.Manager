@@ -376,6 +376,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Match Info.
+        /// </summary>
+        public static string MatchFullName {
+            get {
+                return ResourceManager.GetString("MatchFullName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Match Id.
         /// </summary>
         public static string MatchId {

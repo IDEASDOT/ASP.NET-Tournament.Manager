@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Domain.GameSpecification>
+﻿@model Web.ViewModels.GameSpecificationIndexViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -12,27 +12,27 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Player.FirstName)
+            @Html.DisplayNameFor(model => model.GameSpecifications.FirstOrDefault().Player.FullName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DpiValue)
+            @Html.DisplayNameFor(model => model.GameSpecifications.FirstOrDefault().DpiValue)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SensitivityValue)
+            @Html.DisplayNameFor(model => model.GameSpecifications.FirstOrDefault().SensitivityValue)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.GameWins)
+            @Html.DisplayNameFor(model => model.GameSpecifications.FirstOrDefault().GameWins)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.GameLost)
+            @Html.DisplayNameFor(model => model.GameSpecifications.FirstOrDefault().GameLost)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.GameSpecifications) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Player.FirstName)
+            @Html.DisplayFor(modelItem => item.Player.FullName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DpiValue)

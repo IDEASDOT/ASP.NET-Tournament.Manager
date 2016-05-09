@@ -1,7 +1,9 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using DAL.Interfaces;
 using Domain;
+using Web.ViewModels;
 
 namespace Web.Controllers
 {
@@ -18,8 +20,12 @@ namespace Web.Controllers
         public ActionResult Index()
         {
             //var matches = _uow.Matches.Include(m => m.FirstTeam).Include(m => m.SecondTeam);
-            var matches = _uow.Matches.AllIncluding();
-            return View(matches);
+            var vm = new MatchIndexViewModel()
+            {
+                Matches = _uow.Matches.AllIncluding()
+            };
+            
+            return View(vm);
         }
 
         // GET: Matches/Details/5
@@ -40,9 +46,10 @@ namespace Web.Controllers
         // GET: Matches/Create
         public ActionResult Create()
         {
-            ViewBag.FirstTeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName");
-            ViewBag.SecondTeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName");
-            return View();
+            var vm = new MatchCreateEditViewModel();
+            vm.FirstTeamSelectList = new SelectList(_uow.Teams.All.Select(a => a.TeamId));
+            vm.SecondTeamSelectList = new SelectList(_uow.Teams.All.Select(a => a.TeamId));
+            return View(vm);
         }
 
         // POST: Matches/Create
@@ -50,18 +57,18 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Match match)
+        public ActionResult Create(MatchCreateEditViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                _uow.Matches.Add(match);
+                _uow.Matches.Add(vm.Match);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.FirstTeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName", match.FirstTeamId);
-            ViewBag.SecondTeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName", match.SecondTeamId);
-            return View(match);
+            vm.FirstTeamSelectList = new SelectList(_uow.Teams.All.Select(a => a.TeamId), vm.Match.FirstTeamId);
+            vm.SecondTeamSelectList = new SelectList(_uow.Teams.All.Select(a => a.TeamId), vm.Match.SecondTeamId);
+            return View(vm);
         }
 
         // GET: Matches/Edit/5
@@ -76,9 +83,14 @@ namespace Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.FirstTeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName", match.FirstTeamId);
-            ViewBag.SecondTeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName", match.SecondTeamId);
-            return View(match);
+
+            var vm = new MatchCreateEditViewModel()
+            {
+                Match = match
+            };
+            vm.FirstTeamSelectList = new SelectList(_uow.Teams.All.Select(a => a.TeamId), vm.Match.FirstTeamId);
+            vm.SecondTeamSelectList = new SelectList(_uow.Teams.All.Select(a => a.TeamId), vm.Match.SecondTeamId);
+            return View(vm);
         }
 
         // POST: Matches/Edit/5
@@ -86,17 +98,17 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Match match)
+        public ActionResult Edit(MatchCreateEditViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                _uow.Matches.Update(match);
+                _uow.Matches.Update(vm.Match);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
-            ViewBag.FirstTeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName", match.FirstTeamId);
-            ViewBag.SecondTeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName", match.SecondTeamId);
-            return View(match);
+            vm.FirstTeamSelectList = new SelectList(_uow.Teams.All.Select(a => a.TeamId), vm.Match.FirstTeamId);
+            vm.SecondTeamSelectList = new SelectList(_uow.Teams.All.Select(a => a.TeamId), vm.Match.SecondTeamId);
+            return View(vm);
         }
 
         // GET: Matches/Delete/5

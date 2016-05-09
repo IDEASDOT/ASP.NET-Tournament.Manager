@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using DAL.Interfaces;
 using Domain;
+using Web.ViewModels;
 
 namespace Web.Controllers
 {
@@ -18,7 +19,11 @@ namespace Web.Controllers
         // GET: Teams
         public ActionResult Index()
         {
-            return View(_uow.Teams.All);
+            var vm = new TeamIndexViewModel()
+            {
+                Teams = _uow.Teams.All
+            };
+            return View(vm);
         }
 
         // GET: Teams/Details/5
@@ -39,7 +44,8 @@ namespace Web.Controllers
         // GET: Teams/Create
         public ActionResult Create()
         {
-            return View();
+            var vm = new TeamCreateEditViewModel();
+            return View(vm);
         }
 
         // POST: Teams/Create
@@ -47,16 +53,16 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Team team)
+        public ActionResult Create(TeamCreateEditViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                _uow.Teams.Add(team);
+                _uow.Teams.Add(vm.Team);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
 
-            return View(team);
+            return View(vm);
         }
 
         // GET: Teams/Edit/5
@@ -71,7 +77,13 @@ namespace Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(team);
+
+            var vm = new TeamCreateEditViewModel()
+            {
+                Team = team
+            };
+
+            return View(vm);
         }
 
         // POST: Teams/Edit/5
@@ -79,15 +91,15 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Team team)
+        public ActionResult Edit(TeamCreateEditViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                _uow.Teams.Update(team);
+                _uow.Teams.Update(vm.Team);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
-            return View(team);
+            return View(vm);
         }
 
         // GET: Teams/Delete/5

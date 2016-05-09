@@ -1,0 +1,34 @@
+﻿@model Web.ViewModels.MapInfoCreateEditViewModel
+
+
+<div class="form-group">
+    @Html.LabelFor(model => model.MapInfo.MapId, "MapId", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(model => model.MapInfo.MapId, Model.MapSelectList, "-- Select --", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.MapInfo.MapId, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.MapInfo.MatchId, "MatchId", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(model => model.MapInfo.MatchId, Model.MatchSelectList, "-- Select --", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.MapInfo.MatchId, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.MapInfo.FirstTeamScore, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.MapInfo.FirstTeamScore, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.MapInfo.FirstTeamScore, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.MapInfo.SecondTeamScore, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.MapInfo.SecondTeamScore, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.MapInfo.SecondTeamScore, "", new { @class = "text-danger" })
+    </div>
+</div>

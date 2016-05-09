@@ -279,4 +279,7 @@
   <data name="SecondTeamScore" xml:space="preserve">
     <value>Teise tiimi skoor</value>
   </data>
+  <data name="MatchFullName" xml:space="preserve">
+    <value>Matsi Informatsioon</value>
+  </data>
 </root>

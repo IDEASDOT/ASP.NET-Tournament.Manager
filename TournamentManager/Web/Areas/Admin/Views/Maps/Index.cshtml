@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Domain.Map>
+﻿@model Web.Areas.Admin.ViewModels.MapIndexViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -12,12 +12,12 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.MapName)
+            @Html.DisplayNameFor(model => model.Maps.FirstOrDefault().MapName)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Maps) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.MapName)

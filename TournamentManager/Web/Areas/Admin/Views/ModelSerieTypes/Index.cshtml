@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Domain.ModelSerieType>
+﻿@model Web.Areas.Admin.ViewModels.ModelSerieTypeIndexViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -12,12 +12,12 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ModelSerieTypeName)
+            @Html.DisplayNameFor(model => model.ModelSerieTypes.FirstOrDefault().ModelSerieTypeName)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.ModelSerieTypes) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.ModelSerieTypeName)

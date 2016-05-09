@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using DAL.Interfaces;
 using Domain;
+using Web.Areas.Admin.ViewModels;
 using Web.Controllers;
 
 namespace Web.Areas.Admin.Controllers
@@ -19,7 +20,11 @@ namespace Web.Areas.Admin.Controllers
         // GET: ModelSeries
         public ActionResult Index()
         {
-            return View(_uow.ModelSeries.All);
+            var vm = new ModelSerieIndexViewModel()
+            {
+                ModelSeries = _uow.ModelSeries.All
+            };
+            return View(vm);
         }
 
         // GET: ModelSeries/Details/5
@@ -40,7 +45,8 @@ namespace Web.Areas.Admin.Controllers
         // GET: ModelSeries/Create
         public ActionResult Create()
         {
-            return View();
+            var vm = new ModelSerieCreateEditViewModel();
+            return View(vm);
         }
 
         // POST: ModelSeries/Create
@@ -48,16 +54,16 @@ namespace Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( ModelSerie modelSerie)
+        public ActionResult Create( ModelSerieCreateEditViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                _uow.ModelSeries.Add(modelSerie);
+                _uow.ModelSeries.Add(vm.ModelSerie);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
 
-            return View(modelSerie);
+            return View(vm);
         }
 
         // GET: ModelSeries/Edit/5
@@ -72,7 +78,13 @@ namespace Web.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return View(modelSerie);
+
+            var vm = new ModelSerieCreateEditViewModel()
+            {
+                ModelSerie = modelSerie
+            };
+
+            return View(vm);
         }
 
         // POST: ModelSeries/Edit/5
@@ -80,15 +92,15 @@ namespace Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ModelSerie modelSerie)
+        public ActionResult Edit(ModelSerieCreateEditViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                _uow.ModelSeries.Update(modelSerie);
+                _uow.ModelSeries.Update(vm.ModelSerie);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
-            return View(modelSerie);
+            return View(vm);
         }
 
         // GET: ModelSeries/Delete/5

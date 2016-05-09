@@ -1,7 +1,9 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using DAL.Interfaces;
 using Domain;
+using Web.ViewModels;
 
 namespace Web.Controllers
 {
@@ -20,8 +22,12 @@ namespace Web.Controllers
         public ActionResult Index()
         {
             //var mapInfos = _uow.MapInfos.Include(m => m.Map).Include(m => m.Match);
-            var mapInfos = _uow.MapInfos.AllIncluding();
-            return View(mapInfos);
+            var vm = new MapInfoIndexViewModel()
+            {
+                MapInfos = _uow.MapInfos.AllIncluding()
+            };
+
+            return View(vm);
         }
 
         // GET: MapInfos/Details/5
@@ -42,9 +48,10 @@ namespace Web.Controllers
         // GET: MapInfos/Create
         public ActionResult Create()
         {
-            ViewBag.MapId = new SelectList(_uow.Maps.All, "MapId", "MapName");
-            ViewBag.MatchId = new SelectList(_uow.Matches.All, "MatchId", "MatchId");
-            return View();
+            var vm = new MapInfoCreateEditViewModel();
+            vm.MapSelectList = new SelectList(_uow.Maps.All.Select(a => a.MapId));
+            vm.MatchSelectList = new SelectList(_uow.Matches.All.Select(a => a.MatchId));
+            return View(vm);
         }
 
         // POST: MapInfos/Create
@@ -52,18 +59,18 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(MapInfo mapInfo)
+        public ActionResult Create(MapInfoCreateEditViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                _uow.MapInfos.Add(mapInfo);
+                _uow.MapInfos.Add(vm.MapInfo);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MapId = new SelectList(_uow.Maps.All, "MapId", "MapName", mapInfo.MapId);
-            ViewBag.MatchId = new SelectList(_uow.Matches.All, "MatchId", "MatchId", mapInfo.MatchId);
-            return View(mapInfo);
+            vm.MapSelectList = new SelectList(_uow.Maps.All.Select(a => a.MapId), vm.MapInfo.MapId);
+            vm.MatchSelectList = new SelectList(_uow.Matches.All.Select(a => a.MatchId), vm.MapInfo.MatchId);
+            return View(vm);
         }
 
         // GET: MapInfos/Edit/5
@@ -78,9 +85,14 @@ namespace Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MapId = new SelectList(_uow.Maps.All, "MapId", "MapName", mapInfo.MapId);
-            ViewBag.MatchId = new SelectList(_uow.Matches.All, "MatchId", "MatchId", mapInfo.MatchId);
-            return View(mapInfo);
+            var vm = new MapInfoCreateEditViewModel()
+            {
+                MapInfo = mapInfo
+            };
+
+            vm.MapSelectList = new SelectList(_uow.Maps.All.Select(a => a.MapName), vm.MapInfo.MapId);
+            vm.MatchSelectList = new SelectList(_uow.Matches.All.Select(a => a.MatchId), vm.MapInfo.MatchId);
+            return View(vm);
         }
 
         // POST: MapInfos/Edit/5
@@ -88,17 +100,17 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(MapInfo mapInfo)
+        public ActionResult Edit(MapInfoCreateEditViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                _uow.MapInfos.Update(mapInfo);
+                _uow.MapInfos.Update(vm.MapInfo);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
-            ViewBag.MapId = new SelectList(_uow.Maps.All, "MapId", "MapName", mapInfo.MapId);
-            ViewBag.MatchId = new SelectList(_uow.Matches.All, "MatchId", "MatchId", mapInfo.MatchId);
-            return View(mapInfo);
+            vm.MapSelectList = new SelectList(_uow.Maps.All.Select(a => a.MapName), vm.MapInfo.MapId);
+            vm.MatchSelectList = new SelectList(_uow.Matches.All.Select(a => a.MatchId), vm.MapInfo.MatchId);
+            return View(vm);
         }
 
         // GET: MapInfos/Delete/5

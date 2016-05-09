@@ -1,4 +1,4 @@
-﻿@model Domain.Map
+﻿@model Web.Areas.Admin.ViewModels.MapCreateEditViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -15,15 +15,9 @@
         <h4>Map</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.MapId)
+        @Html.HiddenFor(model => model.Map.MapId)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.MapName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MapName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MapName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.Partial("_CreateEdit", Model)
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

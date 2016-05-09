@@ -1,0 +1,33 @@
+﻿@model Web.Areas.Admin.ViewModels.ProductSelectorCreateEditViewModel
+
+<div class="form-group">
+    @Html.LabelFor(model => model.ProductSelector.ManufactorerTypeId, "ManufactorerTypeId", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(model => model.ProductSelector.ManufactorerTypeId, Model.ManufactorerTypeSelectList, "-- Select --", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ProductSelector.ManufactorerTypeId, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.ProductSelector.ManufactorerId, "ManufactorerId", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(model => model.ProductSelector.ManufactorerId, Model.ManufactorerSelectList, "-- Select --", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ProductSelector.ManufactorerId, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.ProductSelector.ModelSerieTypeId, "ModelSerieTypeId", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(model => model.ProductSelector.ModelSerieTypeId, Model.ModelSerieTypeSelectList, "-- Select --", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ProductSelector.ModelSerieTypeId, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.ProductSelector.ModelSerieId, "ModelSerieId", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(model => model.ProductSelector.ModelSerieId, Model.ModelSerieSelectList, "-- Select --", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ProductSelector.ModelSerieId, "", new { @class = "text-danger" })
+    </div>
+</div>

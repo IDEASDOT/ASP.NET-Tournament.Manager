@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Domain.ComputerSpecification>
+﻿@model Web.ViewModels.ComputerSpecificationIndexViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -12,24 +12,24 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Player.FirstName)
+            @Html.DisplayNameFor(model => model.ComputerSpecifications.FirstOrDefault().Player.FullName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OsName)
+            @Html.DisplayNameFor(model => model.ComputerSpecifications.FirstOrDefault().OsName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CompWins)
+            @Html.DisplayNameFor(model => model.ComputerSpecifications.FirstOrDefault().CompWins)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CompLost)
+            @Html.DisplayNameFor(model => model.ComputerSpecifications.FirstOrDefault().CompLost)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.ComputerSpecifications) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Player.FirstName)
+            @Html.DisplayFor(modelItem => item.Player.FullName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.OsName)

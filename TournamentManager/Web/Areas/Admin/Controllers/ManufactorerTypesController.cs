@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using DAL.Interfaces;
 using Domain;
+using Web.Areas.Admin.ViewModels;
 using Web.Controllers;
 
 namespace Web.Areas.Admin.Controllers
@@ -21,7 +22,11 @@ namespace Web.Areas.Admin.Controllers
         // GET: ManufactorerTypes
         public ActionResult Index()
         {
-            return View(_uow.ManufactorerTypes.All);
+            var vm = new ManufactorerTypeIndexViewModel()
+            {
+                ManufactorerTypes = _uow.ManufactorerTypes.All
+            };
+            return View(vm);
         }
 
         // GET: ManufactorerTypes/Details/5
@@ -42,7 +47,8 @@ namespace Web.Areas.Admin.Controllers
         // GET: ManufactorerTypes/Create
         public ActionResult Create()
         {
-            return View();
+            var vm = new ManufactorerTypeCreateEditViewModel();
+            return View(vm);
         }
 
         // POST: ManufactorerTypes/Create
@@ -50,16 +56,16 @@ namespace Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ManufactorerType manufactorerType)
+        public ActionResult Create(ManufactorerTypeCreateEditViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                _uow.ManufactorerTypes.Add(manufactorerType);
+                _uow.ManufactorerTypes.Add(vm.ManufactorerType);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
 
-            return View(manufactorerType);
+            return View(vm);
         }
 
         // GET: ManufactorerTypes/Edit/5
@@ -74,7 +80,11 @@ namespace Web.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return View(manufactorerType);
+            var vm = new ManufactorerTypeCreateEditViewModel()
+            {
+                ManufactorerType = manufactorerType
+            };
+            return View(vm);
         }
 
         // POST: ManufactorerTypes/Edit/5
@@ -82,15 +92,15 @@ namespace Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( ManufactorerType manufactorerType)
+        public ActionResult Edit(ManufactorerTypeCreateEditViewModel vm )
         {
             if (ModelState.IsValid)
             {
-               _uow.ManufactorerTypes.Update(manufactorerType);
+               _uow.ManufactorerTypes.Update(vm.ManufactorerType);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
-            return View(manufactorerType);
+            return View(vm);
         }
 
         // GET: ManufactorerTypes/Delete/5

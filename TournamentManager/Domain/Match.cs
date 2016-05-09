@@ -37,6 +37,12 @@ namespace Domain
 
         //Information about the maps played
         public virtual List<MapInfo> MapInfos { get; set; }
-                
+
+
+        #region NotMapped
+        [Display(Name = nameof(Resources.Domain.MatchFullName), ResourceType = typeof(Resources.Domain))]
+        public string FullName => FirstTeam.TeamName + " vs " + SecondTeam.TeamName;
+
+        #endregion
     }
 }

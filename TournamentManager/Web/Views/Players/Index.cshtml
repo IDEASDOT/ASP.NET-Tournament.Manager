@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Domain.Player>
+﻿@model Web.ViewModels.PlayerIndexViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -12,39 +12,39 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FavouriteMap.MapName)
+            @Html.DisplayNameFor(model => model.Players.FirstOrDefault().FavouriteMap.MapName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Team.TeamName)
+            @Html.DisplayNameFor(model => model.Players.FirstOrDefault().Team.TeamName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.User.Email)
+            @Html.DisplayNameFor(model => model.Players.FirstOrDefault().User.Email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayNameFor(model => model.Players.FirstOrDefault().FirstName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NickName)
+            @Html.DisplayNameFor(model => model.Players.FirstOrDefault().NickName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.DisplayNameFor(model => model.Players.FirstOrDefault().LastName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AllTimeWins)
+            @Html.DisplayNameFor(model => model.Players.FirstOrDefault().AllTimeWins)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CurrentWins)
+            @Html.DisplayNameFor(model => model.Players.FirstOrDefault().CurrentWins)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AllTimeLost)
+            @Html.DisplayNameFor(model => model.Players.FirstOrDefault().AllTimeLost)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CurrentLost)
+            @Html.DisplayNameFor(model => model.Players.FirstOrDefault().CurrentLost)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Players) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.FavouriteMap.MapName)

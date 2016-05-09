@@ -1,7 +1,9 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using DAL.Interfaces;
 using Domain;
+using Web.Areas.Admin.ViewModels;
 using Web.Controllers;
 
 namespace Web.Areas.Admin.Controllers
@@ -20,8 +22,11 @@ namespace Web.Areas.Admin.Controllers
         // GET: ProductSelectors
         public ActionResult Index()
         {
-            var productSelectors = _uow.ProductSelectors.AllIncluding();
-            return View(productSelectors);
+            var vm = new ProductSelectorIndexViewModel()
+            {
+                ProductSelectors = _uow.ProductSelectors.AllIncluding()
+            };
+            return View(vm);
         }
 
         // GET: ProductSelectors/Details/5
@@ -42,11 +47,17 @@ namespace Web.Areas.Admin.Controllers
         // GET: ProductSelectors/Create
         public ActionResult Create()
         {
-            ViewBag.ManufactorerId = new SelectList(_uow.Manufactorers.All, "ManufactorerId", "ManufactorerName");
-            ViewBag.ManufactorerTypeId = new SelectList(_uow.ManufactorerTypes.All, "ManufactorerTypeId", "ManufactorerTypeName");
-            ViewBag.ModelSerieId = new SelectList(_uow.ModelSeries.All, "ModelSerieId", "ModelSerieName");
-            ViewBag.ModelSerieTypeId = new SelectList(_uow.ModelSerieTypes.All, "ModelSerieTypeId", "ModelSerieTypeName");
-            return View();
+            var vm = new ProductSelectorCreateEditViewModel();
+            vm.ManufactorerSelectList = new SelectList(_uow.Manufactorers.All.Select(a => a.ManufactorerId));
+            vm.ManufactorerTypeSelectList = new SelectList(_uow.ManufactorerTypes.All.Select(a => a.ManufactorerTypeId));
+            vm.ModelSerieSelectList = new SelectList(_uow.ModelSeries.All.Select(a => a.ModelSerieId));
+            vm.ModelSerieTypeSelectList = new SelectList(_uow.ModelSerieTypes.All.Select(a => a.ModelSerieTypeId));
+
+//            ViewBag.ManufactorerId = new SelectList(_uow.Manufactorers.All, "ManufactorerId", "ManufactorerName");
+//            ViewBag.ManufactorerTypeId = new SelectList(_uow.ManufactorerTypes.All, "ManufactorerTypeId", "ManufactorerTypeName");
+//            ViewBag.ModelSerieId = new SelectList(_uow.ModelSeries.All, "ModelSerieId", "ModelSerieName");
+//            ViewBag.ModelSerieTypeId = new SelectList(_uow.ModelSerieTypes.All, "ModelSerieTypeId", "ModelSerieTypeName");
+            return View(vm);
         }
 
         // POST: ProductSelectors/Create
@@ -54,20 +65,20 @@ namespace Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ProductSelector productSelector)
+        public ActionResult Create(ProductSelectorCreateEditViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                _uow.ProductSelectors.Add(productSelector);
+                _uow.ProductSelectors.Add(vm.ProductSelector);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ManufactorerId = new SelectList(_uow.Manufactorers.All, "ManufactorerId", "ManufactorerName", productSelector.ManufactorerId);
-            ViewBag.ManufactorerTypeId = new SelectList(_uow.ManufactorerTypes.All, "ManufactorerTypeId", "ManufactorerTypeName", productSelector.ManufactorerTypeId);
-            ViewBag.ModelSerieId = new SelectList(_uow.ModelSeries.All, "ModelSerieId", "ModelSerieName", productSelector.ModelSerieId);
-            ViewBag.ModelSerieTypeId = new SelectList(_uow.ModelSerieTypes.All, "ModelSerieTypeId", "ModelSerieTypeName", productSelector.ModelSerieTypeId);
-            return View(productSelector);
+            vm.ManufactorerSelectList = new SelectList(_uow.Manufactorers.All.Select(a => a.ManufactorerId), vm.ProductSelector.ManufactorerId);
+            vm.ManufactorerTypeSelectList = new SelectList(_uow.ManufactorerTypes.All.Select(a => a.ManufactorerTypeId), vm.ProductSelector.ManufactorerTypeId);
+            vm.ModelSerieSelectList = new SelectList(_uow.ModelSeries.All.Select(a => a.ModelSerieId), vm.ProductSelector.ModelSerieId);
+            vm.ModelSerieTypeSelectList = new SelectList(_uow.ModelSerieTypes.All.Select(a => a.ModelSerieTypeId), vm.ProductSelector.ModelSerieTypeId); 
+            return View(vm);
         }
 
         // GET: ProductSelectors/Edit/5
@@ -82,11 +93,15 @@ namespace Web.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ManufactorerId = new SelectList(_uow.Manufactorers.All, "ManufactorerId", "ManufactorerName", productSelector.ManufactorerId);
-            ViewBag.ManufactorerTypeId = new SelectList(_uow.ManufactorerTypes.All, "ManufactorerTypeId", "ManufactorerTypeName", productSelector.ManufactorerTypeId);
-            ViewBag.ModelSerieId = new SelectList(_uow.ModelSeries.All, "ModelSerieId", "ModelSerieName", productSelector.ModelSerieId);
-            ViewBag.ModelSerieTypeId = new SelectList(_uow.ModelSerieTypes.All, "ModelSerieTypeId", "ModelSerieTypeName", productSelector.ModelSerieTypeId);
-            return View(productSelector);
+            var vm = new ProductSelectorCreateEditViewModel()
+            {
+                ProductSelector = productSelector
+            };
+            vm.ManufactorerSelectList = new SelectList(_uow.Manufactorers.All.Select(a => a.ManufactorerId), vm.ProductSelector.ManufactorerId);
+            vm.ManufactorerTypeSelectList = new SelectList(_uow.ManufactorerTypes.All.Select(a => a.ManufactorerTypeId), vm.ProductSelector.ManufactorerTypeId);
+            vm.ModelSerieSelectList = new SelectList(_uow.ModelSeries.All.Select(a => a.ModelSerieId), vm.ProductSelector.ModelSerieId);
+            vm.ModelSerieTypeSelectList = new SelectList(_uow.ModelSerieTypes.All.Select(a => a.ModelSerieTypeId), vm.ProductSelector.ModelSerieTypeId);
+            return View(vm);
         }
 
         // POST: ProductSelectors/Edit/5
@@ -94,19 +109,19 @@ namespace Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ProductSelector productSelector)
+        public ActionResult Edit(ProductSelectorCreateEditViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                _uow.ProductSelectors.Update(productSelector);
+                _uow.ProductSelectors.Update(vm.ProductSelector);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
-            ViewBag.ManufactorerId = new SelectList(_uow.Manufactorers.All, "ManufactorerId", "ManufactorerName", productSelector.ManufactorerId);
-            ViewBag.ManufactorerTypeId = new SelectList(_uow.ManufactorerTypes.All, "ManufactorerTypeId", "ManufactorerTypeName", productSelector.ManufactorerTypeId);
-            ViewBag.ModelSerieId = new SelectList(_uow.ModelSeries.All, "ModelSerieId", "ModelSerieName", productSelector.ModelSerieId);
-            ViewBag.ModelSerieTypeId = new SelectList(_uow.ModelSerieTypes.All, "ModelSerieTypeId", "ModelSerieTypeName", productSelector.ModelSerieTypeId);
-            return View(productSelector);
+            vm.ManufactorerSelectList = new SelectList(_uow.Manufactorers.All.Select(a => a.ManufactorerId), vm.ProductSelector.ManufactorerId);
+            vm.ManufactorerTypeSelectList = new SelectList(_uow.ManufactorerTypes.All.Select(a => a.ManufactorerTypeId), vm.ProductSelector.ManufactorerTypeId);
+            vm.ModelSerieSelectList = new SelectList(_uow.ModelSeries.All.Select(a => a.ModelSerieId), vm.ProductSelector.ModelSerieId);
+            vm.ModelSerieTypeSelectList = new SelectList(_uow.ModelSerieTypes.All.Select(a => a.ModelSerieTypeId), vm.ProductSelector.ModelSerieTypeId);
+            return View(vm);
         }
 
         // GET: ProductSelectors/Delete/5

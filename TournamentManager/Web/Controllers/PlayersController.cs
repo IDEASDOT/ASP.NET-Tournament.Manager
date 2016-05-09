@@ -1,8 +1,10 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using DAL.Interfaces;
 using Domain;
 using Microsoft.AspNet.Identity;
+using Web.ViewModels;
 
 
 namespace Web.Controllers
@@ -20,7 +22,11 @@ namespace Web.Controllers
         // GET: players
         public ActionResult Index()
         {
-            return View(_uow.Players.GetAllForUser(User.Identity.GetUserId<int>()));
+            var vm = new PlayerIndexViewModel()
+            {
+                Players = _uow.Players.GetAllForUser(User.Identity.GetUserId<int>())
+            };
+            return View(vm);
         }
 
         // GET: players/Details/5
@@ -41,9 +47,12 @@ namespace Web.Controllers
         // GET: players/Create
         public ActionResult Create()
         {
-            ViewBag.MapId = new SelectList(_uow.Maps.All, "MapId", "MapName");
-            ViewBag.TeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName");
-            return View();
+            var vm = new PlayerCreateEditViewModel();
+            vm.MapSelectList = new SelectList(_uow.Maps.All.Select(a => a.MapId));
+            vm.TeamSelectList = new SelectList(_uow.Teams.All.Select(a => a.TeamId));
+//            ViewBag.MapId = new SelectList(_uow.Maps.All, "MapId", "MapName");
+//            ViewBag.TeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName");
+            return View(vm);
         }
 
         // POST: players/Create
@@ -51,21 +60,21 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Player player)
+        public ActionResult Create(PlayerCreateEditViewModel vm)
         {
             if (ModelState.IsValid)
             {
                 // do not get user id from html get/post!!!!
-                player.UserId = User.Identity.GetUserId<int>();
+                vm.Player.UserId = User.Identity.GetUserId<int>();
 
-                _uow.Players.Add(player);
+                _uow.Players.Add(vm.Player);
                 _uow.Commit();
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewBag.MapId = new SelectList(_uow.Maps.All, "MapId", "MapName", player.MapId);
-            ViewBag.TeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName", player.TeamId);
-            return View(player);
+            vm.MapSelectList = new SelectList(_uow.Maps.All.Select(a => a.MapId), vm.Player.MapId);
+            vm.TeamSelectList = new SelectList(_uow.Teams.All.Select(a => a.TeamId), vm.Player.TeamId);
+            return View(vm);
         }
 
         // GET: players/Edit/5
@@ -81,11 +90,13 @@ namespace Web.Controllers
             {
                 return HttpNotFound();
             }
-
-
-            ViewBag.MapId = new SelectList(_uow.Maps.All, "MapId", "MapName", player.MapId);
-            ViewBag.TeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName", player.TeamId);
-            return View(player);
+            var vm = new PlayerCreateEditViewModel()
+            {
+                Player = player
+            };
+            vm.MapSelectList = new SelectList(_uow.Maps.All.Select(a => a.MapId), vm.Player.MapId);
+            vm.TeamSelectList = new SelectList(_uow.Teams.All.Select(a => a.TeamId), vm.Player.TeamId);
+            return View(vm);
         }
 
         // POST: players/Edit/5
@@ -93,20 +104,20 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Player player)
+        public ActionResult Edit(PlayerCreateEditViewModel vm)
         {
             if (ModelState.IsValid)
             {
                 // do not get user id from html get/post!!!!
-                player.UserId = User.Identity.GetUserId<int>();
+                vm.Player.UserId = User.Identity.GetUserId<int>();
 
-                _uow.Players.Update(player);
+                _uow.Players.Update(vm.Player);
                 _uow.Commit();
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.MapId = new SelectList(_uow.Maps.All, "MapId", "MapName", player.MapId);
-            ViewBag.TeamId = new SelectList(_uow.Teams.All, "TeamId", "TeamName", player.TeamId);
-            return View(player);
+            vm.MapSelectList = new SelectList(_uow.Maps.All.Select(a => a.MapId), vm.Player.MapId);
+            vm.TeamSelectList = new SelectList(_uow.Teams.All.Select(a => a.TeamId), vm.Player.TeamId);
+            return View(vm);
         }
 
         // GET: players/Delete/5

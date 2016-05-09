@@ -1,0 +1,9 @@
+﻿@model Web.Areas.Admin.ViewModels.ModelSerieCreateEditViewModel
+
+<div class="form-group">
+    @Html.LabelFor(model => model.ModelSerie.ModelSerieName, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.ModelSerie.ModelSerieName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.ModelSerie.ModelSerieName, "", new { @class = "text-danger" })
+    </div>
+</div>

@@ -1,7 +1,9 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using DAL.Interfaces;
 using Domain;
+using Web.ViewModels;
 
 namespace Web.Controllers
 {
@@ -18,9 +20,12 @@ namespace Web.Controllers
         // GET: PieceInComputers
         public ActionResult Index()
         {
+            var vm = new PieceInComputerIndexViewModel()
+            {
+                PieceInComputers = _uow.PieceInComputers.AllIncluding()
+            };
             //var pieceInComputers = _uow.PieceInComputers.Include(p => p.ComputerSpecification).Include(p => p.ProductSelector);
-            var pieceInComputers = _uow.PieceInComputers.AllIncluding();
-            return View(pieceInComputers);
+            return View(vm);
         }
 
         // GET: PieceInComputers/Details/5
@@ -41,9 +46,10 @@ namespace Web.Controllers
         // GET: PieceInComputers/Create
         public ActionResult Create()
         {
-            ViewBag.CompSpecId = new SelectList(_uow.ComputerSpecifications.All, "CompSpecId", "OsName");
-            ViewBag.ProductSelectorId = new SelectList(_uow.ProductSelectors.All, "ProductSelectorId", "ProductSelectorId");
-            return View();
+            var vm = new PieceInComputerCreateEditViewModel();
+            vm.ComputerSpecificationSelectList = new SelectList(_uow.ComputerSpecifications.All.Select(a => a.CompSpecId));
+            vm.ProductSelectorSelectList = new SelectList(_uow.ProductSelectors.All.Select(a => a.ProductSelectorId));
+            return View(vm);
         }
 
         // POST: PieceInComputers/Create
@@ -51,18 +57,18 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(PieceInComputer pieceInComputer)
+        public ActionResult Create(PieceInComputerCreateEditViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                _uow.PieceInComputers.Add(pieceInComputer);
+                _uow.PieceInComputers.Add(vm.PieceInComputer);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CompSpecId = new SelectList(_uow.ComputerSpecifications.All, "CompSpecId", "OsName", pieceInComputer.CompSpecId);
-            ViewBag.ProductSelectorId = new SelectList(_uow.ProductSelectors.All, "ProductSelectorId", "ProductSelectorId", pieceInComputer.ProductSelectorId);
-            return View(pieceInComputer);
+            vm.ComputerSpecificationSelectList = new SelectList(_uow.ComputerSpecifications.All.Select(a => a.CompSpecId), vm.PieceInComputer.CompSpecId);
+            vm.ProductSelectorSelectList = new SelectList(_uow.ProductSelectors.All.Select(a => a.ProductSelectorId), vm.PieceInComputer.ProductSelectorId);
+            return View(vm);
         }
 
         // GET: PieceInComputers/Edit/5
@@ -77,9 +83,13 @@ namespace Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CompSpecId = new SelectList(_uow.ComputerSpecifications.All, "CompSpecId", "OsName", pieceInComputer.CompSpecId);
-            ViewBag.ProductSelectorId = new SelectList(_uow.ProductSelectors.All, "ProductSelectorId", "ProductSelectorId", pieceInComputer.ProductSelectorId);
-            return View(pieceInComputer);
+            var vm = new PieceInComputerCreateEditViewModel()
+            {
+                PieceInComputer = pieceInComputer
+            };
+            vm.ComputerSpecificationSelectList = new SelectList(_uow.ComputerSpecifications.All.Select(a => a.CompSpecId), vm.PieceInComputer.CompSpecId);
+            vm.ProductSelectorSelectList = new SelectList(_uow.ProductSelectors.All.Select(a => a.ProductSelectorId), vm.PieceInComputer.ProductSelectorId);
+            return View(vm);
         }
 
         // POST: PieceInComputers/Edit/5
@@ -87,17 +97,17 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(PieceInComputer pieceInComputer)
+        public ActionResult Edit(PieceInComputerCreateEditViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                _uow.PieceInComputers.Update(pieceInComputer);
+                _uow.PieceInComputers.Update(vm.PieceInComputer);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
-            ViewBag.CompSpecId = new SelectList(_uow.ComputerSpecifications.All, "CompSpecId", "OsName", pieceInComputer.CompSpecId);
-            ViewBag.ProductSelectorId = new SelectList(_uow.ProductSelectors.All, "ProductSelectorId", "ProductSelectorId", pieceInComputer.ProductSelectorId);
-            return View(pieceInComputer);
+            vm.ComputerSpecificationSelectList = new SelectList(_uow.ComputerSpecifications.All.Select(a => a.CompSpecId), vm.PieceInComputer.CompSpecId);
+            vm.ProductSelectorSelectList = new SelectList(_uow.ProductSelectors.All.Select(a => a.ProductSelectorId), vm.PieceInComputer.ProductSelectorId);
+            return View(vm);
         }
 
         // GET: PieceInComputers/Delete/5

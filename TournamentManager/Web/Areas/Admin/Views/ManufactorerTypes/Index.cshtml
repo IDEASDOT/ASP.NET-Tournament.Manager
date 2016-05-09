@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Domain.ManufactorerType>
+﻿@model Web.Areas.Admin.ViewModels.ManufactorerTypeIndexViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -12,12 +12,12 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ManufactorerTypeName)
+            @Html.DisplayNameFor(model => model.ManufactorerTypes.FirstOrDefault().ManufactorerTypeName)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.ManufactorerTypes) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.ManufactorerTypeName)

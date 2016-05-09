@@ -282,4 +282,7 @@
   <data name="SecondTeamScore" xml:space="preserve">
     <value>Second Team Score</value>
   </data>
+  <data name="MatchFullName" xml:space="preserve">
+    <value>Match Info</value>
+  </data>
 </root>

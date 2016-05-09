@@ -1,4 +1,4 @@
-﻿@model Domain.PieceInComputer
+﻿@model Web.ViewModels.PieceInComputerCreateEditViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -15,29 +15,8 @@
         <h4>PieceInComputer</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ProductSelectorId, "ProductSelectorId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ProductSelectorId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ProductSelectorId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CompSpecId, "CompSpecId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("CompSpecId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CompSpecId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.Partial("_CreateEdit", Model)
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

@@ -2,6 +2,8 @@
 using System.Web.Mvc;
 using DAL.Interfaces;
 using Domain;
+using Microsoft.AspNet.Identity;
+using Web.ViewModels;
 
 namespace Web.Controllers
 {
@@ -21,7 +23,11 @@ namespace Web.Controllers
         // GET: ComputerSpecifications
         public ActionResult Index()
         {
-            return View(_uow.ComputerSpecifications.AllIncluding());
+            var vm = new ComputerSpecificationIndexViewModel()
+            {
+                ComputerSpecifications = _uow.ComputerSpecifications.AllIncluding()
+            };
+            return View(vm);
         }
 
         // GET: ComputerSpecifications/Details/5
@@ -42,8 +48,10 @@ namespace Web.Controllers
         // GET: ComputerSpecifications/Create
         public ActionResult Create()
         {
-            ViewBag.PlayerId = new SelectList(_uow.Players.All, "PlayerId", "FirstName");
-            return View();
+            var vm = new ComputerSpecificationCreateEditViewModel();
+            vm.PlayerSelectList = new SelectList(_uow.Players.GetAllForUser(User.Identity.GetUserId<int>()), nameof(Player.PlayerId), nameof(Player.FullName));
+            //ViewBag.PlayerId = new SelectList(_uow.Players.All, "PlayerId", "FirstName");
+            return View(vm);
         }
 
         // POST: ComputerSpecifications/Create
@@ -51,17 +59,16 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ComputerSpecification computerSpecification)
+        public ActionResult Create(ComputerSpecificationCreateEditViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                _uow.ComputerSpecifications.Add(computerSpecification);
+                _uow.ComputerSpecifications.Add(vm.ComputerSpecification);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.PlayerId = new SelectList(_uow.Players.All, "PlayerId", "FirstName", computerSpecification.PlayerId);
-            return View(computerSpecification);
+            vm.PlayerSelectList = new SelectList(_uow.Players.GetAllForUser(User.Identity.GetUserId<int>()), nameof(Player.PlayerId), nameof(Player.FullName), vm.ComputerSpecification.PlayerId);
+            return View(vm);
         }
 
         // GET: ComputerSpecifications/Edit/5
@@ -76,8 +83,14 @@ namespace Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PlayerId = new SelectList(_uow.Players.All, "PlayerId", "FirstName", computerSpecification.PlayerId);
-            return View(computerSpecification);
+
+            var vm = new ComputerSpecificationCreateEditViewModel()
+            {
+                ComputerSpecification = computerSpecification
+            };
+
+            vm.PlayerSelectList = new SelectList(_uow.Players.GetAllForUser(User.Identity.GetUserId<int>()), nameof(Player.PlayerId), nameof(Player.FullName), vm.ComputerSpecification.PlayerId);
+            return View(vm);
         }
 
         // POST: ComputerSpecifications/Edit/5
@@ -85,16 +98,16 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ComputerSpecification computerSpecification)
+        public ActionResult Edit(ComputerSpecificationCreateEditViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                _uow.ComputerSpecifications.Update(computerSpecification);
+                _uow.ComputerSpecifications.Update(vm.ComputerSpecification);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
-            ViewBag.PlayerId = new SelectList(_uow.Players.All, "PlayerId", "FirstName", computerSpecification.PlayerId);
-            return View(computerSpecification);
+            vm.PlayerSelectList = new SelectList(_uow.Players.GetAllForUser(User.Identity.GetUserId<int>()), nameof(Player.PlayerId), nameof(Player.FullName), vm.ComputerSpecification.PlayerId);
+            return View(vm);
         }
 
         // GET: ComputerSpecifications/Delete/5

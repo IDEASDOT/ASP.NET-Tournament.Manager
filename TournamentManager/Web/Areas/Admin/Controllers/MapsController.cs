@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using DAL.Interfaces;
 using Domain;
+using Web.Areas.Admin.ViewModels;
 using Web.Controllers;
 
 namespace Web.Areas.Admin.Controllers
@@ -20,7 +21,10 @@ namespace Web.Areas.Admin.Controllers
         // GET: Maps
         public ActionResult Index()
         {
-            return View(_uow.Maps.All);
+            var vm = new MapIndexViewModel() { 
+               Maps =  _uow.Maps.All
+            };
+            return View(vm);
         }
 
         // GET: Maps/Details/5
@@ -41,7 +45,8 @@ namespace Web.Areas.Admin.Controllers
         // GET: Maps/Create
         public ActionResult Create()
         {
-            return View();
+            var vm = new MapCreateEditViewModel();
+            return View(vm);
         }
 
         // POST: Maps/Create
@@ -49,16 +54,16 @@ namespace Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Map map)
+        public ActionResult Create(MapCreateEditViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                _uow.Maps.Add(map);
+                _uow.Maps.Add(vm.Map);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
 
-            return View(map);
+            return View(vm);
         }
 
         // GET: Maps/Edit/5
@@ -73,7 +78,11 @@ namespace Web.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return View(map);
+            var vm = new MapCreateEditViewModel()
+            {
+                Map = map
+            };
+            return View(vm);
         }
 
         // POST: Maps/Edit/5
@@ -81,15 +90,15 @@ namespace Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( Map map)
+        public ActionResult Edit(MapCreateEditViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                _uow.Maps.Update(map);
+                _uow.Maps.Update(vm.Map);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
-            return View(map);
+            return View(vm);
         }
 
         // GET: Maps/Delete/5

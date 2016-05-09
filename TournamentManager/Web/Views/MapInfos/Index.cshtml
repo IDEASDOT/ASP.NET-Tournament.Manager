@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Domain.MapInfo>
+﻿@model Web.ViewModels.MapInfoIndexViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -12,27 +12,33 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Map.MapName)
+            @Html.DisplayNameFor(model => model.MapInfos.FirstOrDefault().Map.MapName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Match.MatchId)
+            @Html.DisplayNameFor(model => model.MapInfos.FirstOrDefault().Match.MatchId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstTeamScore)
+            @Html.DisplayNameFor(model => model.MapInfos.FirstOrDefault().Match.FullName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SecondTeamScore)
+            @Html.DisplayNameFor(model => model.MapInfos.FirstOrDefault().FirstTeamScore)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MapInfos.FirstOrDefault().SecondTeamScore)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.MapInfos) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Map.MapName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Match.MatchId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Match.FullName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FirstTeamScore)

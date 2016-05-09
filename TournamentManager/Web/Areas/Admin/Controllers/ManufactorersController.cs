@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using DAL.Interfaces;
 using Domain;
+using Web.Areas.Admin.ViewModels;
 using Web.Controllers;
 
 namespace Web.Areas.Admin.Controllers
@@ -21,7 +22,11 @@ namespace Web.Areas.Admin.Controllers
         // GET: Manufactorers
         public ActionResult Index()
         {
-            return View(_uow.Manufactorers.All);
+            var vm = new ManufactorerIndexViewModel()
+            {
+                Manufactorers = _uow.Manufactorers.All
+            };
+            return View(vm);
         }
 
         // GET: Manufactorers/Details/5
@@ -42,7 +47,8 @@ namespace Web.Areas.Admin.Controllers
         // GET: Manufactorers/Create
         public ActionResult Create()
         {
-            return View();
+            var vm = new ManufactorerCreateEditViewModel();
+            return View(vm);
         }
 
         // POST: Manufactorers/Create
@@ -51,16 +57,16 @@ namespace Web.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //TODO fix this shit
-        public ActionResult Create( Manufactorer manufactorer)
+        public ActionResult Create( ManufactorerCreateEditViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                _uow.Manufactorers.Add(manufactorer);
+                _uow.Manufactorers.Add(vm.Manufactorer);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
 
-            return View(manufactorer);
+            return View(vm);
         }
 
         // GET: Manufactorers/Edit/5
@@ -75,7 +81,11 @@ namespace Web.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return View(manufactorer);
+            var vm = new ManufactorerCreateEditViewModel()
+            {
+                Manufactorer = manufactorer
+            };
+            return View(vm);
         }
 
         // POST: Manufactorers/Edit/5
@@ -83,15 +93,15 @@ namespace Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( Manufactorer manufactorer)
+        public ActionResult Edit( ManufactorerCreateEditViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                _uow.Manufactorers.Update(manufactorer);
+                _uow.Manufactorers.Update(vm.Manufactorer);
                 _uow.Commit();
                 return RedirectToAction("Index");
             }
-            return View(manufactorer);
+            return View(vm);
         }
 
         // GET: Manufactorers/Delete/5

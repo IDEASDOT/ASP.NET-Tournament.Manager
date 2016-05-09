@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Domain.Team>
+﻿@model Web.ViewModels.TeamIndexViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -12,15 +12,15 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TeamName)
+            @Html.DisplayNameFor(model => model.Teams.FirstOrDefault().TeamName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TeamAbbreviation)
+            @Html.DisplayNameFor(model => model.Teams.FirstOrDefault().TeamAbbreviation)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Teams) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.TeamName)
