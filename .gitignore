@@ -214,3 +214,5 @@ ModelManifest.xml
 *.json
 /TournamentManager/Web/bower_components/cldr-data
 /TournamentManager/Web/bower_components
+/TournamentManager/Web/Content/AdminLTE-2.3.3/documentation
+/TournamentManager/Web/Content/AdminLTE-2.3.3/pages
