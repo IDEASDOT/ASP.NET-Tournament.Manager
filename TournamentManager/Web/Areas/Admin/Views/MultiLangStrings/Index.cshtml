@@ -33,9 +33,9 @@
                 @Html.Raw(item.Value)
             </td>
             <td class="text-nowrap">
-                @Html.ActionLink("Edit", "Edit", new {id = item.MultiLangStringId}) |
-                @Html.ActionLink("Details", "Details", new {id = item.MultiLangStringId}) @*|
-            @Html.ActionLink("Delete", "Delete", new { id=item.MultiLangStringId })*@
+                @Html.ActionLink(@Resources.Common.Edit, "Edit", new {id = item.MultiLangStringId}) |
+                @Html.ActionLink(@Resources.Common.Details, "Details", new {id = item.MultiLangStringId}) @*|
+            @Html.ActionLink(@Resources.Common.Delete, "Delete", new { id=item.MultiLangStringId })*@
             </td>
         </tr>
     }

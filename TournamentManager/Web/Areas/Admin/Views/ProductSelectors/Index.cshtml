@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink(@Resources.Common.CreateNew, "Create")
 </p>
 <table class="table">
     <tr>
@@ -42,9 +42,9 @@
             @Html.DisplayFor(modelItem => item.ModelSerieType.ModelSerieTypeName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ProductSelectorId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ProductSelectorId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ProductSelectorId })
+            @Html.ActionLink(@Resources.Common.Edit, "Edit", new { id = item.ProductSelectorId }) |
+            @Html.ActionLink(@Resources.Common.Details, "Details", new { id = item.ProductSelectorId }) |
+            @Html.ActionLink(@Resources.Common.Delete, "Delete", new { id = item.ProductSelectorId })
         </td>
     </tr>
     }

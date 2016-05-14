@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create") | @Html.ActionLink("Toggle html encoding", "Index", new {viewHtml = !Model.ViewHtml})
+    @Html.ActionLink(@Resources.Common.CreateNew, "Create") | @Html.ActionLink("Toggle html encoding", "Index", new {viewHtml = !Model.ViewHtml})
 </p>
 
 <table class="table">
@@ -55,9 +55,9 @@
         <tr>
             <th></th>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {id = item.ArticleId}) |
-                @Html.ActionLink("Details", "Details", new {id = item.ArticleId}) |
-                @Html.ActionLink("Delete", "Delete", new {id = item.ArticleId})
+                @Html.ActionLink(@Resources.Common.Edit, "Edit", new {id = item.ArticleId}) |
+                @Html.ActionLink(@Resources.Common.Details, "Details", new {id = item.ArticleId}) |
+                @Html.ActionLink(@Resources.Common.Delete, "Delete", new {id = item.ArticleId})
             </td>
         </tr>
     }

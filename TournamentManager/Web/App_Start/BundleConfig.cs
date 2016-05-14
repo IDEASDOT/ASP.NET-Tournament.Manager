@@ -48,13 +48,23 @@ namespace Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/bower_components/bootstrap/dist/css/bootstrap.css",
-                "~/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css",
-                "~/Content/site.css"));
+                "~/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css"
+//                "~/Content/site.css"
+                ));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                    "~/Scripts/app/app.js"));
 
             BundleTable.EnableOptimizations = false;
+
+            //DarkAdmin stylebundle
+            bundles.Add(new StyleBundle("~/Content/darkadmincss").Include(
+                "~/Content/DarkAdmin.css",
+                "~/Content/DarkAdmin/font-awesome/css/font-awesome.min.css"
+            ));
+
+            bundles.Add(new ScriptBundle("~/bundles/darkadminjs").Include(
+                "~/Content/DarkAdmin/js/jquery-1.10.2.min.js"));
         }
     }
 }

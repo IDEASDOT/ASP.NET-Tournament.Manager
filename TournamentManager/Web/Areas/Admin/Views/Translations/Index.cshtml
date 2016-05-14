@@ -43,8 +43,8 @@
                 @Html.DisplayFor(modelItem => item.Culture)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {id = item.TranslationId}) |
-                @Html.ActionLink("Delete", "Delete", new {id = item.TranslationId})
+                @Html.ActionLink(@Resources.Common.Edit, "Edit", new {id = item.TranslationId}) |
+                @Html.ActionLink(@Resources.Common.Delete, "Delete", new {id = item.TranslationId})
             </td>
         </tr>
     }

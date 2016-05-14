@@ -1,4 +1,6 @@
 ﻿@using System.Threading
+@using Microsoft.AspNet.Identity
+@using Web.Helpers
 @{
     var titleTag = (string.IsNullOrWhiteSpace(ViewBag.Title) ? "" : ViewBag.Title + " - ") + Resources.Common.ApplicationName;
 
@@ -17,115 +19,139 @@
             currentCultureCode = Thread.CurrentThread.CurrentCulture.ToString();
             break;
     }
+
+    var culture = CultureHelper.GetCurrentUICulture().ToLower();
+
+    var nameValueCollection = HttpUtility.ParseQueryString(Request?.Url?.Query ?? "");
+    nameValueCollection.Remove("culture");
+    string returnUrl = Request?.Url?.AbsolutePath + "?" + nameValueCollection;
 }
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@titleTag</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/darkadmincss")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light-bootstrap/all.min.css" />
+    <link id="gridcss" rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/dark-bootstrap/all.min.css" />
+    <script type="text/javascript" src="http://www.prepbootstrap.com/Content/js/gridData.js"></script>
     <script type="text/javascript">
         var currentCultureCode = '@currentCultureCode';
     </script>
     @RenderSection("headerscripts", required: false)
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <div id="wrapper">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink(@Resources.Common.ApplicationName, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul id="active" class="nav navbar-nav side-nav">
                     @if (Request.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Profile", "Index", "Players", new {area = ""}, null)</li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">@Resources.Menu.Profile <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink(@Resources.Menu.ProfileSpecific, "Index", "Players", new { area = "" }, null)</li>
+                            <li>@Html.ActionLink(@Resources.Menu.Teams, "Index", new { area = "", controller = "Teams" })</li>
+                        </ul>
+                    </li>
 
-                        <li class="dropdown">
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Teams <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-
-                                <li>@Html.ActionLink("Teams", "Index", new { area = "", controller = "Teams" })</li>
-                                <li>@Html.ActionLink("Matches", "Index", new {area = "", controller = "Matches"})</li>
-                                <li>@Html.ActionLink("MapInfos", "Index", new {area = "", controller = "MapInfos"})</li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown">
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Specifications <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("GameSpecifications", "Index", new { area = "", controller = "GameSpecifications" })</li>
-                                <li>@Html.ActionLink("ComputerSpecifications", "Index", new {area = "", controller = "ComputerSpecifications"})</li>
-                                <li>@Html.ActionLink("PieceInComputers", "Index", new { area = "", controller = "PieceInComputers" })</li>
-                            </ul>
-                        </li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">@Resources.Menu.Specifications <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink(@Resources.Menu.GameSpecifications, "Index", new { area = "", controller = "GameSpecifications" })</li>
+                            <li>@Html.ActionLink(@Resources.Menu.ComputerSpecifications, "Index", new { area = "", controller = "ComputerSpecifications" })</li>
+                            <li>@Html.ActionLink(@Resources.Menu.PieceInComputers, "Index", new { area = "", controller = "PieceInComputers" })</li>
+                        </ul>
+                    </li>
                     }
                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                     {
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">@Resources.Menu.Admin <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink(@Resources.Menu.Articles, "Index", new { area = "Admin", controller = "Articles" })</li>
+                            <li>@Html.ActionLink(@Resources.Menu.MultiLangStrings, "Index", new { area = "Admin", controller = "MultiLangStrings" })</li>
+                            <li>@Html.ActionLink(@Resources.Menu.Translations, "Index", new { area = "Admin", controller = "Translations" })</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink(@Resources.Menu.ProductSelectors, "Index", new { area = "Admin", controller = "ProductSelectors" })</li>
+                            <li>@Html.ActionLink(@Resources.Menu.ManufactorerTypes, "Index", new { area = "Admin", controller = "ManufactorerTypes" })</li>
+                            <li>@Html.ActionLink(@Resources.Menu.Manufactorers, "Index", new { area = "Admin", controller = "Manufactorers" })</li>
+                            <li>@Html.ActionLink(@Resources.Menu.ModelSerieTypes, "Index", new { area = "Admin", controller = "ModelSerieTypes" })</li>
+                            <li>@Html.ActionLink(@Resources.Menu.ModelSeries, "Index", new { area = "Admin", controller = "ModelSeries" })</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink(@Resources.Menu.Maps, "Index", new {area = "Admin", controller = "Maps"})</li>
+                            <li>@Html.ActionLink(@Resources.Menu.MapInfos, "Index", new {area = "", controller = "MapInfos"})</li>
+                            <li>@Html.ActionLink(@Resources.Menu.Matches, "Index", new { area = "", controller = "Matches" })</li>
+                        </ul>
+                    </li>
                         <li class="dropdown">
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Admin <b class="caret"></b></a>
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">@Resources.Menu.Identity <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-@*                                <li>@Html.ActionLink("Contact Types", "Index", new { area = "Admin", controller = "ContactTypes" })</li>*@
-                                <li>@Html.ActionLink("Articles", "Index", new { area = "Admin", controller = "Articles" })</li>
-                                <li class="divider"></li>
-                                <li>@Html.ActionLink("MultiLangStrings", "Index", new { area = "Admin", controller = "MultiLangStrings" })</li>
-                                <li>@Html.ActionLink("Translations", "Index", new { area = "Admin", controller = "Translations" })</li>
-                                @*<li>@Html.ActionLink("System logs", "Index", new { area = "Admin", controller = "SystemLog" })</li>*@
-                            </ul>
-                        </li>   
-                        <li class="dropdown">
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Identity <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Users", "Index", new {area = "Admin", controller = "Users"})</li>
-                                <li>@Html.ActionLink("Roles", "Index", new {area = "Admin", controller = "Roles"})</li>
-                                <li>@Html.ActionLink("Users in Roles", "Index", new {area = "Admin", controller = "UserRoles"})</li>
-                                <li>@Html.ActionLink("Logins", "Index", new {area = "Admin", controller = "UserLogins"})</li>
-                                <li>@Html.ActionLink("Claims", "Index", new {area = "Admin", controller = "UserClaims"})</li>
+                                <li>@Html.ActionLink(@Resources.Menu.Users, "Index", new { area = "Admin", controller = "Users" })</li>
+                                <li>@Html.ActionLink(@Resources.Menu.Roles, "Index", new { area = "Admin", controller = "Roles" })</li>
+                                <li>@Html.ActionLink(@Resources.Menu.UsersInRoles, "Index", new { area = "Admin", controller = "UserRoles" })</li>
+                                <li>@Html.ActionLink(@Resources.Menu.Logins, "Index", new { area = "Admin", controller = "UserLogins" })</li>
+                                <li>@Html.ActionLink(@Resources.Menu.Claims, "Index", new { area = "Admin", controller = "UserClaims" })</li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Computer Items <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("ProductSelectors", "Index", new {area = "Admin", controller = "ProductSelectors"})</li>
-                                <li>@Html.ActionLink("ManufactorerTypes", "Index", new {area = "Admin", controller = "ManufactorerTypes"})</li>
-                                <li>@Html.ActionLink("Manufactorers", "Index", new {area = "Admin", controller = "Manufactorers"})</li>
-                                <li>@Html.ActionLink("ModelSerieTypes", "Index", new {area = "Admin", controller = "ModelSerieTypes"})</li>
-                                <li>@Html.ActionLink("ModelSeries", "Index", new {area = "Admin", controller = "ModelSeries"})</li>
-                            </ul>
-                        </li>
-                        <li>@Html.ActionLink("Maps", "Index", new { area = "Admin", controller = "Maps" })</li>
                     }
                 </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
+                        <ul class="nav navbar-nav navbar-right navbar-user">
+
+                            @if (Request.IsAuthenticated)
+                            {
+                            <li class="dropdown user-dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>@User.Identity.GetUserName()<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
+                                    {
+                                    @Html.AntiForgeryToken()
+
+                                        <li><i class="fa fa-gear"></i> @Html.ActionLink(@Resources.Common.ManageAccount, "Index", new { area = "", controller = "Manage", @class = "btn btn-default btn-flat" })</li>
+                                        <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-power-off"></i> @Resources.Common.LogOff</a></li>
+                                    }
+                                </ul>
+                            </li>
+                            }
+                            else
+                            {
+                            <li>@Html.ActionLink(@Resources.Common.Login, "Login", new { area = "", controller = "Account" }, htmlAttributes: new { id = "loginLink" })</li>
+                            <li>@Html.ActionLink(@Resources.Common.Register, "Register", new { area = "", controller = "Account" }, htmlAttributes: new { id = "registerLink" })</li>
+                            }
+
+                            <li class="divider-vertical"></li>
+                            <li class="@Html.Raw(culture == "et" ? "list-group-item-success" : "")">
+                                @Html.ActionLink("Est", "SetLanguage", new { area = "", controller = "Language", culture = "et", returnUrl }, htmlAttributes: new { id = "langLinkEst" })
+                            </li>
+                            <li class="divider-vertical"></li>
+                            <li class="@Html.Raw(culture == "en" ? "list-group-item-success" : "")">
+                                @Html.ActionLink("Eng", "SetLanguage", new { area = "", controller = "Language", culture = "en", returnUrl }, htmlAttributes: new { id = "langLinkEng" })
+                            </li>
+
+
+                        </ul>
+</div>
+        </nav>
+    <div id="page-wrapper">
+    @RenderBody()
+
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>
-                &copy; @DateTime.Now.Year - @Resources.Common.ApplicationName
-                @if (Request.IsAuthenticated)
-            {
-                    <text>(<a href="javascript:document.getElementById('logoutForm').submit()">@Resources.Common.LogOff</a>)</text>
-                }
-                else
-                {
-                    <text>(@Html.ActionLink(@Resources.Common.Login, "Login", new { area = "", controller = "Account" }, htmlAttributes: new { id = "loginLink" }) | @Html.ActionLink(@Resources.Common.Register, "Register", new { area = "", controller = "Account" }, htmlAttributes: new { id = "registerLink" }))</text>
-                }
-                (Culture:<b>@Culture</b> UICulture:<b>@UICulture</b>)
-            </p>
-        </footer>
     </div>
 
+    
+    @Scripts.Render("~/bundles/darkadminjs")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/cldr")
     @Scripts.Render("~/bundles/globalize")
@@ -134,6 +160,11 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Scripts/tinymce/tinymce.min.js")
     @Scripts.Render("~/bundles/app")
+
+    
+
+
+
 
     @RenderSection("scripts", required: false)
 </body>

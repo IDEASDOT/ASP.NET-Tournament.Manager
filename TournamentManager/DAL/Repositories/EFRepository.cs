@@ -14,7 +14,7 @@ namespace DAL.Repositories
     // covers all basic crud methods, common for all other repos
     public class EFRepository<T> : IEFRepository<T> where T : class
     {
-        private readonly NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
+        private readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
         private readonly string _instanceId = Guid.NewGuid().ToString();
 
         // the context and the dbset we are working with

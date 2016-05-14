@@ -7,7 +7,7 @@
 <h2>Index - Users and Roles</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink(@Resources.Common.CreateNew, "Create")
 </p>
 <table class="table">
     <tr>
@@ -30,8 +30,8 @@
                 @Html.DisplayFor(modelItem => item.User.Email)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new {userId = item.UserId, roleId = item.RoleId}) |
-                @Html.ActionLink("Delete", "Delete", new {userId = item.UserId, roleId = item.RoleId})
+                @Html.ActionLink(@Resources.Common.Details, "Details", new {userId = item.UserId, roleId = item.RoleId}) |
+                @Html.ActionLink(@Resources.Common.Delete, "Delete", new {userId = item.UserId, roleId = item.RoleId})
             </td>
         </tr>
     }

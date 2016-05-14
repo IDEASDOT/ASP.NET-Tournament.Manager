@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink(@Resources.Common.CreateNew, "Create")
 </p>
 <table class="table">
     <tr>
@@ -31,9 +31,9 @@
             </td>
 
             <td>
-                @Html.ActionLink("Edit", "Edit", new {loginProvider = item.LoginProvider, providerKey = item.ProviderKey, userId = item.UserId}) |
-                @Html.ActionLink("Details", "Details", new {loginProvider = item.LoginProvider, providerKey = item.ProviderKey, userId = item.UserId}) |
-                @Html.ActionLink("Delete", "Delete", new {loginProvider = item.LoginProvider, providerKey = item.ProviderKey, userId = item.UserId})
+                @Html.ActionLink(@Resources.Common.Edit, "Edit", new {loginProvider = item.LoginProvider, providerKey = item.ProviderKey, userId = item.UserId}) |
+                @Html.ActionLink(@Resources.Common.Details, "Details", new {loginProvider = item.LoginProvider, providerKey = item.ProviderKey, userId = item.UserId}) |
+                @Html.ActionLink(@Resources.Common.Delete, "Delete", new {loginProvider = item.LoginProvider, providerKey = item.ProviderKey, userId = item.UserId})
             </td>
         </tr>
     }

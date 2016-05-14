@@ -1,18 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using DAL.Interfaces;
+using NLog;
 
 namespace DAL.Helpers
 {
     public class EFRepositoryProvider : IEFRepositoryProvider, IDisposable
     {
+        private readonly NLog.ILogger _logger;
+        private readonly string _instanceId = Guid.NewGuid().ToString();
+
         public IDbContext DbContext { get; set; }
         private readonly EFRepositoryFactories _repositoryFactories;
         protected Dictionary<Type, object> Repositories { get; private set; }
 
-        public EFRepositoryProvider(EFRepositoryFactories repositoryFactories)
+        public EFRepositoryProvider(EFRepositoryFactories repositoryFactories, ILogger logger)
         {
             _repositoryFactories = repositoryFactories;
+            _logger = logger;
+
+            _logger.Debug("InstanceId: " + _instanceId);
+
             Repositories = new Dictionary<Type, object>();
         }
 
