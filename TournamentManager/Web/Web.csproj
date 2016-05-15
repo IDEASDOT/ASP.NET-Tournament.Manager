@@ -1277,10 +1277,17 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\DarkAdmin.css" />
+    <Content Include="Content\DarkAdmin\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\DarkAdmin\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\DarkAdmin\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\DarkAdmin\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\DarkAdmin\bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\DarkAdmin\font-awesome\css\font-awesome.css" />
     <Content Include="Content\DarkAdmin\font-awesome\css\font-awesome.min.css" />
     <Content Include="Content\DarkAdmin\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\DarkAdmin\index.html" />
+    <Content Include="Content\DarkAdmin\js\jquery-1.10.2.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1903,7 +1910,14 @@
     <Content Include="Content\DarkAdmin\font-awesome\scss\_spinning.scss" />
     <Content Include="Content\DarkAdmin\font-awesome\scss\_stacked.scss" />
     <Content Include="Content\DarkAdmin\font-awesome\scss\_variables.scss" />
+    <Content Include="Content\DarkAdmin\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\DarkAdmin\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\DarkAdmin\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\DarkAdmin\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\PublishProfiles\tournaments - Web Deploy.pubxml">
       <SubType>Designer</SubType>
     </None>
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
